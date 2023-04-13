@@ -1,24 +1,8 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class GameApp {
-
-    /**
-     * Default constructor
-     */
-    public GameApp() {
+    public static void main(String[] args) {
+        AdministradorJuego admin = new AdministradorJuego();
+        admin.show();
     }
-
-    /**
-     * 
-     */
-    public static void main() {
-        // TODO implement here
-    }
-
 }
