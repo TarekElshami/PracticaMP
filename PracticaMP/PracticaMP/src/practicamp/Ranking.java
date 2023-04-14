@@ -1,36 +1,20 @@
 package practicamp;
 
+import java.util.List;
 
-import java.util.*;
-
-/**
- * 
- */
 public class Ranking {
-
-    /**
-     * Default constructor
-     */
-    public Ranking() {
-    }
-
-    /**
-     * 
-     */
     private List<Usuario> mejores;
 
-    /**
-     * 
-     */
-    public void show() {
-        // TODO implement here
+    public Ranking(List<Usuario> mejores) {
+        this.mejores = mejores;
     }
 
-    /**
-     * @param jugador
-     */
+    public void show() {
+
+    }
+
     public void actualizar(Usuario jugador) {
-        // TODO implement here
+
     }
 
 }
