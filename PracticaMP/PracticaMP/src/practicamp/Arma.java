@@ -1,22 +1,18 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class Arma extends Equipo {
+    private int manos;
 
-    /**
-     * Default constructor
-     */
-    public Arma() {
+    public Arma(String nombre, int defensa, int ataque, int manos) {
+        super(nombre, defensa, ataque);
+        this.manos = manos;
     }
 
-    /**
-     * 
-     */
-    private int numManos;
+    public void setManos(int manos) {
+        this.manos = manos;
+    }
 
+    public int getManos() {
+        return manos;
+    }
 }
