@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,69 +24,80 @@ public class AdministradorJuego {
     private static final Font BOTON_FONT = new Font("Arial", Font.PLAIN, 16);
 
     public void show() {
+        JPanel panel = crearPanel();
+        mostrarPanel(panel);
+    }
+
+    private JPanel crearPanel() {
+        JLabel titulo = crearTitulo();
+        JButton registrarse = crearBoton("Registrarse", VERDE, e -> registrarse());
+        JButton iniciarSesion = crearBoton("Iniciar sesión", AZUL, e -> iniciar_sesion());
+        JButton salir = crearBoton("Cerrar sistema", ROJO, e -> salir());
+
+        JPanel panel = new JPanel(new GridLayout(0, 1));
+        panel.setBackground(FONDO);
+        panel.add(crearTituloPanel(titulo));
+        panel.add(registrarse);
+        panel.add(iniciarSesion);
+        panel.add(salir);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        panel.setPreferredSize(screenSize);
+
+        return panel;
+    }
+
+    private JLabel crearTitulo() {
         JLabel titulo = new JLabel("Bienvenido al juego");
         titulo.setForeground(Color.BLACK);
         titulo.setFont(TITULO_FONT);
         titulo.setHorizontalAlignment(JLabel.CENTER);
-        
-        JButton registrarse = new JButton("Registrarse");
-        registrarse.setForeground(Color.WHITE);
-        registrarse.setBackground(new Color(34, 139, 34));
-        registrarse.setFont(BOTON_FONT);
-        registrarse.setPreferredSize(new Dimension(200, 50));
-        registrarse.addActionListener(e -> {
-            Registro registro = new Registro();
-            registro.show();
-        });
-        
-        JButton iniciarSesion = new JButton("Iniciar sesión");
-        iniciarSesion.setForeground(Color.WHITE);
-        iniciarSesion.setBackground(new Color(30, 144, 255));
-        iniciarSesion.setFont(BOTON_FONT);
-        iniciarSesion.setPreferredSize(new Dimension(200, 50));
-        iniciarSesion.addActionListener(e -> {
-            InicioSesion inicioSesion = new InicioSesion();
-            inicioSesion.show();
-        });
+        return titulo;
+    }
 
-        JButton salir = new JButton("Cerrar sistema");
-        salir.setForeground(Color.WHITE);
-        salir.setBackground(new Color(220, 20, 60));
-        salir.setFont(BOTON_FONT);
-        salir.setPreferredSize(new Dimension(200, 50));
-        salir.addActionListener(e -> System.exit(0));
-
-        JPanel panel = new JPanel(new GridLayout(0, 1));
-        panel.setBackground(FONDO);
-
+    private JPanel crearTituloPanel(JLabel titulo) {
         JPanel tituloPanel = new JPanel(new GridLayout(1, 1));
         tituloPanel.setBackground(Color.LIGHT_GRAY);
         tituloPanel.add(titulo);
+        return tituloPanel;
+    }
 
-        panel.add(tituloPanel);
-        panel.add(registrarse);
-        panel.add(iniciarSesion);
-        panel.add(salir);
-        
+    private JButton crearBoton(String texto, Color color, ActionListener listener) {
+        JButton boton = new JButton(texto);
+        boton.setForeground(Color.WHITE);
+        boton.setBackground(color);
+        boton.setFont(BOTON_FONT);
+        boton.setPreferredSize(new Dimension(200, 50));
+        boton.addActionListener(listener);
+        return boton;
+    }
+
+    private void mostrarPanel(JPanel panel) {
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Rectangle bounds = env.getMaximumWindowBounds();
-        panel.setPreferredSize(new Dimension(bounds.width, bounds.height));
-
-        JOptionPane.showOptionDialog(null, panel, "Administrador de Juego", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+        JOptionPane.showOptionDialog(
+                null,
+                panel,
+                "Administrador de Juego",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                new Object[]{},
+                null
+        );
     }
 
     public void registrarse() {
-        // TODO implement here
+        Registro registro = new Registro();
+        registro.show();
     }
-
 
     public void iniciar_sesion() {
-        // TODO implement here
+        InicioSesion inicioSesion = new InicioSesion();
+        inicioSesion.show();
     }
 
-
     public void salir() {
-        // TODO implement here
+        System.exit(0);
     }
 
 }
