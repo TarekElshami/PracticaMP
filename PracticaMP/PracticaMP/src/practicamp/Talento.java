@@ -1,17 +1,9 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class Talento extends Habilidad {
 
-    /**
-     * Default constructor
-     */
-    public Talento() {
+    public Talento(String nombre, int ataque, int defensa){
+        super(nombre, ataque, defensa);
     }
 
 }

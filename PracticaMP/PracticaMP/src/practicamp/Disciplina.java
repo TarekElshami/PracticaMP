@@ -1,22 +1,11 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class Disciplina extends Habilidad {
-
-    /**
-     * Default constructor
-     */
-    public Disciplina() {
-    }
-
-    /**
-     * 
-     */
     private int costeSangre;
+    
+    public Disciplina(String nombre, int ataque, int defensa, int costeSangre){
+        super(nombre, ataque, defensa);
+        this.costeSangre = costeSangre;
+    }
 
 }

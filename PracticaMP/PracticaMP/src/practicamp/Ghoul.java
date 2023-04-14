@@ -1,22 +1,13 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class Ghoul extends Esbirro {
 
-    /**
-     * Default constructor
-     */
-    public Ghoul() {
+    private int dependencia;
+
+    public Ghoul(String nombre, int salud, int dependencia) {
+        super(nombre, salud);
+        this.dependencia = dependencia;
     }
 
-    /**
-     * 
-     */
-    private int dependencia;
 
 }
