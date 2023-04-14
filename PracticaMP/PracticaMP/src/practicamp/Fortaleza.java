@@ -1,17 +1,11 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class Fortaleza extends Modificador {
+    private String nombre;
+    private int valor;
 
-    /**
-     * Default constructor
-     */
-    public Fortaleza() {
+    public Fortaleza(String nombre, int valor) {
+        super(nombre, valor);
     }
 
 }
