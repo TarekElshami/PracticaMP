@@ -1,32 +1,14 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class Habilidad {
 
-    /**
-     * Default constructor
-     */
-    public Habilidad() {
-    }
-
-    /**
-     * 
-     */
     private String nombre;
-
-    /**
-     * 
-     */
     private int ataque;
-
-    /**
-     * 
-     */
     private int defensa;
 
+    public Habilidad(String nombre, int ataque, int defensa) {
+        this.nombre = nombre;
+        this.ataque = ataque;
+        this.defensa = defensa;
+    }
 }
