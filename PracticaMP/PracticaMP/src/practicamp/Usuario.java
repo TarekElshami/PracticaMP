@@ -1,11 +1,8 @@
 package practicamp;
 
+import java.util.List;
+import javax.swing.JOptionPane;
 
-import java.util.*;
-
-/**
- * 
- */
 public class Usuario {
 
     private Rol rol;
@@ -21,77 +18,44 @@ public class Usuario {
     private Almacen almacen;
 
     public void show() {
-        // TODO implement here
+
     }
 
-    /**
-     * 
-     */
     public void validarDesafio() {
-        // TODO implement here
+    
     }
 
-    /**
-     * 
-     */
     public void banDesbanUsuario() {
-        // TODO implement here
+    
     }
 
-    /**
-     * 
-     */
     public void editarPersonaje() {
-        // TODO implement here
+    
     }
 
-    /**
-     * 
-     */
-    public void salirDelSistema() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
+    
     public void darDeBajaCuenta() {
-        // TODO implement here
+    
     }
 
-    /**
-     * @return
-     */
-    public int consultarOro() {
-        // TODO implement here
-        return 0;
+    public void consultarOro() {
+        JOptionPane.showMessageDialog(null, this.oro, "Cantidad de oro:", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /**
-     * @return
-     */
-    public String getID() {
-        // TODO implement here
-        return "";
+    public String getId() {
+        return id;
     }
 
-    /**
-     * 
-     */
+    
+
     public void ban() {
-        // TODO implement here
+        
     }
 
-    /**
-     * 
-     */
     public void desBan() {
-        // TODO implement here
+    
     }
 
-    /**
-     * 
-     */
     public void crearPersonaje() {
         // TODO implement here
     }
@@ -188,4 +152,7 @@ public class Usuario {
         // TODO implement here
     }
 
+    public void salirDelSistema() {
+    
+    }
 }
