@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +24,10 @@ public class AdministradorJuego {
     private static final Color ROJO = Color.RED;
     private static final Font TITULO_FONT = new Font("Arial", Font.BOLD, 24);
     private static final Font BOTON_FONT = new Font("Arial", Font.PLAIN, 16);
+
+    public AdministradorJuego() throws IOException, FileNotFoundException, ClassNotFoundException {
+        this.almacen = new Almacen();
+    }
 
     public void show() {
         JPanel panel = crearPanel();

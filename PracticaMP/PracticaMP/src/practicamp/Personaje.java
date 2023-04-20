@@ -17,12 +17,21 @@ public class Personaje {
     private List<Debilidad> debilidades;
     private List<Fortaleza> fortalezas;
 
-    public Personaje() {
+    public Personaje(String nombre) {
+        this.nombre = nombre;
+        this.salud = 5;
+    }
 
+    public Habilidad getHabilidad() {
+        return habilidad;
+    }
+
+    public void setHabilidad(Habilidad habilidad) {
+        this.habilidad = habilidad;
     }
     
     public void show() {
-
+        
     }
 
     public void setSalud(int salud) {

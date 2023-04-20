@@ -1,11 +1,7 @@
 package practicamp;
 
+import java.util.List;
 
-import java.util.*;
-
-/**
- * 
- */
 public class Demonio extends Esbirro {
 
     private List<Esbirro> esbirros;

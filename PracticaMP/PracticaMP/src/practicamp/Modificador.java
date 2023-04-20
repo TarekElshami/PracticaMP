@@ -1,30 +1,20 @@
 package practicamp;
 
-public class Modificador {
-    private String nombre;
-    private int valor;
+import java.io.Serializable;
 
-    public Modificador(String nombre, int valor) {
+public class Modificador implements Serializable {
+    private String nombre;
+
+    public Modificador(String nombre){
         this.nombre = nombre;
-        this.valor = valor;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public int getValor() {
-        return valor;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-    
-    
 
 }
