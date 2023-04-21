@@ -23,19 +23,20 @@ public class Almacen {
 
     private void cargarDatos() throws IOException, FileNotFoundException, ClassNotFoundException {
         this.cargarModificadores();
+        this.cargarArmaduras();
     }
     
     private void cargarModificadores() throws FileNotFoundException, IOException, ClassNotFoundException {
-    List<Modificador> listaModificadores = new ArrayList<>();
-    ObjectInputStream ois = new ObjectInputStream(new FileInputStream("modificadores.dat"));
+        List<Modificador> listaModificadores = new ArrayList<>();
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("modificadores.dat"));
 
-    try {
-        while (true) {
-            Modificador m = (Modificador) ois.readObject();
-            listaModificadores.add(m);
-        }
+        try {
+            while (true) {
+                Modificador m = (Modificador) ois.readObject();
+                listaModificadores.add(m);
+            }
         
-    } catch (EOFException e) {
+        } catch (EOFException e) {
             // Se llegó al final del archivo, no hay más objetos que leer
         }
 
@@ -43,6 +44,18 @@ public class Almacen {
         this.modificadores = listaModificadores;
     }
 
+    private void cargarArmaduras() {
+        try {
+            FileInputStream fis = new FileInputStream("armaduras.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            List<Armadura> armaduras = (List<Armadura>) ois.readObject();
+            ois.close();
+            fis.close();
+            this.armaduras = armaduras;
+        } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+        }    
+    }
 
     public List<Modificador> getModificadores() {
         return modificadores;
@@ -67,9 +80,15 @@ public class Almacen {
         return null;
     }
 
+    public List<Armadura> getArmaduras() {
+        return armaduras;
+    }
+
     public void agregarPersonaje(Personaje personaje) {
 
     }
+
+    
 
     
 }
