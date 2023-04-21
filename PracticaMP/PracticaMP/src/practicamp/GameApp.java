@@ -5,6 +5,8 @@ import java.io.IOException;
 
 public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        Personaje p = new Personaje("Juan");
+        p.show(Rol.jugador);
         /*AdministradorJuego admin = new AdministradorJuego();
         admin.show();*/
         

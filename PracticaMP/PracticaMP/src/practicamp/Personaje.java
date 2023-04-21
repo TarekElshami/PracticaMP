@@ -1,10 +1,20 @@
 package practicamp;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-public class Personaje {
+public class Personaje implements ActionListener {
     
+    JButton btnPersonaje, btnArmas, btnArmadura, btnInventario, btnEsbirro;
+
     private String nombre;
     private int salud;
     private int poder;
@@ -30,14 +40,67 @@ public class Personaje {
         this.habilidad = habilidad;
     }
     
-    public void show() {
+    public void show(Rol rol) {
+        JFrame frame = new JFrame();
+        frame.setSize(640, 480);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Crear panel para los botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(null); // Desactivar el layout manager
+        panelBotones.setOpaque(false); // Hacer el panel transparente
+        panelBotones.setBounds(0, 0, 640, 480); // Establecer las dimensiones y la posición del panel de botones
+
+        btnArmas = new JButton("Armas");
+        btnArmas.addActionListener(this);
+        btnArmas.setBounds(282, 305, 100, 30); // Establecer las dimensiones y la posición del botón de "Armas"
+        panelBotones.add(btnArmas);
+
+        btnArmadura = new JButton("Armadura");
+        btnArmadura.addActionListener(this);
+        btnArmadura.setBounds(126, 293, 100, 30); // Establecer las dimensiones y la posición del botón de "Armadura"
+        panelBotones.add(btnArmadura);
+        
+        if (rol == Rol.admin){
+            // Crear botones y añadirlos al panel
+            btnPersonaje = new JButton("Personaje");
+            btnPersonaje.addActionListener(this);
+            btnPersonaje.setBounds(212, 214, 100, 30); // Establecer las dimensiones y la posición del botón de "Personaje"
+            panelBotones.add(btnPersonaje);
+
+            btnInventario = new JButton("Inventario");
+            btnInventario.addActionListener(this);
+            btnInventario.setBounds(112, 256, 100, 30); // Establecer las dimensiones y la posición del botón de "Inventario"
+            panelBotones.add(btnInventario);
+
+            btnEsbirro = new JButton("Esbirro");
+            btnEsbirro.addActionListener(this);
+            btnEsbirro.setBounds(438, 387, 100, 30); // Establecer las dimensiones y la posición del botón de "Esbirro"
+            panelBotones.add(btnEsbirro);
+        }
+        // Añadir panel de botones a un contenedor
+        JPanel contentPane = new JPanel();
+        contentPane.setLayout(new BorderLayout());
+        frame.setContentPane(contentPane);
+        contentPane.add(panelBotones);
+
+        // Añadir imagen de fondo al contenedor
+        ImageIcon imagenFondo = new ImageIcon("personaje3.png");
+        JLabel etiquetaFondo = new JLabel(imagenFondo);
+        etiquetaFondo.setBounds(0, 0, 640, 480); // Establecer las dimensiones y la posición de la imagen de fondo
+        contentPane.add(etiquetaFondo, BorderLayout.CENTER);
+
+        frame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
         
     }
 
     public void setSalud(int salud) {
         this.salud = salud;
     }
-
 
     public void agregarArma(Arma arma) {
         this.armas.add(arma);
@@ -116,4 +179,6 @@ public class Personaje {
     public void eliminarFortaleza(Fortaleza fortaleza) {
         this.fortalezas.remove(fortaleza);
     }
+
+    
 }
