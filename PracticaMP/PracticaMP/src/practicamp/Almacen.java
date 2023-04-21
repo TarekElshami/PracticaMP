@@ -27,21 +27,14 @@ public class Almacen {
     }
     
     private void cargarModificadores() throws FileNotFoundException, IOException, ClassNotFoundException {
-        List<Modificador> listaModificadores = new ArrayList<>();
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("modificadores.dat"));
-
         try {
-            while (true) {
-                Modificador m = (Modificador) ois.readObject();
-                listaModificadores.add(m);
-            }
-        
-        } catch (EOFException e) {
-            // Se llegó al final del archivo, no hay más objetos que leer
-        }
-
-        ois.close();
-        this.modificadores = listaModificadores;
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("modificadores.dat"));
+            List<Modificador> modificadores = (List<Modificador>) ois.readObject();
+            ois.close();
+            this.modificadores = modificadores;
+        } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+        }    
     }
 
     private void cargarArmaduras() {

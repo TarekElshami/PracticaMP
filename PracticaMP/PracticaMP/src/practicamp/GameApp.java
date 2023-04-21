@@ -1,7 +1,11 @@
 package practicamp;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -9,7 +13,7 @@ public class GameApp {
         admin.show();*/
         
         
-        /*List<Modificador> modificadores = new ArrayList<>();
+        List<Modificador> modificadores = new ArrayList<>();
         modificadores.add(new Modificador("Plata"));
         modificadores.add(new Modificador("Control mental"));
         modificadores.add(new Modificador("Fuego"));
@@ -30,16 +34,19 @@ public class GameApp {
         modificadores.add(new Modificador("Velocidad"));
         modificadores.add(new Modificador("Regeneracion rapida"));
         modificadores.add(new Modificador("Sentidos agudizados"));
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("modificadores.dat"));
-        for (Modificador m : modificadores) {
-            oos.writeObject(m);
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("modificadores.dat"));
+            oos.writeObject(modificadores);
+            oos.close();
+            System.out.println("Modificadores guardados en el archivo modificadores.dat");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
-        oos.close();
         Almacen a = new Almacen();
         List<Modificador> m = a.getModificadores();
         for (Modificador mod : m) {
             System.out.println(mod.getNombre());
-        }*/
+        }
         
         
         /*List<Armadura> armaduras = new ArrayList<>();
