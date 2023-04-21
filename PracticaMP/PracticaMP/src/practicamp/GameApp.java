@@ -1,11 +1,7 @@
 package practicamp;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -13,7 +9,7 @@ public class GameApp {
         admin.show();*/
         
         
-        List<Modificador> modificadores = new ArrayList<>();
+        /*List<Modificador> modificadores = new ArrayList<>();
         modificadores.add(new Modificador("Plata"));
         modificadores.add(new Modificador("Control mental"));
         modificadores.add(new Modificador("Fuego"));
@@ -46,7 +42,7 @@ public class GameApp {
         List<Modificador> m = a.getModificadores();
         for (Modificador mod : m) {
             System.out.println(mod.getNombre());
-        }
+        }*/
         
         
         /*List<Armadura> armaduras = new ArrayList<>();
@@ -82,6 +78,45 @@ public class GameApp {
         Almacen a = new Almacen();
         List<Armadura> x = a.getArmaduras();
         for (Armadura armadura : x) {
+            System.out.println(armadura.getNombre());
+        }*/
+        
+        /*List <Arma> armas = new ArrayList<>();
+        armas.add(new Arma("Cuchillo de caza", 0, 2, 1));
+        armas.add(new Arma("Pistola con balas de plata", 1, 1, 1));
+        armas.add(new Arma("Estaca de madera", 1, 2, 1));
+        
+        armas.add(new Arma("Garras", 0, 2, 1));
+        armas.add(new Arma("Daga de obsidiana", 1, 1, 1));
+        armas.add(new Arma("Espada de sangre", 1, 2, 1));
+        
+        armas.add(new Arma("Cuchillo de plata", 1, 1, 1));
+        armas.add(new Arma("Látigo de hueso", 1, 2, 1));
+        
+        armas.add(new Arma("Ballesta con flechas de plata", 2, 2, 2));
+        armas.add(new Arma("Escopeta con balas de plata", 3, 1, 2));
+        armas.add(new Arma("Hacha de cazador", 3, 1, 2));
+        
+        armas.add(new Arma("Guadaña", 2, 2, 2));
+        armas.add(new Arma("Lanza de plata", 3, 1, 2));
+        armas.add(new Arma("Martillo de hueso", 3, 1, 2));
+        
+        armas.add(new Arma("Garrote de plata", 2, 2, 2));
+        armas.add(new Arma("Espada de lobo", 3, 1, 2));
+        armas.add(new Arma("Maza de hueso", 3, 1, 2));
+        try {
+            FileOutputStream fos = new FileOutputStream("armas.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(armas);
+            oos.close();
+            fos.close();
+            System.out.println("Armas guardadas en el archivo armas.dat");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        Almacen a = new Almacen();
+        List<Arma> x = a.getArmas();
+        for (Arma armadura : x) {
             System.out.println(armadura.getNombre());
         }*/
     }

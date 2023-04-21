@@ -1,6 +1,5 @@
 package practicamp;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,6 +23,7 @@ public class Almacen {
     private void cargarDatos() throws IOException, FileNotFoundException, ClassNotFoundException {
         this.cargarModificadores();
         this.cargarArmaduras();
+        this.cargarArmas();
     }
     
     private void cargarModificadores() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -45,6 +45,19 @@ public class Almacen {
             ois.close();
             fis.close();
             this.armaduras = armaduras;
+        } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+        }    
+    }
+    
+     private void cargarArmas() {
+        try {
+            FileInputStream fis = new FileInputStream("armas.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            List<Arma> armas = (List<Arma>) ois.readObject();
+            ois.close();
+            fis.close();
+            this.armas = armas;
         } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
         }    
@@ -77,9 +90,16 @@ public class Almacen {
         return armaduras;
     }
 
+    public List<Arma> getArmas() {
+        return armas;
+    }
+
+    
     public void agregarPersonaje(Personaje personaje) {
 
     }
+
+   
 
     
 
