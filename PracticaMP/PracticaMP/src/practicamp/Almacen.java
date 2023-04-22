@@ -97,7 +97,7 @@ public class Almacen {
     }
 
     public List<Personaje> getPersonajes() {
-        return null;
+        return personajes;
     }
 
     public List<Armadura> getArmaduras() {
