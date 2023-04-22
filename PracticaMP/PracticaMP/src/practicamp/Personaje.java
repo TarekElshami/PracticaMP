@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,8 +28,8 @@ public class Personaje implements Serializable, ActionListener {
     private List<Armadura> armaduras;
     private Armadura armaduraActiva;
     private List<Esbirro> esbirros;
-    private List<Modificador> debilidades;
-    private List<Modificador> fortalezas;
+    private Map<Modificador, Integer> debilidades;
+    private Map<Modificador, Integer> fortalezas;
 
     public Personaje(String nombre) {
         this.nombre = nombre;
@@ -38,8 +40,8 @@ public class Personaje implements Serializable, ActionListener {
         this.armaduras = new ArrayList<>();
         this.habilidad = null;
         this.esbirros = new ArrayList<>();
-        this.debilidades = new ArrayList<>();
-        this.fortalezas = new ArrayList<>();
+        this.debilidades = new HashMap<>();
+        this.fortalezas = new HashMap<>();
     }
 
     public Habilidad getHabilidad() {
@@ -174,16 +176,16 @@ public class Personaje implements Serializable, ActionListener {
         this.esbirros.remove(esbirro);
     }
 
-    public void agregarDebilidad(Modificador debilidad) {
-        this.debilidades.add(debilidad);
+    public void agregarDebilidad(Modificador debilidad, int valor) {
+        this.debilidades.put(debilidad, valor);
     }
 
     public void eliminarDebilidad(Modificador debilidad) {
         this.debilidades.remove(debilidad);
     }
 
-    public void agregarFortaleza(Modificador fortaleza) {
-        this.fortalezas.add(fortaleza);
+    public void agregarFortaleza(Modificador fortaleza, int valor) {
+        this.fortalezas.put(fortaleza, valor);
     }
 
     public void eliminarFortaleza(Modificador fortaleza) {

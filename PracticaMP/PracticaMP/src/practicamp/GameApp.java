@@ -1,12 +1,17 @@
 package practicamp;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         AdministradorJuego admin = new AdministradorJuego();
         admin.showGame();
+        
         
         /*
         //Esbirros cazador
@@ -158,13 +163,13 @@ public class GameApp {
         Vampiro v = new Vampiro("Vampiro");
         Disciplina d = new Disciplina("Disciplina", 3, 3, 3);
         v.setHabilidad(d);
-        v.agregarDebilidad(luzSol);
-        v.agregarDebilidad(estaca);
-        v.agregarDebilidad(faltaSangre);
+        v.agregarDebilidad(luzSol, 5);
+        v.agregarDebilidad(estaca, 4);
+        v.agregarDebilidad(faltaSangre, 2);
 
-        v.agregarFortaleza(Velocidad);
-        v.agregarFortaleza(regeneracion);
-        v.agregarFortaleza(agudizados);
+        v.agregarFortaleza(Velocidad, 4);
+        v.agregarFortaleza(regeneracion, 3);
+        v.agregarFortaleza(agudizados, 3);
         
         v.agregarArmadura(chalecoDeCuero);
         v.agregarArmadura(armaduraDeMalla);
@@ -185,15 +190,15 @@ public class GameApp {
         Licantropo l = new Licantropo ("Licantropo");
         Don don = new Don("Don", 2, 2, 0);
         l.setHabilidad(don);
-        l.agregarDebilidad(plata);
-        l.agregarDebilidad(controlMental);
-        l.agregarDebilidad(fuego);
-        l.agregarDebilidad(ausencia);
+        l.agregarDebilidad(plata, 5);
+        l.agregarDebilidad(controlMental, 3);
+        l.agregarDebilidad(fuego, 2);
+        l.agregarDebilidad(ausencia, 1);
 
-        l.agregarFortaleza(lobo);
-        l.agregarFortaleza(fuerzaSobrehumana);
-        l.agregarFortaleza(agilidad);
-        l.agregarFortaleza(sentidos);
+        l.agregarFortaleza(lobo, 5);
+        l.agregarFortaleza(fuerzaSobrehumana, 4);
+        l.agregarFortaleza(agilidad, 3);
+        l.agregarFortaleza(sentidos, 3);
         
         l.agregarArmadura(tunicaDeCueroOscuro);
         l.agregarArmadura(armaduraDePielDeMurcielago);
@@ -214,14 +219,14 @@ public class GameApp {
         Talento t = new Talento("Talento",1,1);
         c.setHabilidad(t);
 
-        c.agregarDebilidad(noche);
-        c.agregarDebilidad(fuego);
+        c.agregarDebilidad(noche,3);
+        c.agregarDebilidad(fuego,4);
 
-        c.agregarFortaleza(habilidad);
-        c.agregarFortaleza(combate);
-        c.agregarFortaleza(conocimiento);
-        c.agregarFortaleza(resistencia);
-        c.agregarFortaleza(sigilo);
+        c.agregarFortaleza(habilidad,5);
+        c.agregarFortaleza(combate,4);
+        c.agregarFortaleza(conocimiento,3);
+        c.agregarFortaleza(resistencia,2);
+        c.agregarFortaleza(sigilo,3);
         
         c.agregarArmadura(pielDeLobo);
         c.agregarArmadura(armaduraDeCueroEndurecido);
