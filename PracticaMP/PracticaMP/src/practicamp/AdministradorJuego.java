@@ -3,6 +3,8 @@ package practicamp;
 import java.awt.CardLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,7 +18,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
      * Creates new form gui
      *
      */
-    public AdministradorJuego() {
+    public AdministradorJuego() throws IOException, FileNotFoundException, ClassNotFoundException {
         almacen = new Almacen();
         initComponents();
         this.setLayout(new CardLayout());

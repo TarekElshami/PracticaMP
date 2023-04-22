@@ -1,22 +1,12 @@
 package practicamp;
 
-
-import java.util.*;
-
-/**
- * 
- */
 public class Licantropo extends Personaje {
 
-    /**
-     * Default constructor
-     */
-    public Licantropo() {
-    }
-
-    /**
-     * 
-     */
     private int rabia;
 
+    public Licantropo(String nombre) {
+        super(nombre);
+        this.rabia = 0;
+    }
+    
 }

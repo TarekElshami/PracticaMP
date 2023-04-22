@@ -4,9 +4,12 @@ import javax.swing.JOptionPane;
 
 public class Vampiro extends Personaje {
     private int sangre;
+    private int edad;
     
-    public Vampiro() {
-    
+    public Vampiro(String nombre) {
+        super(nombre);
+        this.edad = 711;
+        this.sangre = 0;
     }
     
     @Override
