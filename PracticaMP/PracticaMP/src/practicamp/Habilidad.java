@@ -1,8 +1,6 @@
 package practicamp;
 
-import java.io.Serializable;
-
-public class Habilidad implements Serializable{
+public class Habilidad {
 
     private String nombre;
     private int ataque;

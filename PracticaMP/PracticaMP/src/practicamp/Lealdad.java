@@ -1,8 +1,10 @@
 package practicamp;
 
-import java.io.Serializable;
 
-public enum Lealdad implements Serializable{
+/**
+ * 
+ */
+public enum Lealdad {
     alta,
     media,
     baja

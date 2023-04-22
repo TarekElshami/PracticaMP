@@ -1,9 +1,5 @@
 package practicamp;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.*;
 
 public class Almacen {
@@ -14,71 +10,8 @@ public class Almacen {
     private List<Personaje> personajes;
     private List<Armadura> armaduras;
     private List<Arma> armas;
-    private List<Modificador> modificadores;
 
-    public Almacen() throws IOException, FileNotFoundException, ClassNotFoundException {
-        this.cargarDatos();
-    }
-
-    private void cargarDatos() throws IOException, FileNotFoundException, ClassNotFoundException {
-        this.cargarModificadores();
-        this.cargarArmaduras();
-        this.cargarArmas();
-        this.cargarPersonajes();
-    }
-    
-    private void cargarModificadores() throws FileNotFoundException, IOException, ClassNotFoundException {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("modificadores.dat"));
-            List<Modificador> modificadores = (List<Modificador>) ois.readObject();
-            ois.close();
-            this.modificadores = modificadores;
-        } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }    
-    }
-
-    private void cargarArmaduras() {
-        try {
-            FileInputStream fis = new FileInputStream("armaduras.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            List<Armadura> armaduras = (List<Armadura>) ois.readObject();
-            ois.close();
-            fis.close();
-            this.armaduras = armaduras;
-        } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }    
-    }
-    
-     private void cargarArmas() {
-        try {
-            FileInputStream fis = new FileInputStream("armas.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            List<Arma> armas = (List<Arma>) ois.readObject();
-            ois.close();
-            fis.close();
-            this.armas = armas;
-        } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }    
-    }
-     
-     private void cargarPersonajes(){
-        try{
-            FileInputStream fis = new FileInputStream("personajes.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            List<Personaje> personajes = (List<Personaje>) ois.readObject();
-            ois.close();
-            fis.close();
-            this.personajes = personajes;
-        } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }  
-     }
-
-    public List<Modificador> getModificadores() {
-        return modificadores;
+    public void cargarDatos() {
     }
 
     public List<Desafio> getDesafiosSinValidar() {
@@ -97,25 +30,11 @@ public class Almacen {
     }
 
     public List<Personaje> getPersonajes() {
-        return personajes;
+        return null;
     }
 
-    public List<Armadura> getArmaduras() {
-        return armaduras;
-    }
-
-    public List<Arma> getArmas() {
-        return armas;
-    }
-
-    
     public void agregarPersonaje(Personaje personaje) {
 
     }
 
-   
-
-    
-
-    
 }

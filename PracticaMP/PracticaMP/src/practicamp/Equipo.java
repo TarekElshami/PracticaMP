@@ -1,8 +1,6 @@
 package practicamp;
 
-import java.io.Serializable;
-
-public class Equipo implements Serializable{
+public class Equipo {
     private String nombre;
     private int defensa;
     private int ataque;

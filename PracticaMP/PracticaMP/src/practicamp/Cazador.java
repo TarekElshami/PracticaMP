@@ -1,13 +1,22 @@
 package practicamp;
 
+
+import java.util.*;
+
+/**
+ * 
+ */
 public class Cazador extends Personaje {
 
-    private int voluntad;
-    
-    public Cazador(String nombre) {
-        super(nombre);
-        this.voluntad = 3;
+    /**
+     * Default constructor
+     */
+    public Cazador() {
     }
-    
+
+    /**
+     * 
+     */
+    private int voluntad;
 
 }
