@@ -1,14 +1,15 @@
 package practicamp;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     private Rol rol;
     private String nombre;
     private String nick;
-    private String contraseña;
+    private String contrasena;
     private String id;
     private Personaje personaje;
     private boolean baneado;
@@ -16,6 +17,11 @@ public class Usuario {
     private List<Notificacion> notificaciones;
     private int oro;
     private Almacen almacen;
+    
+    public Usuario(String nick, String contrasena) {
+        this.nick = nick;
+        this.contrasena = contrasena;
+    }
 
     public void show() {
 
@@ -57,7 +63,7 @@ public class Usuario {
     }
 
     public void crearPersonaje() {
-        
+        // TODO implement here
     }
 
     /**
@@ -154,5 +160,13 @@ public class Usuario {
 
     public void salirDelSistema() {
     
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public String getContrasena() {
+        return contrasena;
     }
 }
