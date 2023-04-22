@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Personaje implements Serializable, ActionListener {
+public class Personaje extends JPanel implements Serializable, ActionListener {
     
     JButton btnPersonaje, btnArmas, btnArmadura, btnInventario, btnEsbirro;
 
@@ -62,7 +62,7 @@ public class Personaje implements Serializable, ActionListener {
         panelBotones.setLayout(null); // Desactivar el layout manager
         panelBotones.setOpaque(false); // Hacer el panel transparente
         panelBotones.setBounds(0, 0, 640, 480); // Establecer las dimensiones y la posición del panel de botones
-
+        
         btnArmas = new JButton("Armas");
         btnArmas.addActionListener(this);
         btnArmas.setBounds(282, 305, 100, 30); // Establecer las dimensiones y la posición del botón de "Armas"
@@ -194,6 +194,10 @@ public class Personaje implements Serializable, ActionListener {
 
     public void setPoder(int poder) {
         this.poder = poder;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     
