@@ -24,6 +24,7 @@ public class Almacen {
         this.cargarModificadores();
         this.cargarArmaduras();
         this.cargarArmas();
+        this.cargarPersonajes();
     }
     
     private void cargarModificadores() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -62,6 +63,19 @@ public class Almacen {
                 e.printStackTrace();
         }    
     }
+     
+     private void cargarPersonajes(){
+        try{
+            FileInputStream fis = new FileInputStream("personajes.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            List<Personaje> personajes = (List<Personaje>) ois.readObject();
+            ois.close();
+            fis.close();
+            this.personajes = personajes;
+        } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+        }  
+     }
 
     public List<Modificador> getModificadores() {
         return modificadores;

@@ -1,6 +1,8 @@
 package practicamp;
 
-public class Esbirro {
+import java.io.Serializable;
+
+public class Esbirro implements Serializable{
     private String nombre;
     private int salud;
 

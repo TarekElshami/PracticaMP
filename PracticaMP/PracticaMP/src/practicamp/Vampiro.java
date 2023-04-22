@@ -8,8 +8,8 @@ public class Vampiro extends Personaje {
     
     public Vampiro(String nombre) {
         super(nombre);
-        /*disciplina = new Disciplina();
-        super.setHabilidad(disciplina);*/
+        this.edad = 711;
+        this.sangre = 0;
     }
     
     @Override

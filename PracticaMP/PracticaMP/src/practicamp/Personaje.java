@@ -3,6 +3,8 @@ package practicamp;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Personaje implements ActionListener {
+public class Personaje implements Serializable, ActionListener {
     
     JButton btnPersonaje, btnArmas, btnArmadura, btnInventario, btnEsbirro;
 
@@ -24,12 +26,20 @@ public class Personaje implements ActionListener {
     private List<Armadura> armaduras;
     private Armadura armaduraActiva;
     private List<Esbirro> esbirros;
-    private List<Debilidad> debilidades;
-    private List<Fortaleza> fortalezas;
+    private List<Modificador> debilidades;
+    private List<Modificador> fortalezas;
 
     public Personaje(String nombre) {
         this.nombre = nombre;
         this.salud = 5;
+        this.armaActiva = new ArrayList<>();
+        this.armaduraActiva = null;
+        this.armas = new ArrayList<>();
+        this.armaduras = new ArrayList<>();
+        this.habilidad = null;
+        this.esbirros = new ArrayList<>();
+        this.debilidades = new ArrayList<>();
+        this.fortalezas = new ArrayList<>();
     }
 
     public Habilidad getHabilidad() {
@@ -164,20 +174,24 @@ public class Personaje implements ActionListener {
         this.esbirros.remove(esbirro);
     }
 
-    public void agregarDebilidad(Debilidad debilidad) {
+    public void agregarDebilidad(Modificador debilidad) {
         this.debilidades.add(debilidad);
     }
 
-    public void eliminarDebilidad(Debilidad debilidad) {
+    public void eliminarDebilidad(Modificador debilidad) {
         this.debilidades.remove(debilidad);
     }
 
-    public void agregarFortaleza(Fortaleza fortaleza) {
+    public void agregarFortaleza(Modificador fortaleza) {
         this.fortalezas.add(fortaleza);
     }
 
-    public void eliminarFortaleza(Fortaleza fortaleza) {
+    public void eliminarFortaleza(Modificador fortaleza) {
         this.fortalezas.remove(fortaleza);
+    }
+
+    public void setPoder(int poder) {
+        this.poder = poder;
     }
 
     

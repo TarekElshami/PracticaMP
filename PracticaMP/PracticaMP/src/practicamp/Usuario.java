@@ -57,7 +57,7 @@ public class Usuario {
     }
 
     public void crearPersonaje() {
-        // TODO implement here
+        
     }
 
     /**

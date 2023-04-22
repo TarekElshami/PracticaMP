@@ -6,6 +6,7 @@ public class Cazador extends Personaje {
     
     public Cazador(String nombre) {
         super(nombre);
+        this.voluntad = 3;
     }
     
 
