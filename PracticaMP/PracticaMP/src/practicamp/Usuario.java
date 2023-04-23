@@ -66,23 +66,23 @@ public class Usuario implements Serializable {
     }
 
     public void crearPersonaje() {
-        CreaciónPersonaje c = new CreaciónPersonaje();
-        this.personaje = c.getNombre();
-        this.tipoPersonaje = c.getTipo();
+        //Hace falta llamar a CreacionPersonaje y obtener los datos con los getters y asignarlos a los atributos
     }
 
     /**
      * 
      */
     public void elegirArmas() {
-        // TODO implement here
+        //Hace falta verificar que tiene personaje
+        // se llama a eleccionEquipo y con el getArma se intenta insertar en el personaje y sino se puede pues no se cambia en el usuario
     }
 
     /**
      * 
      */
     public void elegirArmaduras() {
-        // TODO implement here
+        //Hace falta verificar que tiene personaje
+        // se llama a eleccionEquipo y con el getArmadura y se cambia en el usuario.
     }
 
     /**

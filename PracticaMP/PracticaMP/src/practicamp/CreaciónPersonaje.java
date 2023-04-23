@@ -37,7 +37,7 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
 
         jLabel3.setText("Escoge el tipo del tu personaje:");
 
-        CajaTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CajaTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vampiro", "Licantropo", "Cazador" }));
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +136,8 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
 
         this.nombre = auxNombre;
         this.tipo = auxTipo;
+        System.out.print(this.getNombre());
+        System.out.print(this.getTipo());
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

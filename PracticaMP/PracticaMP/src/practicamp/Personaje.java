@@ -200,5 +200,13 @@ public class Personaje implements Serializable, ActionListener {
         return nombre;
     }
 
+    public List<Arma> getArmas() {
+        return armas;
+    }
+
+    public List<Armadura> getArmaduras() {
+        return armaduras;
+    }
+
     
 }

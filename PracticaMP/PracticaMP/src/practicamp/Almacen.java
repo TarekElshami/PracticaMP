@@ -15,9 +15,9 @@ public class Almacen {
     private List<Usuario> usuarios;
     private List<Desafio> desafiosSinValidar;
     private Ranking ranking;
-    private List<Personaje> personajes;
+    private static List<Personaje> personajes;
     private List<Armadura> armaduras;
-    private List<Arma> armas;
+    private static List<Arma> armas;
     private List<Modificador> modificadores;
 
     public Almacen() throws IOException, FileNotFoundException, ClassNotFoundException {
@@ -128,7 +128,7 @@ public class Almacen {
         return null;
     }
 
-    public List<Personaje> getPersonajes() {
+    public static List<Personaje> getPersonajes() {
         return personajes;
     }
 
@@ -136,7 +136,7 @@ public class Almacen {
         return armaduras;
     }
 
-    public List<Arma> getArmas() {
+    public static List<Arma> getArmas() {
         return armas;
     }
     

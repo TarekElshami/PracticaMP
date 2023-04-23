@@ -10,9 +10,15 @@ import javax.swing.JFrame;
 
 public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-        AdministradorJuego admin = new AdministradorJuego();
-        admin.showGame();
-
+        /*AdministradorJuego admin = new AdministradorJuego();
+        admin.showGame();*/
+        Almacen a = new Almacen();
+        JFrame f = new JFrame();
+        EleccionEquipo s = new EleccionEquipo("Licantropo", false);
+        f.setSize(640, 480);
+        f.add(s);
+        f.setVisible(true);
+        
         /*
         //Esbirros cazador
         Humano h1 = new Humano("Elena", 1, Lealdad.alta);
