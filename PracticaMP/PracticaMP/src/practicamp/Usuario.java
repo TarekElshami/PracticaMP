@@ -10,14 +10,11 @@ public class Usuario implements Serializable {
     private String nombre;
     private String nick;
     private String contrasena;
-    private String id;
-    private Personaje personaje;    
-    /*
+    private String id;    
     private String personaje;
     private List<Arma> armasActivas;
     private List<Armadura> armaduraActiva;
-    private String tipoPersonaje;
-    */
+    private String tipoPersonaje;    
     private boolean baneado;
     private List<Desafio> historial;
     private List<Notificacion> notificaciones;
@@ -69,7 +66,9 @@ public class Usuario implements Serializable {
     }
 
     public void crearPersonaje() {
-        
+        CreaciónPersonaje c = new CreaciónPersonaje();
+        this.personaje = c.getNombre();
+        this.tipoPersonaje = c.getTipo();
     }
 
     /**

@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 
 public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-        AdministradorJuego admin = new AdministradorJuego();
-        admin.showGame();
-        
-        
+        //AdministradorJuego admin = new AdministradorJuego();
+        //admin.showGame();
+
         /*
         //Esbirros cazador
         Humano h1 = new Humano("Elena", 1, Lealdad.alta);
