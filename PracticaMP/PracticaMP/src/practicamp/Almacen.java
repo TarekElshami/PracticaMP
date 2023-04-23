@@ -16,7 +16,7 @@ public class Almacen {
     private List<Desafio> desafiosSinValidar;
     private Ranking ranking;
     private static List<Personaje> personajes;
-    private List<Armadura> armaduras;
+    private static List<Armadura> armaduras;
     private static List<Arma> armas;
     private List<Modificador> modificadores;
 
@@ -132,7 +132,7 @@ public class Almacen {
         return personajes;
     }
 
-    public List<Armadura> getArmaduras() {
+    public static List<Armadura> getArmaduras() {
         return armaduras;
     }
 
