@@ -174,4 +174,8 @@ public class Usuario implements Serializable {
     public String getContrasena() {
         return contrasena;
     }
+    
+    public int getOro(){
+        return this.oro;
+    }
 }

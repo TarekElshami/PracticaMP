@@ -58,12 +58,15 @@ public class Registro extends javax.swing.JPanel implements Serializable {
      * @return
      */
     private boolean verificarNick(String nick) {
-        Iterator it = usuarios.iterator();
-
         Boolean found = false;
-        while (it.hasNext() && !found) {
-            Usuario usuario = (Usuario) it.next();
-            found = (usuario.getNick().equals(nick));
+        if (!this.usuarios.isEmpty()){
+            Iterator it = usuarios.iterator();
+
+            
+            while (it.hasNext() && !found) {
+                Usuario usuario = (Usuario) it.next();
+                found = (usuario.getNick().equals(nick));
+            }
         }
         return found;
     }
@@ -261,6 +264,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
         crearID();
         Usuario nuevoUsuario = new Usuario(fieldNick.getText(), String.valueOf(fieldContrasena.getPassword()));
         this.usuarios.add(nuevoUsuario);
+        this.almacen.addUsuario(nuevoUsuario);
 
         try {
             this.almacen.updateFiles();

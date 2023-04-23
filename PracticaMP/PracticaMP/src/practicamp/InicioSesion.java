@@ -242,6 +242,7 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         boolean[] res = verificarDatos(fieldNick.getText(), String.valueOf(fieldContrasena.getPassword()));
         if (res[0] && res[1]) {
             JPanel parent = (JPanel) getParent();
+            this.almacen.setUsuarioActivo(fieldNick.getText());
             CardLayout cl = (CardLayout) parent.getLayout();
             cl.show(parent, "menuUsuario");
         } else {

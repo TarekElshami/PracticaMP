@@ -147,8 +147,14 @@ public class Almacen {
     public void setUsuarioActivo(String Nick){
         this.usuarioActivo = Nick;
     }
-
     
+    public void addUsuario(Usuario nuevoUsuario){
+        this.usuarios.add(nuevoUsuario);
+    }
+
+     public String getUsuarioActivo(){
+        return this.usuarioActivo;
+    }
 
     
 }
