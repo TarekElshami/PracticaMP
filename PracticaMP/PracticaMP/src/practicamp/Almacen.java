@@ -1,13 +1,17 @@
 package practicamp;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Almacen {
-
+    
+    private String usuarioActivo;
     private List<Usuario> usuarios;
     private List<Desafio> desafiosSinValidar;
     private Ranking ranking;
@@ -25,6 +29,34 @@ public class Almacen {
         this.cargarArmaduras();
         this.cargarArmas();
         this.cargarPersonajes();
+        this.loadUsers();
+    }
+    
+    private void loadUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
+        File usersDB = new File("src/files/db/users.db");
+        if (!usersDB.exists()) {
+            updateFiles();
+        } else {
+            updateUsers();
+        }
+    }
+
+    public void updateFiles() throws FileNotFoundException, IOException {
+        FileOutputStream usersFile = new FileOutputStream("src/files/db/users.db");
+        ObjectOutputStream output = new ObjectOutputStream(usersFile);
+
+        output.writeObject(this.usuarios);
+        output.close();
+    }
+
+    public void updateUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream usersFile = new FileInputStream("src/files/db/users.db");
+        ObjectInputStream input = new ObjectInputStream(usersFile);
+        this.usuarios = (List<Usuario>) input.readObject();
+        if (this.usuarios == null) {
+            this.usuarios = new ArrayList<>();
+        }
+        input.close();
     }
     
     private void cargarModificadores() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -106,6 +138,14 @@ public class Almacen {
 
     public List<Arma> getArmas() {
         return armas;
+    }
+    
+    public List<Usuario> getUsuarios(){
+        return this.usuarios;
+    }
+    
+    public void setUsuarioActivo(String Nick){
+        this.usuarioActivo = Nick;
     }
 
     

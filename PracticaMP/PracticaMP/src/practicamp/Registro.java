@@ -26,43 +26,24 @@ import javax.swing.JPanel;
 public class Registro extends javax.swing.JPanel implements Serializable {
 
     private List<Usuario> usuarios;
+    private Almacen almacen;
 
     /**
      * Creates new form Registro
      */
-    public Registro() throws IOException, FileNotFoundException, ClassNotFoundException {
+    public Registro(Almacen almacen) throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
         this.usuarios = new ArrayList<>();
+        this.almacen = almacen;
         loadUsers();
         labelEstadoNick.setVisible(false);
     }
 
     private void loadUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
-        File usersDB = new File("src/files/db/users.db");
-        if (!usersDB.exists()) {
-            updateFiles();
-        } else {
-            updateUsers();
-        }
+        this.usuarios = this.almacen.getUsuarios();
     }
 
-    public void updateFiles() throws FileNotFoundException, IOException {
-        FileOutputStream usersFile = new FileOutputStream("src/files/db/users.db");
-        ObjectOutputStream output = new ObjectOutputStream(usersFile);
-
-        output.writeObject(this.usuarios);
-        output.close();
-    }
-
-    private void updateUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream usersFile = new FileInputStream("src/files/db/users.db");
-        ObjectInputStream input = new ObjectInputStream(usersFile);
-        this.usuarios = (List<Usuario>) input.readObject();
-        if (this.usuarios == null) {
-            this.usuarios = new ArrayList<>();
-        }
-        input.close();
-    }
+    
 
     /**
      * @return
@@ -282,7 +263,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
         this.usuarios.add(nuevoUsuario);
 
         try {
-            updateFiles();
+            this.almacen.updateFiles();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -330,7 +311,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         try {
-            updateUsers();
+            this.almacen.updateUsers();
         } catch (IOException ex) {
             Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

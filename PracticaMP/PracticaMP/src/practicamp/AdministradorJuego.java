@@ -25,6 +25,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(menuPrincipal, "menuPrincipal");
         add(inicioSesion, "inicioSesion");
         add(registro, "registro");
+        add(menuUsuario, "menuUsuario");
     }
     
     public void showGame() {
@@ -56,14 +57,16 @@ public class AdministradorJuego extends javax.swing.JFrame {
 
         menuPrincipal = new practicamp.MenuPrincipal();
         try {
-            inicioSesion = new practicamp.InicioSesion();
+            inicioSesion = new practicamp.InicioSesion(almacen);
+            
+            menuUsuario = new practicamp.MenuUsuario(almacen);
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
         } catch (java.lang.ClassNotFoundException e2) {
             e2.printStackTrace();
         }
         try {
-            registro = new practicamp.Registro();
+            registro = new practicamp.Registro(almacen);
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
         } catch (java.lang.ClassNotFoundException e2) {
@@ -83,7 +86,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
 
         registro.setName("registro"); // NOI18N
         getContentPane().add(registro, "card4");
-
+        
+        menuUsuario.setName("menuUsuario");
+        getContentPane().add(menuUsuario, "card5");
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -92,5 +97,6 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.InicioSesion inicioSesion;
     private practicamp.MenuPrincipal menuPrincipal;
     private practicamp.Registro registro;
+    private practicamp.MenuUsuario menuUsuario;
     // End of variables declaration//GEN-END:variables
 }
