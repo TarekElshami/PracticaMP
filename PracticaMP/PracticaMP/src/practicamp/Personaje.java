@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Personaje extends JPanel implements Serializable, ActionListener {
+public class Personaje implements Serializable, ActionListener {
     
     JButton btnPersonaje, btnArmas, btnArmadura, btnInventario, btnEsbirro;
 

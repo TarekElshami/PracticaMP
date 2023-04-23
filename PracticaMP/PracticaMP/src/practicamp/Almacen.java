@@ -11,7 +11,7 @@ public class Almacen {
     private List<Usuario> usuarios;
     private List<Desafio> desafiosSinValidar;
     private Ranking ranking;
-    private static List<Personaje> personajes;
+    private List<Personaje> personajes;
     private List<Armadura> armaduras;
     private List<Arma> armas;
     private List<Modificador> modificadores;
@@ -96,7 +96,7 @@ public class Almacen {
         return null;
     }
 
-    public static List<Personaje> getPersonajes() {
+    public List<Personaje> getPersonajes() {
         return personajes;
     }
 

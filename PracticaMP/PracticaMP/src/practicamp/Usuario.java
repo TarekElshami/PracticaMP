@@ -1,7 +1,6 @@
 package practicamp;
 
 import java.io.Serializable;
-import practicamp.Almacen;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -12,10 +11,13 @@ public class Usuario implements Serializable {
     private String nick;
     private String contrasena;
     private String id;
+    private Personaje personaje;    
+    /*
     private String personaje;
     private List<Arma> armasActivas;
     private List<Armadura> armaduraActiva;
     private String tipoPersonaje;
+    */
     private boolean baneado;
     private List<Desafio> historial;
     private List<Notificacion> notificaciones;
@@ -67,7 +69,6 @@ public class Usuario implements Serializable {
     }
 
     public void crearPersonaje() {
-        List<Personaje> personajes = Almacen.getPersonajes();
         
     }
 
