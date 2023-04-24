@@ -95,8 +95,8 @@ public class Usuario implements Serializable {
     /**
      * 
      */
-    public void verNotificaciones() {
-        // TODO implement here
+    public List<Notificacion> getNotificaciones() {
+        return this.notificaciones;
     }
 
     /**

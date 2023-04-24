@@ -20,7 +20,7 @@
               <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton11" max="32767" attributes="0"/>
-                  <Component id="jButton5" max="32767" attributes="0"/>
+                  <Component id="btnNotificaciones" max="32767" attributes="0"/>
                   <Component id="btnDesafiar" max="32767" attributes="0"/>
                   <Component id="jButton3" max="32767" attributes="0"/>
                   <Component id="jButton2" max="32767" attributes="0"/>
@@ -64,7 +64,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton5" pref="38" max="32767" attributes="0"/>
+                  <Component id="btnNotificaciones" pref="38" max="32767" attributes="0"/>
                   <Component id="jButton10" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -101,10 +101,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDesafiarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="btnNotificaciones">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ver notificaciones"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNotificacionesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>

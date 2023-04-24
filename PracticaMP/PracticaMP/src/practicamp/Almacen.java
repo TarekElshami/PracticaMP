@@ -47,6 +47,9 @@ public class Almacen {
 
         output.writeObject(this.usuarios);
         output.close();
+        if (this.usuarios == null) {
+            this.usuarios = new ArrayList<>();
+        }
     }
 
     public void updateUsers() throws FileNotFoundException, IOException, ClassNotFoundException {

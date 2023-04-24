@@ -3,11 +3,9 @@ package practicamp;
 public class Notificacion {
 
     private Desafio desafio;
-    private Usuario rival;
 
     
-    public void Notificacion(Usuario rival, Desafio desafio) {
-        this.rival = rival;
+    public void Notificacion(Desafio desafio) {
         this.desafio = desafio;
     }
 
@@ -19,7 +17,15 @@ public class Notificacion {
         // TODO implement here
         return null;
     }
-
+    
+    public String getRival(){
+        return this.desafio.getDesafiante();
+    }
+    
+    public int getOroApostado(){
+        int oro = this.desafio.getOro();
+        return oro;
+    }
     
 
 }

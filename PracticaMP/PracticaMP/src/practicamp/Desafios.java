@@ -55,7 +55,7 @@ public class Desafios extends javax.swing.JPanel {
         userList = new javax.swing.JList<>();
         goldText = new javax.swing.JTextField();
         desafiar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         userList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { " " };
@@ -78,10 +78,10 @@ public class Desafios extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -92,7 +92,7 @@ public class Desafios extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
@@ -114,7 +114,7 @@ public class Desafios extends javax.swing.JPanel {
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -138,11 +138,11 @@ public class Desafios extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_desafiarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuUsuario");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void goldTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goldTextMousePressed
         goldText.setText("");
@@ -150,9 +150,9 @@ public class Desafios extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVolver;
     private javax.swing.JButton desafiar;
     private javax.swing.JTextField goldText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> userList;
     // End of variables declaration//GEN-END:variables

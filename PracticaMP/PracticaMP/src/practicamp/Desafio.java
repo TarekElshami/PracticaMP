@@ -33,7 +33,10 @@ public class Desafio {
     public String getDesafiado(){
         return desafiado;
     }
-
+    
+    public int getOro(){
+        return this.oro;
+    }
 
 
 }
