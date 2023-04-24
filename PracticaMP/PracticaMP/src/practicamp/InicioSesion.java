@@ -25,11 +25,13 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
 
     private List<Usuario> usuarios;
     private Almacen almacen;
+    private Desafios desafios;
     /**
      * Creates new form InicioSesion
      */
-    public InicioSesion(Almacen almacen) throws IOException, FileNotFoundException, ClassNotFoundException {
+    public InicioSesion(Almacen almacen, Desafios desafios) throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
+        this.desafios = desafios;
         this.almacen = almacen;
         loadUsers();
     }
@@ -243,6 +245,7 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         if (res[0] && res[1]) {
             JPanel parent = (JPanel) getParent();
             this.almacen.setUsuarioActivo(fieldNick.getText());
+            this.desafios.actualizatList();
             CardLayout cl = (CardLayout) parent.getLayout();
             cl.show(parent, "menuUsuario");
         } else {
