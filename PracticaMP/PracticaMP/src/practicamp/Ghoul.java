@@ -13,5 +13,10 @@ public class Ghoul extends Esbirro {
         return dependencia;
     }
 
+    public void setDependencia(int dependencia) {
+        this.dependencia = dependencia;
+    }
+    
+    
 
 }

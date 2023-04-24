@@ -11,6 +11,10 @@ public class Humano extends Esbirro {
     public Lealdad getLealdad() {
         return lealdad;
     }
+
+    public void setLealdad(Lealdad lealdad) {
+        this.lealdad = lealdad;
+    }
     
     
 }

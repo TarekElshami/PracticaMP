@@ -18,6 +18,14 @@ public class Esbirro implements Serializable{
     public int getSalud() {
         return salud;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
+    }
     
     
 

@@ -11,9 +11,10 @@ import javax.swing.JComboBox;
 
 public class GestionEsbirros extends javax.swing.JPanel {
     private List<Esbirro> esbirros;
-    private Stack<String> padre = new Stack<>();
+    private Stack<String> padres = new Stack<>();
     private Map<String, List<Esbirro>> subEsbirros;
     private String nombrePersonaje;
+    private Esbirro esbirroSeleccionado;
                         
     public GestionEsbirros(String nombrePersonaje) {
         initComponents();
@@ -26,14 +27,6 @@ public class GestionEsbirros extends javax.swing.JPanel {
             modelo.addElement(opcion);
         }
         jComboBox1.setModel(modelo); // Asi
-
-        Integer[] numeros = {1, 2, 3, 4, 5}; // Crear un arreglo de enteros con los valores del 1 al 5
-        DefaultComboBoxModel modelo2 = new DefaultComboBoxModel(); // Crear un modelo para el jComboBox2
-
-        for (Integer numero : numeros) { // Agregar cada valor del arreglo al modelo
-            modelo2.addElement(numero);
-        }
-        jComboBox2.setModel(modelo2);
         
         this.subEsbirros = new HashMap<>();
         this.esbirros = new ArrayList<>();
@@ -42,7 +35,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
                 jList1.setModel(this.actualizarLista(p.getEsbirros()));
                 this.esbirros = p.getEsbirros();
                 this.subEsbirros.put(nombrePersonaje, esbirros);
-                this.padre.add(nombrePersonaje);
+                this.padres.add(nombrePersonaje);
             }
         }
         jComboBox2.setVisible(false);
@@ -52,11 +45,12 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jLabel4.setVisible(false);
         jLabel5.setVisible(false);
         jTextField2.setVisible(false);
-        jTextField3.setVisible(false);
+        jComboBox3.setVisible(false);
         jTextField4.setVisible(false);
         pacto.setVisible(false);
         regresar.setVisible(false);
         jTextField1.setText(nombrePersonaje);
+        jTextField1.setEnabled(false);
     }
                
     @SuppressWarnings("unchecked")
@@ -76,13 +70,13 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jTextField2 = new javax.swing.JTextField();
         regresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         pacto = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(640, 480));
         jPanel1.setLayout(null);
@@ -148,8 +142,14 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jLabel2.setText("Nombre esbirro:");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(344, 37, 110, 16);
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField2);
-        jTextField2.setBounds(454, 34, 150, 22);
+        jTextField2.setBounds(450, 40, 150, 22);
 
         regresar.setText("Regresar");
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -163,10 +163,8 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jLabel3.setText("Salud esbirro:");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(344, 77, 86, 16);
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(454, 74, 150, 22);
 
-        jLabel4.setText("Lealdad ");
+        jLabel4.setText("Lealdad:");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(344, 117, 104, 16);
 
@@ -176,22 +174,42 @@ public class GestionEsbirros extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(454, 114, 150, 22);
+        jComboBox1.setBounds(450, 110, 150, 22);
 
-        jLabel5.setText("Dependencia");
+        jLabel5.setText("Dependencia:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(344, 157, 69, 16);
+        jLabel5.setBounds(344, 157, 72, 16);
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(454, 154, 150, 22);
+        jComboBox2.setBounds(450, 160, 150, 22);
 
-        pacto.setText("Pacto");
+        pacto.setText("Pacto:");
         jPanel1.add(pacto);
         pacto.setBounds(344, 194, 50, 16);
 
         jTextField4.setText("jTextField4");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField4);
         jTextField4.setBounds(340, 220, 260, 90);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox3);
+        jComboBox3.setBounds(450, 70, 150, 22);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -210,7 +228,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
         int index = jList1.getSelectedIndex();
         if (index != -1) {
             model.remove(index);
-            List<Esbirro> esbirro = this.subEsbirros.get(padre.peek());
+            List<Esbirro> esbirro = this.subEsbirros.get(padres.peek());
             esbirro.remove(index);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -222,10 +240,11 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         if (evt.getClickCount() == 2) {
             int index = jList1.getSelectedIndex();
-            Esbirro esbirroSeleccionado = subEsbirros.get(padre.peek()).get(index);
+            Esbirro esbirroSeleccionado = subEsbirros.get(padres.peek()).get(index);
+            this.esbirroSeleccionado = esbirroSeleccionado;
             if (esbirroSeleccionado instanceof Demonio){
                 Demonio demonio = (Demonio) esbirroSeleccionado;
-                padre.push(demonio.getNombre());
+                padres.push(demonio.getNombre());
                 jList1.setModel(this.actualizarLista(demonio.getEsbirros()));
                 subEsbirros.put(demonio.getNombre(), demonio.getEsbirros());
                 pacto.setVisible(true);
@@ -250,10 +269,10 @@ public class GestionEsbirros extends javax.swing.JPanel {
             jTextField2.setText(esbirroSeleccionado.getNombre());
             
             jLabel3.setVisible(true);
-            jTextField3.setVisible(true);
+            jComboBox3.setVisible(true);
             int salud = esbirroSeleccionado.getSalud(); // obtiene el valor entero de la función getSalud()
             String saludStr = Integer.toString(salud); // convierte el valor entero a una cadena de texto
-            jTextField3.setText(saludStr);
+            jComboBox3.setSelectedItem(saludStr);
             
             regresar.setVisible(true);
         }        
@@ -272,8 +291,8 @@ public class GestionEsbirros extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        if (!padre.isEmpty()) { // Verificar si la pila no está vacía
-            String x = padre.peek(); // Obtener el último elemento de la pila
+        if (!padres.isEmpty()) { // Verificar si la pila no está vacía
+            String x = padres.peek(); // Obtener el último elemento de la pila
             this.actualizarLista(this.subEsbirros.get(x));
             jComboBox2.setVisible(false);
             jComboBox1.setVisible(false);
@@ -285,24 +304,25 @@ public class GestionEsbirros extends javax.swing.JPanel {
                 jLabel2.setVisible(false);
                 jLabel3.setVisible(false);
                 jTextField2.setVisible(false);
-                jTextField3.setVisible(false);
+                jComboBox3.setVisible(false);
                 jTextField4.setVisible(false);
                 pacto.setVisible(false);
                 jList1.setModel(this.actualizarLista(this.esbirros));
             } else {
-                String j = padre.pop();
-                String l = padre.peek();
+                String j = padres.pop();
+                String l = padres.peek();
                 for (Esbirro esbirro : subEsbirros.get(l)){
                     if (j.equals(esbirro.getNombre())){
+                        this.esbirroSeleccionado = esbirro;
                         regresar.setVisible(true);
                         jLabel2.setVisible(true);
                         jLabel3.setVisible(true);
                         jTextField2.setVisible(true);
                         jTextField2.setText(j);
-                        jTextField3.setVisible(true);
+                        jComboBox3.setVisible(true);
                         int salud = esbirro.getSalud(); // obtiene el valor entero de la función getSalud()
                         String saludStr = Integer.toString(salud); // convierte el valor entero a una cadena de texto
-                        jTextField3.setText(saludStr);
+                        jComboBox3.setSelectedItem(saludStr);
                         Demonio demonio = (Demonio) esbirro;
                         jTextField4.setVisible(true);
                         jTextField4.setText(demonio.getPacto());
@@ -311,14 +331,37 @@ public class GestionEsbirros extends javax.swing.JPanel {
                     }
                 
                 
-            }
-        }        
+                }
+            }        
         }
     }//GEN-LAST:event_regresarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        Humano h = (Humano)this.esbirroSeleccionado;
+        h.setLealdad((Lealdad) jComboBox1.getSelectedItem());
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        String seleccionStr = jComboBox3.getSelectedItem().toString();
+        int seleccionNum = Integer.parseInt(seleccionStr);
+        esbirroSeleccionado.setSalud(seleccionNum);
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        Ghoul g = (Ghoul) esbirroSeleccionado;
+        String seleccionStr = jComboBox2.getSelectedItem().toString();
+        int seleccionNum = Integer.parseInt(seleccionStr);
+        g.setDependencia(seleccionNum);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        Demonio d = (Demonio) esbirroSeleccionado;
+        d.setPacto(jTextField4.getText()); 
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        esbirroSeleccionado.setNombre(jTextField2.getText());
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -328,6 +371,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -338,7 +382,6 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel pacto;
     private javax.swing.JButton regresar;
@@ -356,7 +399,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
                     itemsVector.addElement(demonio.getNombre() + ": salud = " + demonio.getSalud() + "/ tipo = Demonio");
                 } else {
                     Ghoul ghoul = (Ghoul) esbirro;
-                    itemsVector.addElement(ghoul.getNombre() + ": salud = " + ghoul.getSalud() + "/ tipo = Ghoul / Dependencia ");
+                    itemsVector.addElement(ghoul.getNombre() + ": salud = " + ghoul.getSalud() + "/ tipo = Ghoul");
                 }
             }
         }
@@ -366,6 +409,4 @@ public class GestionEsbirros extends javax.swing.JPanel {
     public List<Esbirro> getEsbirros() {
         return this.subEsbirros.get(this.nombrePersonaje);
     }
-
 }
-

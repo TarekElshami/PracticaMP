@@ -25,5 +25,11 @@ public class Demonio extends Esbirro {
     public String getPacto() {
         return pacto;
     }
-        
+
+    public void setPacto(String pacto) {
+        this.pacto = pacto;
+    }
+    
+    
+    
 }
