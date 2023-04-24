@@ -11,7 +11,7 @@ import java.util.*;
 
 public class Almacen {
     
-    private String usuarioActivo;
+    private int usuarioActivo;
     private List<Usuario> usuarios;
     private List<Desafio> desafiosSinValidar;
     private Ranking ranking;
@@ -144,16 +144,16 @@ public class Almacen {
         return this.usuarios;
     }
     
-    public void setUsuarioActivo(String Nick){
-        this.usuarioActivo = Nick;
+    public void setUsuarioActivo(int index){
+        this.usuarioActivo = index;
     }
     
     public void addUsuario(Usuario nuevoUsuario){
         this.usuarios.add(nuevoUsuario);
     }
 
-     public String getUsuarioActivo(){
-        return this.usuarioActivo;
+     public Usuario getUsuarioActivo(){
+        return this.usuarios.get(this.usuarioActivo);
     }
 
     

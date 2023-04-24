@@ -33,7 +33,7 @@ public class Desafios extends javax.swing.JPanel {
         mod.clear();
         while (i < usuarios.size()){
             String candidato = usuarios.get(i).getNick();
-            if (!candidato.equalsIgnoreCase(almacen.getUsuarioActivo())){
+            if (!candidato.equalsIgnoreCase(almacen.getUsuarioActivo().getNick())){
                 mod.addElement(candidato);
             }else {
                 this.oro = usuarios.get(i).getOro();
@@ -123,7 +123,7 @@ public class Desafios extends javax.swing.JPanel {
         if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& Integer.parseInt(goldText.getText())<= this.oro) {// el boton solo hace cosas si eliges un nombre de la lista 
             String contrincante = userList.getSelectedValue();
             int oroApostado = Integer.parseInt(goldText.getText());
-            Desafio desafio = new Desafio(this.almacen.getUsuarioActivo(),contrincante,oroApostado);
+            Desafio desafio = new Desafio(this.almacen.getUsuarioActivo().getNick(),contrincante,oroApostado);
             this.almacen.agregarDesafioAValidacion(desafio);
             JPanel parent = (JPanel) getParent();
             CardLayout cl = (CardLayout) parent.getLayout();
