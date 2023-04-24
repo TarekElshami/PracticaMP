@@ -52,59 +52,6 @@ public class Personaje implements Serializable, ActionListener {
         this.habilidad = habilidad;
     }
     
-    public void show(Rol rol) {
-        JFrame frame = new JFrame();
-        frame.setSize(640, 480);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Crear panel para los botones
-        JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(null); // Desactivar el layout manager
-        panelBotones.setOpaque(false); // Hacer el panel transparente
-        panelBotones.setBounds(0, 0, 640, 480); // Establecer las dimensiones y la posición del panel de botones
-        
-        btnArmas = new JButton("Armas");
-        btnArmas.addActionListener(this);
-        btnArmas.setBounds(282, 305, 100, 30); // Establecer las dimensiones y la posición del botón de "Armas"
-        panelBotones.add(btnArmas);
-
-        btnArmadura = new JButton("Armadura");
-        btnArmadura.addActionListener(this);
-        btnArmadura.setBounds(126, 293, 100, 30); // Establecer las dimensiones y la posición del botón de "Armadura"
-        panelBotones.add(btnArmadura);
-        
-        if (rol == Rol.admin){
-            // Crear botones y añadirlos al panel
-            btnPersonaje = new JButton("Personaje");
-            btnPersonaje.addActionListener(this);
-            btnPersonaje.setBounds(212, 214, 100, 30); // Establecer las dimensiones y la posición del botón de "Personaje"
-            panelBotones.add(btnPersonaje);
-
-            btnInventario = new JButton("Inventario");
-            btnInventario.addActionListener(this);
-            btnInventario.setBounds(112, 256, 100, 30); // Establecer las dimensiones y la posición del botón de "Inventario"
-            panelBotones.add(btnInventario);
-
-            btnEsbirro = new JButton("Esbirro");
-            btnEsbirro.addActionListener(this);
-            btnEsbirro.setBounds(438, 387, 100, 30); // Establecer las dimensiones y la posición del botón de "Esbirro"
-            panelBotones.add(btnEsbirro);
-        }
-        // Añadir panel de botones a un contenedor
-        JPanel contentPane = new JPanel();
-        contentPane.setLayout(new BorderLayout());
-        frame.setContentPane(contentPane);
-        contentPane.add(panelBotones);
-
-        // Añadir imagen de fondo al contenedor
-        ImageIcon imagenFondo = new ImageIcon("personaje3.png");
-        JLabel etiquetaFondo = new JLabel(imagenFondo);
-        etiquetaFondo.setBounds(0, 0, 640, 480); // Establecer las dimensiones y la posición de la imagen de fondo
-        contentPane.add(etiquetaFondo, BorderLayout.CENTER);
-
-        frame.setVisible(true);
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -122,38 +69,40 @@ public class Personaje implements Serializable, ActionListener {
         this.armas.remove(arma);
     }
 
-    public void activarArma(Arma arma) {
+    public boolean activarArma(Arma arma, List<Arma> armaActiva) {
         if (armaActiva.size() == 2) {
             JOptionPane.showMessageDialog(null, "Ya tienes dos armas de una mano, no puedes equipar más armas", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
 
         if (armaActiva.size() == 1 && armaActiva.get(0).getManos() == 2) {
             JOptionPane.showMessageDialog(null, "Ya tienes equipada un arma de dos manos, no puedes equipar más armas", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         
         if (armaActiva.size() == 1 && armaActiva.get(0).getManos() == 1 && arma.getManos() == 2) {
             JOptionPane.showMessageDialog(null, "Ya tienes equipada un arma de una manos, no puedes equipar uno de dos manos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         
         if (armaActiva.size() == 1 && armaActiva.get(0).getManos() == 1 && arma.getManos() == 1) {
             armaActiva.add(arma);
             JOptionPane.showMessageDialog(null, "Has equipado el segunda arma", "Exito", JOptionPane.ERROR_MESSAGE);
-            return;
+            return true;
         }
 
         if (armaActiva.isEmpty() && arma.getManos() == 2) {
             armaActiva.add(arma);
             JOptionPane.showMessageDialog(null, "Has equipado un arma de dos manos", "Exito", JOptionPane.ERROR_MESSAGE);
-            return;
+            return true;
         }
 
         if (armaActiva.isEmpty() && arma.getManos() == 1) {
             armaActiva.add(arma);
             JOptionPane.showMessageDialog(null, "Has equipado el primera arma", "Exito", JOptionPane.ERROR_MESSAGE);
+            return true;
         }
+        return false;
     }
 
     public void agregarArmadura(Armadura armadura) {
@@ -210,7 +159,5 @@ public class Personaje implements Serializable, ActionListener {
 
     public List<Esbirro> getEsbirros() {
         return this.esbirros;
-    }
-
-    
+    }    
 }
