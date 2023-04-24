@@ -208,5 +208,9 @@ public class Personaje implements Serializable, ActionListener {
         return armaduras;
     }
 
+    public List<Esbirro> getEsbirros() {
+        return this.esbirros;
+    }
+
     
 }

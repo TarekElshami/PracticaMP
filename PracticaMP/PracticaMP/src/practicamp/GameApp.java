@@ -12,16 +12,18 @@ public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         /*AdministradorJuego admin = new AdministradorJuego();
         admin.showGame();*/
-
+        
         Almacen a = new Almacen();
+        GestionEsbirros g = new GestionEsbirros("Cazador");
         JFrame f = new JFrame();
-        EdicionEquipo s = new EdicionEquipo("Vampiro");
-        f.setSize(640, 480);
-        f.add(s);
+        f.setSize(640,480);
+        f.add(g);
         f.setVisible(true);
+        
         
         /*
         //Esbirros cazador
+        List<Esbirro> esbirros = new ArrayList<>();
         Humano h1 = new Humano("Elena", 1, Lealdad.alta);
         List<Esbirro> esbirrosD1 = new ArrayList<>();
         esbirrosD1.add(h1);
@@ -37,6 +39,13 @@ public class GameApp {
         //Esbirros Licantropos
         Demonio d3 = new Demonio("Asmodeo", 3, null, "El demonio otorga el conocimiento de la magia oscura al amo, pero a cambio, debe ofrecerle una ofrenda de una parte de su cuerpo cada año.");
         Demonio d4 = new Demonio("Astaroth", 1, null, "El demonio otorga la habilidad de controlar la mente de otros al amo, pero a cambio, debe ofrecerle una ofrenda de una persona inocente cada semana.");
+
+        esbirros.add(h1);
+        esbirros.add(g1);
+        esbirros.add(d1);
+        esbirros.add(d2);
+        esbirros.add(d3);
+        esbirros.add(d4);
         
         List<Arma> armas = new ArrayList<>();
 
@@ -254,6 +263,15 @@ public class GameApp {
         personajes.add(v);
         personajes.add(l);
 
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("esbirros.dat"));
+            oos.writeObject(esbirros);
+            oos.close();
+            System.out.println("Esbirros guardados en el archivo esbirros.dat");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("modificadores.dat"));
             oos.writeObject(modificadores);

@@ -55,7 +55,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuPrincipal = new practicamp.MenuPrincipal();
+        menuPrincipal = new practicamp.MenuInicial();
         try {
             inicioSesion = new practicamp.InicioSesion(almacen);
             
@@ -95,7 +95,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private practicamp.InicioSesion inicioSesion;
-    private practicamp.MenuPrincipal menuPrincipal;
+    private practicamp.MenuInicial menuPrincipal;
     private practicamp.Registro registro;
     private practicamp.MenuUsuario menuUsuario;
     // End of variables declaration//GEN-END:variables

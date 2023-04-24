@@ -27,7 +27,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="practicamp.MenuPrincipal" name="menuPrincipal">
+    <Component class="practicamp.MenuInicial" name="menuPrincipal">
       <Properties>
         <Property name="name" type="java.lang.String" value="menuPrincipal" noResource="true"/>
       </Properties>

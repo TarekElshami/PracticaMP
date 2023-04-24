@@ -9,12 +9,12 @@ import javax.swing.JPanel;
  *
  * @author blase
  */
-public class MenuPrincipal extends javax.swing.JPanel {
+public class MenuInicial extends javax.swing.JPanel {
     
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuInicial() {
         initComponents();
     }
 

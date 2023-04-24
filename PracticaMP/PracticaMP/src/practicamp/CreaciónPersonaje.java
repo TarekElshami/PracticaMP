@@ -14,7 +14,9 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
     
     public CreaciónPersonaje() {
         initComponents();
-        this.CajaTipo = new JComboBox<>(new String[] {"Vampiro", "Licantropo", "Cazador"});
+        this.CajaTipo = new JComboBox<>(Almacen.getPersonajes().stream()
+                .map(Personaje::getNombre)
+                .toArray(String[]::new));
     }
 
     
@@ -38,6 +40,11 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
         jLabel3.setText("Escoge el tipo del tu personaje:");
 
         CajaTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vampiro", "Licantropo", "Cazador" }));
+        CajaTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CajaTipoActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -129,17 +136,14 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
             return;
         }
 
-        if (auxTipo.equals("Escoge el tipo de tu personaje")) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un tipo de personaje.", "Tipo no seleccionado", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
         this.nombre = auxNombre;
         this.tipo = auxTipo;
-        System.out.print(this.getNombre());
-        System.out.print(this.getTipo());
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void CajaTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CajaTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CajaTipoActionPerformed
 
     public String getNombre() {
         return nombre;

@@ -1,5 +1,6 @@
 package practicamp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Demonio extends Esbirro {
@@ -9,7 +10,20 @@ public class Demonio extends Esbirro {
     
     public Demonio(String nombre, int salud, List<Esbirro> esbirros, String pacto) {
         super(nombre, salud);
-        this.esbirros = esbirros;
+        if (esbirros == null){
+            this.esbirros = new ArrayList<>();
+        } else {
+            this.esbirros = esbirros;
+        }
         this.pacto = pacto;
     }
+
+    public List<Esbirro> getEsbirros() {
+        return esbirros;
+    }
+
+    public String getPacto() {
+        return pacto;
+    }
+        
 }

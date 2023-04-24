@@ -15,6 +15,7 @@ public class Almacen {
     private List<Usuario> usuarios;
     private List<Desafio> desafiosSinValidar;
     private Ranking ranking;
+    private static List<Esbirro> esbirros;
     private static List<Personaje> personajes;
     private static List<Armadura> armaduras;
     private static List<Arma> armas;
@@ -25,6 +26,7 @@ public class Almacen {
     }
 
     private void cargarDatos() throws IOException, FileNotFoundException, ClassNotFoundException {
+        this.cargarEsbirros();
         this.cargarModificadores();
         this.cargarArmaduras();
         this.cargarArmas();
@@ -57,6 +59,17 @@ public class Almacen {
             this.usuarios = new ArrayList<>();
         }
         input.close();
+    }
+    
+    private void cargarEsbirros() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("esbirros.dat"));
+            List<Esbirro> esbirros = (List<Esbirro>) ois.readObject();
+            ois.close();
+            this.esbirros = esbirros;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     
     private void cargarModificadores() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -156,5 +169,8 @@ public class Almacen {
         return this.usuarioActivo;
     }
 
+    public static List<Esbirro> getEsbirros() {
+        return esbirros;
+    }
     
 }

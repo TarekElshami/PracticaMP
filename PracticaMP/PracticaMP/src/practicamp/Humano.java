@@ -7,4 +7,10 @@ public class Humano extends Esbirro {
         super(nombre, salud);
         this.lealdad = lealdad;
     }
+
+    public Lealdad getLealdad() {
+        return lealdad;
+    }
+    
+    
 }
