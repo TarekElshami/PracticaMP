@@ -19,7 +19,9 @@ public class GameApp {
         f.setSize(640,480);
         f.add(g);
         f.setVisible(true);
-        
+
+        AdministradorJuego admin = new AdministradorJuego();
+        admin.showGame();
         
         /*
         //Esbirros cazador

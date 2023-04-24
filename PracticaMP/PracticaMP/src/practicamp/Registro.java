@@ -62,7 +62,6 @@ public class Registro extends javax.swing.JPanel implements Serializable {
         if (!this.usuarios.isEmpty()){
             Iterator it = usuarios.iterator();
 
-            
             while (it.hasNext() && !found) {
                 Usuario usuario = (Usuario) it.next();
                 found = (usuario.getNick().equals(nick));

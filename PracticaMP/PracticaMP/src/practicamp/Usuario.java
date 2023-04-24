@@ -94,6 +94,16 @@ public class Usuario implements Serializable {
 
     public void verNotificaciones() {
 
+    /**
+     * 
+     */
+    }
+    /**
+     *
+     * @return
+     */
+    public List<Notificacion> getNotificaciones() {
+        return this.notificaciones;
     }
 
     public void historial() {

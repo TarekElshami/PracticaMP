@@ -25,11 +25,14 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
 
     private List<Usuario> usuarios;
     private Almacen almacen;
+    private Desafios desafios;
+    private int indexUsuario;
     /**
      * Creates new form InicioSesion
      */
-    public InicioSesion(Almacen almacen) throws IOException, FileNotFoundException, ClassNotFoundException {
+    public InicioSesion(Almacen almacen, Desafios desafios) throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
+        this.desafios = desafios;
         this.almacen = almacen;
         loadUsers();
     }
@@ -57,6 +60,7 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         boolean[] values = new boolean[]{false, false};
         Iterator it = this.usuarios.iterator();
         boolean found = false;
+        int i = 0;
         while (it.hasNext() && (!found)) {
             Usuario usuario = (Usuario) it.next();
             if (usuario.getNick().equals(nombre) && usuario.getContrasena().equals(password)) {
@@ -68,7 +72,9 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
             } else {
                 values = new boolean[]{false, false};
             }
+            i += 1;
         }
+        this.indexUsuario = i - 1;// la localización del usuario en la lista de usuarios
         return values;
     }
 
@@ -242,7 +248,8 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         boolean[] res = verificarDatos(fieldNick.getText(), String.valueOf(fieldContrasena.getPassword()));
         if (res[0] && res[1]) {
             JPanel parent = (JPanel) getParent();
-            this.almacen.setUsuarioActivo(fieldNick.getText());
+            this.almacen.setUsuarioActivo(this.indexUsuario);
+            this.desafios.actualizatList();
             CardLayout cl = (CardLayout) parent.getLayout();
             cl.show(parent, "menuUsuario");
         } else {
