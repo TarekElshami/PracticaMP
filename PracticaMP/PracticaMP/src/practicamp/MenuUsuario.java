@@ -5,6 +5,10 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -13,11 +17,14 @@ import javax.swing.JPanel;
  */
 public class MenuUsuario extends javax.swing.JPanel {
     private Notificaciones notificaciones;
+    private Almacen almacen;
     /**
      * Creates new form MenuUsuario
+     * @param notificaciones
      */
-    public MenuUsuario(Notificaciones notificaciones) {
+    public MenuUsuario(Notificaciones notificaciones, Almacen almacen) {
         this.notificaciones = notificaciones;
+        this.almacen = almacen;
         initComponents();
     }
 
@@ -44,6 +51,11 @@ public class MenuUsuario extends javax.swing.JPanel {
         jButton12 = new javax.swing.JButton();
 
         jButton1.setText("Consultar oro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Elegir armas");
 
@@ -81,6 +93,11 @@ public class MenuUsuario extends javax.swing.JPanel {
         });
 
         jButton12.setText("Salir");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,6 +169,20 @@ public class MenuUsuario extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "notificaciones");
     }//GEN-LAST:event_btnNotificacionesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int goldAmmount = this.almacen.getUsuarioActivo().getOro();
+        JOptionPane.showMessageDialog(null, "Oro: " + goldAmmount, "Consultor de oro", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+            this.almacen.updateFiles();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.exit(0);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

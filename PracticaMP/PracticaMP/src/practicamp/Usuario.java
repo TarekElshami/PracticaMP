@@ -11,17 +11,17 @@ public class Usuario implements Serializable {
     private String nombre;
     private String nick;
     private String contrasena;
-    private String id;    
+    private String id;
     private String personaje;
     private List<Arma> armasActivas;
     private List<Armadura> armaduraActiva;
-    private String tipoPersonaje;    
+    private String tipoPersonaje;
     private boolean baneado;
     private List<Desafio> historial;
     private List<Notificacion> notificaciones;
     private int oro;
     private Almacen almacen;
-    
+
     public Usuario(String nick, String contrasena) {
         this.nick = nick;
         this.contrasena = contrasena;
@@ -40,38 +40,31 @@ public class Usuario implements Serializable {
     }
 
     public void validarDesafio() {
-    
+
     }
 
     public void banDesbanUsuario() {
-    
+
     }
 
     public void editarPersonaje() {
-    
+
     }
 
-    
     public void darDeBajaCuenta() {
-    
-    }
 
-    public void consultarOro() {
-        JOptionPane.showMessageDialog(null, this.oro, "Cantidad de oro:", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public String getId() {
         return id;
     }
 
-    
-
     public void ban() {
-        
+
     }
 
     public void desBan() {
-    
+
     }
 
     public void crearPersonaje() {
@@ -95,7 +88,7 @@ public class Usuario implements Serializable {
     public void verNotificaciones() {
 
     /**
-     * 
+     *
      */
     }
     /**
@@ -126,11 +119,11 @@ public class Usuario implements Serializable {
 
     }
 
+
     public void sendNotification(Usuario contrincante, Desafio desafío) {
 
     }
 
-  
     public void aceptarDesafio() {
         
     }
@@ -144,7 +137,7 @@ public class Usuario implements Serializable {
     }
 
     public void salirDelSistema() {
-    
+
     }
 
     public String getNick() {
@@ -154,8 +147,16 @@ public class Usuario implements Serializable {
     public String getContrasena() {
         return contrasena;
     }
-    
-    public int getOro(){
+
+    public int getOro() {
         return this.oro;
+    }
+
+    public void setOro(int ammount) {
+        this.oro = ammount;
+    }
+
+    public String getTipoPersonaje() {
+        return tipoPersonaje;
     }
 }

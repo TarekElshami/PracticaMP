@@ -62,7 +62,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
             desafios = new practicamp.Desafios(almacen);
             notificaciones = new practicamp.Notificaciones(almacen);
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
-            menuUsuario = new practicamp.MenuUsuario(notificaciones);
+            menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen);
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
         } catch (java.lang.ClassNotFoundException e2) {

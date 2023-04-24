@@ -5,8 +5,12 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -120,21 +124,30 @@ public class Desafios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desafiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desafiarActionPerformed
-        if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& Integer.parseInt(goldText.getText())<= this.oro) {// el boton solo hace cosas si eliges un nombre de la lista 
-            String contrincante = userList.getSelectedValue();
-            int oroApostado = Integer.parseInt(goldText.getText());
-            Desafio desafio = new Desafio(this.almacen.getUsuarioActivo().getNick(),contrincante,oroApostado);
-            this.almacen.agregarDesafioAValidacion(desafio);
-            JPanel parent = (JPanel) getParent();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            cl.show(parent, "menuUsuario");
-        }else if (userList.getSelectedIndex() == -1){
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un contringante");
-        }else if(goldText.getText().equals("Apostar oro")){
-            javax.swing.JOptionPane.showMessageDialog(this, "Añada una cantidad de oro para apostar");
-        }else if(Integer.parseInt(goldText.getText()) > this.oro){
-            javax.swing.JOptionPane.showMessageDialog(this, "No tiene suficiente oro");
-            goldText.setText("Apostar oro");
+        
+        if(goldText.getText().isEmpty() || goldText.getText().equals("Apostar oro")){
+            JOptionPane.showMessageDialog(this, "Introduce una cantidad de oro a apostar"); // Muestra un mensaje si está vacío
+        }
+        else{
+            //Si todo esta bien (seleccionamos contrincante y oro):
+            if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& Integer.parseInt(goldText.getText())<= this.oro) {// el boton solo hace cosas si eliges un nombre de la lista 
+                String contrincante = userList.getSelectedValue();
+                int oroApostado = Integer.parseInt(goldText.getText());
+                Desafio newDesafio = new Desafio(this.almacen.getUsuarioActivo(),this.almacen.getContrincante(contrincante), oroApostado);
+                try {
+                    this.almacen.agregarDesafioAValidacion(newDesafio);
+                } catch (IOException ex) {
+                    Logger.getLogger(Desafios.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JPanel parent = (JPanel) getParent();
+                CardLayout cl = (CardLayout) parent.getLayout();
+                cl.show(parent, "menuUsuario");
+            }else if (userList.getSelectedIndex() == -1){
+                javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un contrincante");
+            }else if(Integer.parseInt(goldText.getText()) > this.oro){
+                javax.swing.JOptionPane.showMessageDialog(this, "No tiene suficiente oro");
+                goldText.setText("Apostar oro");
+            }
         }
     }//GEN-LAST:event_desafiarActionPerformed
 

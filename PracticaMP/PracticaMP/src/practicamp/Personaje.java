@@ -155,4 +155,21 @@ public class Personaje implements Serializable, ActionListener {
     public List<Esbirro> getEsbirros() {
         return this.esbirros;
     }    
+    
+    public int getSalud() {
+        return salud;
+    }
+
+    public int getPoder() {
+        return poder;
+    }
+
+    public Map<Modificador, Integer> getDebilidades() {
+        return debilidades;
+    }
+
+    public Map<Modificador, Integer> getFortalezas() {
+        return fortalezas;
+    }
+ 
 }

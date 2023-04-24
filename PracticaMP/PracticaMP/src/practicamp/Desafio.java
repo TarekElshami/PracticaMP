@@ -1,10 +1,11 @@
 package practicamp;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Desafio {    
-    private String desafiante;
-    private String desafiado;
+public class Desafio implements Serializable {    
+    private Usuario desafiante;
+    private Usuario desafiado;
     private EstadoDesafio estado;
     private Usuario ganador;
     private int oro;
@@ -12,10 +13,11 @@ public class Desafio {
     private List<Debilidad> debilidadesAdmitidas;
 
 
-    public Desafio(String desafiante,String desafiado, int oroApostado) {
+    public Desafio(Usuario desafiante,Usuario desafiado, int oroApostado) {
         this.desafiante = desafiante;
         this.desafiado = desafiado;
         this.oro = oroApostado;
+        this.estado = EstadoDesafio.pendiente; // cuando se crea un desafio inicialmente esta pendiente
     }
 
     public void validarDesafio(List<Debilidad> debilidades, List<Fortaleza> fortalezas) {
@@ -26,11 +28,11 @@ public class Desafio {
 
     }
     
-    public String getDesafiante(){
+    public Usuario getDesafiante(){
         return desafiante;
     }
     
-    public String getDesafiado(){
+    public Usuario getDesafiado(){
         return desafiado;
     }
     

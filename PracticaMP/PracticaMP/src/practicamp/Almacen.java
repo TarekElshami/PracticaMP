@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Almacen {
-    
+
     private int usuarioActivo;
     private List<Usuario> usuarios;
     private List<Desafio> desafiosSinValidar;
@@ -31,9 +31,10 @@ public class Almacen {
         this.cargarArmaduras();
         this.cargarArmas();
         this.cargarPersonajes();
+        this.inicializarDesafios(); // comprobar si existe fichero, si no se crea uno nuevo
         this.loadUsers();
     }
-    
+
     private void loadUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
         File usersDB = new File("src/files/db/users.db");
         if (!usersDB.exists()) {
@@ -82,8 +83,8 @@ public class Almacen {
             ois.close();
             this.modificadores = modificadores;
         } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }    
+            e.printStackTrace();
+        }
     }
 
     private void cargarArmaduras() {
@@ -95,11 +96,11 @@ public class Almacen {
             fis.close();
             this.armaduras = armaduras;
         } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }    
+            e.printStackTrace();
+        }
     }
-    
-     private void cargarArmas() {
+
+    private void cargarArmas() {
         try {
             FileInputStream fis = new FileInputStream("armas.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -108,12 +109,46 @@ public class Almacen {
             fis.close();
             this.armas = armas;
         } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }    
+            e.printStackTrace();
+        }
     }
-     
-     private void cargarPersonajes(){
-        try{
+
+    public void actualizarFicheroDesafios() throws FileNotFoundException, IOException {
+        FileOutputStream ficheroDesafios = new FileOutputStream("src/files/db/desafios.db"); // ruta
+        ObjectOutputStream output = new ObjectOutputStream(ficheroDesafios); // output stream
+        
+        if (this.desafiosSinValidar == null) { // si no existe la estructura de la lista de desafios...
+            this.desafiosSinValidar = new ArrayList<>(); // se crea una vacia ya que se usará a lo largo del programa
+        }
+        
+        output.writeObject(this.desafiosSinValidar); // escritura del objeto a serializar
+        output.close(); // cerramos stream
+
+    }
+
+    private void inicializarDesafios() throws IOException, FileNotFoundException, ClassNotFoundException {
+        File desafiosDB = new File("src/files/db/desafios.db");
+        if (!desafiosDB.exists()) { // si no existe el fichero de los desafios
+            this.actualizarFicheroDesafios(); // se crea uno
+        } else {
+            this.cargarDesafios();  // si ya existe, se vuelca el contenido de ese fichero al atributo de la lista de desafios
+        }
+    }
+
+    private void cargarDesafios() {
+        try {
+            FileInputStream fis = new FileInputStream("src/files/db/desafios.db");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            this.desafiosSinValidar = (List<Desafio>) ois.readObject();
+            ois.close();
+            fis.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void cargarPersonajes() {
+        try {
             FileInputStream fis = new FileInputStream("personajes.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);
             List<Personaje> personajes = (List<Personaje>) ois.readObject();
@@ -121,9 +156,9 @@ public class Almacen {
             fis.close();
             this.personajes = personajes;
         } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-        }  
-     }
+            e.printStackTrace();
+        }
+    }
 
     public List<Modificador> getModificadores() {
         return modificadores;
@@ -132,15 +167,21 @@ public class Almacen {
     public List<Desafio> getDesafiosSinValidar() {
         return desafiosSinValidar;
     }
-    
-    public void agregarDesafioAValidacion(Desafio desafio) {
+
+    public void agregarDesafioAValidacion(Desafio desafio) throws IOException {
         this.desafiosSinValidar.add(desafio);
+        this.actualizarFicheroDesafios();
     }
 
     public void mostrarRanking() {
     }
 
-    public Usuario getContrincante() {
+    public Usuario getContrincante(String contrincante) {
+        for (Usuario usuario : this.usuarios) {
+            if (usuario.getNick().equals(contrincante)){
+                return usuario;
+            }
+        }
         return null;
     }
 
@@ -156,19 +197,19 @@ public class Almacen {
         return armas;
     }
     
-    public List<Usuario> getUsuarios(){
+    public List<Usuario> getUsuarios() {
         return this.usuarios;
     }
-    
-    public void setUsuarioActivo(int index){
+
+    public void setUsuarioActivo(int index) {
         this.usuarioActivo = index;
     }
-    
-    public void addUsuario(Usuario nuevoUsuario){
+
+    public void addUsuario(Usuario nuevoUsuario) {
         this.usuarios.add(nuevoUsuario);
     }
 
-     public Usuario getUsuarioActivo(){
+    public Usuario getUsuarioActivo() {
         return this.usuarios.get(this.usuarioActivo);
     }
 

@@ -306,7 +306,8 @@ public class GameApp {
             ioe.printStackTrace();
         }
         
-        Almacen a = new Almacen();*/
+        Almacen a = new Almacen();
+        */
     }
 }
     
