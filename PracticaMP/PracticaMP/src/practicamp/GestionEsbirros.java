@@ -14,12 +14,13 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private Stack<String> padres = new Stack<>();
     private Map<String, List<Esbirro>> subEsbirros;
     private String nombrePersonaje;
+    private int nivel;
     private Esbirro esbirroSeleccionado;
                         
     public GestionEsbirros(String nombrePersonaje) {
         initComponents();
         this.nombrePersonaje = nombrePersonaje;
-        
+        this.nivel = 0;
         Lealdad[] lealdad = Lealdad.values();
         DefaultComboBoxModel modelo = new DefaultComboBoxModel(); // Crear un modelo para el jComboBox1
 
@@ -242,6 +243,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
             int index = jList1.getSelectedIndex();
             Esbirro esbirroSeleccionado = subEsbirros.get(padres.peek()).get(index);
             this.esbirroSeleccionado = esbirroSeleccionado;
+            this.nivel +=1;
             if (esbirroSeleccionado instanceof Demonio){
                 Demonio demonio = (Demonio) esbirroSeleccionado;
                 padres.push(demonio.getNombre());
@@ -309,6 +311,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
                 pacto.setVisible(false);
                 jList1.setModel(this.actualizarLista(this.esbirros));
             } else {
+                this.nivel -=1;
                 String j = padres.pop();
                 String l = padres.peek();
                 for (Esbirro esbirro : subEsbirros.get(l)){
