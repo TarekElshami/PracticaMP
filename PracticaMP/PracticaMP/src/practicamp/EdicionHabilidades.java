@@ -198,6 +198,7 @@ public class EdicionHabilidades extends javax.swing.JPanel {
                     valorIntroducido = JOptionPane.showInputDialog("Introduce un valor para " + elementoSeleccionado.replace("<html><font color='green'>", "").replace("</font></html>", ""));
                     try {
                         int numero = Integer.parseInt(valorIntroducido);
+                        valorNumerico = numero; // asignar el valor numérico a la variable
                         System.out.println("El número introducido es: " + numero);
                     } catch (NumberFormatException e) {
                         System.out.println("La entrada no es un número entero válido.");
@@ -207,6 +208,7 @@ public class EdicionHabilidades extends javax.swing.JPanel {
                 valorIntroducido = JOptionPane.showInputDialog("Introduce un valor para " + elementoSeleccionado);
                 try {
                     int numero = Integer.parseInt(valorIntroducido);
+                    valorNumerico = numero; // asignar el valor numérico a la variable
                     System.out.println("El número introducido es: " + numero);
                 } catch (NumberFormatException e) {
                     System.out.println("La entrada no es un número entero válido.");
@@ -249,6 +251,7 @@ public class EdicionHabilidades extends javax.swing.JPanel {
                     valorIntroducido = JOptionPane.showInputDialog("Introduce un valor para " + elementoSeleccionado.replace("<html><font color='green'>", "").replace("</font></html>", ""));
                     try {
                         int numero = Integer.parseInt(valorIntroducido);
+                        valorNumerico = numero; // asignar el valor numérico a la variable
                         System.out.println("El número introducido es: " + numero);
                     } catch (NumberFormatException e) {
                         System.out.println("La entrada no es un número entero válido.");
@@ -258,6 +261,7 @@ public class EdicionHabilidades extends javax.swing.JPanel {
                 valorIntroducido = JOptionPane.showInputDialog("Introduce un valor para " + elementoSeleccionado);
                 try {
                     int numero = Integer.parseInt(valorIntroducido);
+                    valorNumerico = numero; // asignar el valor numérico a la variable
                     System.out.println("El número introducido es: " + numero);
                 } catch (NumberFormatException e) {
                     System.out.println("La entrada no es un número entero válido.");
