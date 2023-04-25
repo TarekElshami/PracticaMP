@@ -62,8 +62,8 @@ public class ValidarDesafios extends javax.swing.JPanel {
             while(!personajes.get(i).getNombre().equals(persUsuario)){
                 i += 1;
             }
-            Map<Modificador, Integer> debilidades = personajes.get(i).getDebilidades();
-            Map<Modificador, Integer> fortalezas = personajes.get(i).getFortalezas();
+            Map<String, Integer> debilidades = personajes.get(i).getDebilidades();
+            Map<String, Integer> fortalezas = personajes.get(i).getFortalezas();
             if(debilidades.containsKey(nombreMod)){ 
                 valor = 1;
             } else if (fortalezas.containsKey(nombreMod)){

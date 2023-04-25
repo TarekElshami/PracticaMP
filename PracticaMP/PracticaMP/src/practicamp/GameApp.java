@@ -14,7 +14,7 @@ public class GameApp {
         admin.showGame();*/
         
         Almacen a = new Almacen();
-        EdicionHabilidades h = new EdicionHabilidades("Vampiro");
+        EdicionHabilidades h = new EdicionHabilidades("Cazador");
         JFrame j = new JFrame();
         j.setSize(640, 480);
         j.add(h);
@@ -178,13 +178,13 @@ public class GameApp {
         Vampiro v = new Vampiro("Vampiro");
         Disciplina d = new Disciplina("Disciplina", 3, 3, 3);
         v.setHabilidad(d);
-        v.agregarDebilidad(luzSol, 5);
-        v.agregarDebilidad(estaca, 4);
-        v.agregarDebilidad(faltaSangre, 2);
+        v.agregarDebilidad(luzSol.getNombre(), 5);
+        v.agregarDebilidad(estaca.getNombre(), 4);
+        v.agregarDebilidad(faltaSangre.getNombre(), 2);
 
-        v.agregarFortaleza(Velocidad, 4);
-        v.agregarFortaleza(regeneracion, 3);
-        v.agregarFortaleza(agudizados, 3);
+        v.agregarFortaleza(Velocidad.getNombre(), 4);
+        v.agregarFortaleza(regeneracion.getNombre(), 3);
+        v.agregarFortaleza(agudizados.getNombre(), 3);
         
         v.agregarArmadura(chalecoDeCuero);
         v.agregarArmadura(armaduraDeMalla);
@@ -205,15 +205,15 @@ public class GameApp {
         Licantropo l = new Licantropo ("Licantropo");
         Don don = new Don("Don", 2, 2, 0);
         l.setHabilidad(don);
-        l.agregarDebilidad(plata, 5);
-        l.agregarDebilidad(controlMental, 3);
-        l.agregarDebilidad(fuego, 2);
-        l.agregarDebilidad(ausencia, 1);
+        l.agregarDebilidad(plata.getNombre(), 5);
+        l.agregarDebilidad(controlMental.getNombre(), 3);
+        l.agregarDebilidad(fuego.getNombre(), 2);
+        l.agregarDebilidad(ausencia.getNombre(), 1);
 
-        l.agregarFortaleza(lobo, 5);
-        l.agregarFortaleza(fuerzaSobrehumana, 4);
-        l.agregarFortaleza(agilidad, 3);
-        l.agregarFortaleza(sentidos, 3);
+        l.agregarFortaleza(lobo.getNombre(), 5);
+        l.agregarFortaleza(fuerzaSobrehumana.getNombre(), 4);
+        l.agregarFortaleza(agilidad.getNombre(), 3);
+        l.agregarFortaleza(sentidos.getNombre(), 3);
         
         l.agregarArmadura(tunicaDeCueroOscuro);
         l.agregarArmadura(armaduraDePielDeMurcielago);
@@ -234,14 +234,14 @@ public class GameApp {
         Talento t = new Talento("Talento",1,1);
         c.setHabilidad(t);
 
-        c.agregarDebilidad(noche,3);
-        c.agregarDebilidad(fuego,4);
+        c.agregarDebilidad(noche.getNombre(),3);
+        c.agregarDebilidad(fuego.getNombre(),4);
 
-        c.agregarFortaleza(habilidad,5);
-        c.agregarFortaleza(combate,4);
-        c.agregarFortaleza(conocimiento,3);
-        c.agregarFortaleza(resistencia,2);
-        c.agregarFortaleza(sigilo,3);
+        c.agregarFortaleza(habilidad.getNombre(),5);
+        c.agregarFortaleza(combate.getNombre(),4);
+        c.agregarFortaleza(conocimiento.getNombre(),3);
+        c.agregarFortaleza(resistencia.getNombre(),2);
+        c.agregarFortaleza(sigilo.getNombre(),3);
         
         c.agregarArmadura(pielDeLobo);
         c.agregarArmadura(armaduraDeCueroEndurecido);

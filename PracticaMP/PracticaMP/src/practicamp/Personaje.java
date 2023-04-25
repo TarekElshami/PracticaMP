@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 
 public class Personaje implements Serializable, ActionListener {
     
-    JButton btnPersonaje, btnArmas, btnArmadura, btnInventario, btnEsbirro;
 
     private String nombre;
     private int salud;
@@ -23,8 +22,8 @@ public class Personaje implements Serializable, ActionListener {
     private List<Armadura> armaduras;
     private Armadura armaduraActiva;
     private List<Esbirro> esbirros;
-    private Map<Modificador, Integer> debilidades;
-    private Map<Modificador, Integer> fortalezas;
+    private Map<String, Integer> debilidades;
+    private Map<String, Integer> fortalezas;
 
     public Personaje(String nombre) {
         this.nombre = nombre;
@@ -120,19 +119,19 @@ public class Personaje implements Serializable, ActionListener {
         this.esbirros.remove(esbirro);
     }
 
-    public void agregarDebilidad(Modificador debilidad, int valor) {
+    public void agregarDebilidad(String debilidad, int valor) {
         this.debilidades.put(debilidad, valor);
     }
 
-    public void eliminarDebilidad(Modificador debilidad) {
+    public void eliminarDebilidad(String debilidad) {
         this.debilidades.remove(debilidad);
     }
 
-    public void agregarFortaleza(Modificador fortaleza, int valor) {
+    public void agregarFortaleza(String fortaleza, int valor) {
         this.fortalezas.put(fortaleza, valor);
     }
 
-    public void eliminarFortaleza(Modificador fortaleza) {
+    public void eliminarFortaleza(String fortaleza) {
         this.fortalezas.remove(fortaleza);
     }
 
@@ -164,11 +163,11 @@ public class Personaje implements Serializable, ActionListener {
         return poder;
     }
 
-    public Map<Modificador, Integer> getDebilidades() {
+    public Map<String, Integer> getDebilidades() {
         return debilidades;
     }
 
-    public Map<Modificador, Integer> getFortalezas() {
+    public Map<String, Integer> getFortalezas() {
         return fortalezas;
     }
     
