@@ -29,6 +29,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(desafios, "desafios");
         add(notificaciones, "notificaciones");
         add(menuOperador, "menuOperador");
+        add(validarDesafios, "validarDesafios");
     }
     
     public void showGame() {
@@ -64,7 +65,8 @@ public class AdministradorJuego extends javax.swing.JFrame {
             notificaciones = new practicamp.Notificaciones(almacen);
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
             menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen);
-            menuOperador = new practicamp.MenuOperador();
+            validarDesafios = new practicamp.ValidarDesafios(almacen);
+            menuOperador = new practicamp.MenuOperador(validarDesafios);
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
         } catch (java.lang.ClassNotFoundException e2) {
@@ -104,6 +106,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
         menuOperador.setName("menuOperador");
         getContentPane().add(menuOperador, "card8");
 
+        validarDesafios.setName("validarDesafios");
+        getContentPane().add(validarDesafios, "card9");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,5 +121,6 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.Desafios desafios;
     private practicamp.Notificaciones notificaciones;
     private practicamp.MenuOperador menuOperador;
+    private practicamp.ValidarDesafios validarDesafios;
     // End of variables declaration//GEN-END:variables
 }
