@@ -19,7 +19,7 @@ public class Almacen {
     private static List<Personaje> personajes;
     private static List<Armadura> armaduras;
     private static List<Arma> armas;
-    private List<Modificador> modificadores;
+    private static List<Modificador> modificadores;
 
     public Almacen() throws IOException, FileNotFoundException, ClassNotFoundException {
         this.cargarDatos();
@@ -160,7 +160,7 @@ public class Almacen {
         }
     }
 
-    public List<Modificador> getModificadores() {
+    public static List<Modificador> getModificadores() {
         return modificadores;
     }
 
