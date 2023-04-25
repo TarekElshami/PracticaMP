@@ -25,6 +25,7 @@ public class Notificaciones extends javax.swing.JPanel {
     
     DefaultListModel mod = new DefaultListModel();
     public boolean actualizarLista(){
+        mod.clear();
         int i = 0;
         Usuario usuario = this.almacen.getUsuarioActivo();
         boolean vacio = true;

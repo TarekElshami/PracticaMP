@@ -28,9 +28,12 @@ public class ValidarDesafios extends javax.swing.JPanel {
     }
     DefaultListModel mod = new DefaultListModel();
     DefaultListModel mod2 = new DefaultListModel();
+    
     public void actualizarInfo(){
         desafiosList.setModel(mod);
+        mod.clear();
         modificadoresList.setModel(mod2);
+        mod2.clear();
         List<Desafio> desafios = this.almacen.getDesafiosSinValidar();
         int i = 0;
         while (i < desafios.size()){
@@ -54,11 +57,9 @@ public class ValidarDesafios extends javax.swing.JPanel {
         int valor = 0; // es 1 si es una debilidad, 2 si es una fortaleza y 0 si no está
         String persUsuario = usuario.getTipoPersonaje();
         if (persUsuario != null){
-            System.out.println(persUsuario);
             List<Personaje> personajes = almacen.getPersonajes();
             int i = 0;
             while(!personajes.get(i).getNombre().equals(persUsuario)){
-                System.out.println(personajes.get(i).getNombre());
                 i += 1;
             }
             Map<Modificador, Integer> debilidades = personajes.get(i).getDebilidades();
@@ -188,18 +189,13 @@ public class ValidarDesafios extends javax.swing.JPanel {
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         int desafioIndex = desafiosList.getSelectedIndex();
-        System.out.println(desafioIndex);
         if (desafioIndex!=-1){
-            System.out.println("hola");
             //this.desafios.remove(this.desafioIndex);// esto tengo que comprovar que lo quita de todas las listas
             Desafio selected = this.almacen.getDesafiosSinValidar().get(desafioIndex);
             int i = 0;
-            System.out.println("hola1");
             while (!this.modificadoresSelec.isEmpty()){//para comprobar si se ha seleccionado algún modificador 
                 Modificador modif = modificadoresSelec.get(i);
-                System.out.println("hola3");
                 int j = comprobarTipo(selected.getDesafiante(), modif.getNombre());
-                System.out.println("hola4");
                 if (j==0){
                     j = comprobarTipo(selected.getDesafiado(), modif.getNombre());
                 }
@@ -207,11 +203,9 @@ public class ValidarDesafios extends javax.swing.JPanel {
                     selected.addDebilidad(modif);
                 } else if(j==2){
                     selected.addFortaleza(modif);
-                }
-                System.out.println("hola5");
+                };
                 modificadoresSelec.remove(i);
             }
-            System.out.println("hola2");
             Notificacion noti = new Notificacion(selected);
             List<Usuario> usuarios = this.almacen.getUsuarios();
             int locLista = buscarDesafiado(usuarios, selected.getDesafiado().getNick());
