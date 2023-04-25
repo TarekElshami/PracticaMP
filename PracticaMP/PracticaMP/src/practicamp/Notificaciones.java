@@ -24,12 +24,14 @@ public class Notificaciones extends javax.swing.JPanel {
     }
     
     DefaultListModel mod = new DefaultListModel();
-    public void actualizarLista(){
+    public boolean actualizarLista(){
         int i = 0;
         Usuario usuario = this.almacen.getUsuarioActivo();
-        if (usuario.getNotificaciones() != null){
+        boolean vacio = true;
+        if (!usuario.getNotificaciones().isEmpty()){
             List<Notificacion> notificaciones = usuario.getNotificaciones();
             notificationList.setModel(mod); // para añadir los elementos a la lista
+            vacio = false;
             mod.clear();
             while (i < notificaciones.size()){
                 String texto = "Desafio de: " + notificaciones.get(i).getRival();
@@ -41,6 +43,7 @@ public class Notificaciones extends javax.swing.JPanel {
         }else{
             javax.swing.JOptionPane.showMessageDialog(this, "No tiene notificaciones");
         }
+        return vacio;
     }
 
     /**
