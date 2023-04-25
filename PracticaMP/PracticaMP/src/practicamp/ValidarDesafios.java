@@ -5,7 +5,9 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
@@ -15,11 +17,13 @@ import javax.swing.JPanel;
  */
 public class ValidarDesafios extends javax.swing.JPanel {
     private Almacen almacen;
+    private List<Modificador> modificadoresSelec;
     /**
      * Creates new form ValidarDesafios
      */
     public ValidarDesafios(Almacen almacen) {
         this.almacen = almacen;
+        this.modificadoresSelec = new ArrayList<>();
         initComponents();
     }
     DefaultListModel mod = new DefaultListModel();
@@ -46,6 +50,29 @@ public class ValidarDesafios extends javax.swing.JPanel {
         }
     }
     
+    public int comprobarTipo(Usuario usuario, String nombreMod){
+        int valor = 0; // es 1 si es una debilidad, 2 si es una fortaleza y 0 si no está
+        String persUsuario = usuario.getTipoPersonaje();
+        if (persUsuario != null){
+            System.out.println(persUsuario);
+            List<Personaje> personajes = almacen.getPersonajes();
+            int i = 0;
+            while(!personajes.get(i).getNombre().equals(persUsuario)){
+                System.out.println(personajes.get(i).getNombre());
+                i += 1;
+            }
+            Map<Modificador, Integer> debilidades = personajes.get(i).getDebilidades();
+            Map<Modificador, Integer> fortalezas = personajes.get(i).getFortalezas();
+            if(debilidades.containsKey(nombreMod)){ 
+                valor = 1;
+            } else if (fortalezas.containsKey(nombreMod)){
+                valor = 2;
+            } else {
+                valor = 0;
+            }
+        }
+        return valor;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,7 +88,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
         modificadoresList = new javax.swing.JList<>();
         btnAñadirMod = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnValidar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -83,7 +110,12 @@ public class ValidarDesafios extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("Validar");
+        btnValidar.setText("Validar");
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Lista  modificadores");
 
@@ -103,7 +135,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAñadirMod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                    .addComponent(btnValidar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(59, 59, 59)
@@ -132,7 +164,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnValidar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -144,19 +176,81 @@ public class ValidarDesafios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAñadirModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirModActionPerformed
-        
+       int ind = modificadoresList.getSelectedIndex();
+        if (ind != -1){
+            mod2.remove(ind);// esto no se si funciona 
+            this.modificadoresSelec.add(this.almacen.getModificadores().get(ind));
+            
+        }else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un modificador");
+        } 
     }//GEN-LAST:event_btnAñadirModActionPerformed
+
+    private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
+        int desafioIndex = desafiosList.getSelectedIndex();
+        System.out.println(desafioIndex);
+        if (desafioIndex!=-1){
+            System.out.println("hola");
+            //this.desafios.remove(this.desafioIndex);// esto tengo que comprovar que lo quita de todas las listas
+            Desafio selected = this.almacen.getDesafiosSinValidar().get(desafioIndex);
+            int i = 0;
+            System.out.println("hola1");
+            while (!this.modificadoresSelec.isEmpty()){//para comprobar si se ha seleccionado algún modificador 
+                Modificador modif = modificadoresSelec.get(i);
+                System.out.println("hola3");
+                int j = comprobarTipo(selected.getDesafiante(), modif.getNombre());
+                System.out.println("hola4");
+                if (j==0){
+                    j = comprobarTipo(selected.getDesafiado(), modif.getNombre());
+                }
+                if (j == 1){
+                    selected.addDebilidad(modif);
+                } else if(j==2){
+                    selected.addFortaleza(modif);
+                }
+                System.out.println("hola5");
+                modificadoresSelec.remove(i);
+            }
+            System.out.println("hola2");
+            Notificacion noti = new Notificacion(selected);
+            List<Usuario> usuarios = this.almacen.getUsuarios();
+            int locLista = buscarDesafiado(usuarios, selected.getDesafiado().getNick());
+            if (locLista>=0){
+                this.almacen.getUsuarios().get(locLista).addNotificacion(noti);
+            } else{
+                javax.swing.JOptionPane.showMessageDialog(this, "El desafiado ha borrado la cuenta");
+            }
+            this.almacen.getDesafiosSinValidar().remove(desafioIndex);
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "menuOperador");
+        }else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un desafio para validar");
+        }
+    }//GEN-LAST:event_btnValidarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAñadirMod;
+    private javax.swing.JButton btnValidar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JList<String> desafiosList;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> modificadoresList;
     // End of variables declaration//GEN-END:variables
+
+    private int buscarDesafiado(List<Usuario> usuarios, String nick) {
+        int i = 0;
+        while ((i<usuarios.size())&&(!nick.equals(usuarios.get(i).getNick()))){
+            i += 1;
+        }
+        if (i == usuarios.size()){// en caso de que se haya borrado el usuario
+            return -1;
+        }else{
+            return i;
+        }
+    }
 }

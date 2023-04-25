@@ -171,5 +171,5 @@ public class Personaje implements Serializable, ActionListener {
     public Map<Modificador, Integer> getFortalezas() {
         return fortalezas;
     }
- 
+    
 }

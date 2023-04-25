@@ -159,4 +159,8 @@ public class Usuario implements Serializable {
     public String getTipoPersonaje() {
         return tipoPersonaje;
     }
+    
+    public void addNotificacion(Notificacion noti){
+        this.notificaciones.add(noti);
+    }
 }
