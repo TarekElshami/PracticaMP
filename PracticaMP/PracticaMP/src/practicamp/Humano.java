@@ -1,19 +1,19 @@
 package practicamp;
 
 public class Humano extends Esbirro {
-    private Lealdad lealdad;
+    private Lealtad lealtad;
 
-    public Humano(String nombre, int salud, Lealdad lealdad) {
+    public Humano(String nombre, int salud, Lealtad lealtad) {
         super(nombre, salud);
-        this.lealdad = lealdad;
+        this.lealtad = lealtad;
     }
 
-    public Lealdad getLealdad() {
-        return lealdad;
+    public Lealtad getLealdad() {
+        return lealtad;
     }
 
-    public void setLealdad(Lealdad lealdad) {
-        this.lealdad = lealdad;
+    public void setLealdad(Lealtad lealtad) {
+        this.lealtad = lealtad;
     }
     
     

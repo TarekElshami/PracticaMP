@@ -30,6 +30,10 @@ public class Demonio extends Esbirro {
         this.pacto = pacto;
     }
     
+    public void addEsbirro(Esbirro esbirro){
+        this.esbirros.add(esbirro);
+    }
+    
     
     
 }

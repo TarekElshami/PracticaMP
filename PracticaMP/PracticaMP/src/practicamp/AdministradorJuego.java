@@ -29,6 +29,11 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(notificaciones, "notificaciones");
         add(menuOperador, "menuOperador");
         add(validarDesafios, "validarDesafios");
+        add(menuSeleccionPersonaje, "menuSeleccionPersonaje");
+        add(menuEditarPersonaje, "menuEditarPersonaje");
+        add(gestionEsbirros, "gestionEsbirros");
+        add(nuevoEsbirro, "nuevoEsbirro");
+        add(creacionPersonaje, "creacionPersonaje");
     }
     
     public void showGame() {
@@ -65,6 +70,11 @@ public class AdministradorJuego extends javax.swing.JFrame {
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
             menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen);
             validarDesafios = new practicamp.ValidarDesafios(almacen);
+            creacionPersonaje = new practicamp.CreacionPersonaje();
+            gestionEsbirros = new practicamp.GestionEsbirros();
+            nuevoEsbirro = new practicamp.NuevoEsbirro(gestionEsbirros);
+            menuEditarPersonaje = new practicamp.MenuEditarPersonaje(gestionEsbirros);
+            menuSeleccionPersonaje = new practicamp.MenuSeleccionPersonaje(menuEditarPersonaje);
             menuOperador = new practicamp.MenuOperador(validarDesafios);
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
@@ -108,6 +118,21 @@ public class AdministradorJuego extends javax.swing.JFrame {
         validarDesafios.setName("validarDesafios");
         getContentPane().add(validarDesafios, "card9");
 
+        menuSeleccionPersonaje.setName("menuSeleccionPersonaje");
+        getContentPane().add(menuSeleccionPersonaje, "card10");
+
+        menuEditarPersonaje.setName("menuEditarPersonaje");
+        getContentPane().add(menuEditarPersonaje, "card11");
+
+        gestionEsbirros.setName("gestionEsbirros");
+        getContentPane().add(gestionEsbirros, "card12");
+
+        nuevoEsbirro.setName("nuevoEsbirro");
+        getContentPane().add(nuevoEsbirro, "card13");
+
+        creacionPersonaje.setName("creacionPersonaje");
+        getContentPane().add(nuevoEsbirro, "card14");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,5 +146,10 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.Notificaciones notificaciones;
     private practicamp.MenuOperador menuOperador;
     private practicamp.ValidarDesafios validarDesafios;
+    private practicamp.MenuSeleccionPersonaje menuSeleccionPersonaje;
+    private practicamp.MenuEditarPersonaje menuEditarPersonaje;
+    private practicamp.GestionEsbirros gestionEsbirros;
+    private practicamp.NuevoEsbirro nuevoEsbirro;
+    private practicamp.CreacionPersonaje creacionPersonaje;
     // End of variables declaration//GEN-END:variables
 }

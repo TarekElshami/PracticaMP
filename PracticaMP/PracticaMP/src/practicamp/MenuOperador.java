@@ -33,7 +33,7 @@ public class MenuOperador extends javax.swing.JPanel {
         btnValidarDesafios = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnEditarPersonaje = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
         btnValidarDesafios.setText("Validar desafios");
@@ -47,7 +47,12 @@ public class MenuOperador extends javax.swing.JPanel {
 
         jButton3.setText("Desbanear usuarios");
 
-        jButton4.setText("Editar personaje");
+        btnEditarPersonaje.setText("Editar personaje");
+        btnEditarPersonaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarPersonajeActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir del sistema");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -64,11 +69,10 @@ public class MenuOperador extends javax.swing.JPanel {
                 .addGap(245, 245, 245)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarPersonaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnValidarDesafios, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnValidarDesafios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(245, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -81,7 +85,7 @@ public class MenuOperador extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
@@ -99,12 +103,18 @@ public class MenuOperador extends javax.swing.JPanel {
         //hay que hacer que se guarden los cambios en los ficheros 
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnEditarPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPersonajeActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuSeleccionPersonaje");
+    }//GEN-LAST:event_btnEditarPersonajeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditarPersonaje;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnValidarDesafios;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }

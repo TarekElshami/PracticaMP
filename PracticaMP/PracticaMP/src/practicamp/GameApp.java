@@ -10,22 +10,13 @@ import javax.swing.JFrame;
 
 public class GameApp {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-        /*AdministradorJuego admin = new AdministradorJuego();
-        admin.showGame();*/
-        
-        
-        Almacen a = new Almacen();
-        List<Arma> armas = new ArrayList<>();
-        EleccionEquipo h = new EleccionEquipo("Cazador",true,armas);
-        JFrame j = new JFrame();
-        j.setSize(640, 480);
-        j.add(h);
-        j.setVisible(true);
-        
+        AdministradorJuego admin = new AdministradorJuego();
+        admin.showGame();
+                
         /*
         //Esbirros cazador
         List<Esbirro> esbirros = new ArrayList<>();
-        Humano h1 = new Humano("Elena", 1, Lealdad.alta);
+        Humano h1 = new Humano("Elena", 1, Lealtad.alta);
         List<Esbirro> esbirrosD1 = new ArrayList<>();
         esbirrosD1.add(h1);
         Demonio d1 = new Demonio("Leviatán", 3, esbirrosD1, "El demonio otorga poderes sobrenaturales al amo, pero a cambio, debe ofrecerle una ofrenda de sangre cada día.");

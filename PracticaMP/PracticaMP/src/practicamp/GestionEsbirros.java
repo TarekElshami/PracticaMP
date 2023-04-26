@@ -1,5 +1,6 @@
 package practicamp;
 
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Stack;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 
 public class GestionEsbirros extends javax.swing.JPanel {
     private List<Esbirro> esbirros;
@@ -17,14 +19,18 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private int nivel;
     private Esbirro esbirroSeleccionado;
                         
-    public GestionEsbirros(String nombrePersonaje) {
+    public GestionEsbirros() {
         initComponents();
+        
+    }
+    
+    public void añadirInfo(String nombrePersonaje){
         this.nombrePersonaje = nombrePersonaje;
         this.nivel = 0;
-        Lealdad[] lealdad = Lealdad.values();
+        Lealtad[] lealtad = Lealtad.values();
         DefaultComboBoxModel modelo = new DefaultComboBoxModel(); // Crear un modelo para el jComboBox1
 
-        for (Lealdad opcion : lealdad) { // Agregar cada opción del enumerado al modelo
+        for (Lealtad opcion : lealtad) { // Agregar cada opción del enumerado al modelo
             modelo.addElement(opcion);
         }
         jComboBox1.setModel(modelo); // Asi
@@ -33,7 +39,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
         this.esbirros = new ArrayList<>();
         for (Personaje p : Almacen.getPersonajes()){
             if (p.getNombre().equals(nombrePersonaje)) {
-                jList1.setModel(this.actualizarLista(p.getEsbirros()));
+                listaEsbirros.setModel(this.actualizarLista(p.getEsbirros()));
                 this.esbirros = p.getEsbirros();
                 this.subEsbirros.put(nombrePersonaje, esbirros);
                 this.padres.add(nombrePersonaje);
@@ -59,12 +65,12 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
+        listaEsbirros = new javax.swing.JList<>();
+        bntAgregarEsbirro = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -82,14 +88,14 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(640, 480));
         jPanel1.setLayout(null);
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(6, 453, 72, 22);
+        jPanel1.add(btnVolver);
+        btnVolver.setBounds(6, 453, 72, 23);
 
         jButton2.setText("Confirmar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -104,24 +110,24 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(210, 10, 110, 16);
 
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+        listaEsbirros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
+                listaEsbirrosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaEsbirros);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(6, 34, 320, 332);
 
-        jButton3.setText("Agregar esbirro");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bntAgregarEsbirro.setText("Agregar esbirro");
+        bntAgregarEsbirro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bntAgregarEsbirroActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(6, 384, 120, 22);
+        jPanel1.add(bntAgregarEsbirro);
+        bntAgregarEsbirro.setBounds(6, 384, 120, 23);
 
         btnEliminar.setText("Eliminar esbirro");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +136,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnEliminar);
-        btnEliminar.setBounds(213, 384, 120, 22);
+        btnEliminar.setBounds(213, 384, 120, 23);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +165,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
             }
         });
         jPanel1.add(regresar);
-        regresar.setBounds(500, 320, 100, 22);
+        regresar.setBounds(500, 320, 100, 23);
 
         jLabel3.setText("Salud esbirro:");
         jPanel1.add(jLabel3);
@@ -225,8 +231,8 @@ public class GestionEsbirros extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
-        int index = jList1.getSelectedIndex();
+        DefaultListModel<String> model = (DefaultListModel<String>) listaEsbirros.getModel();
+        int index = listaEsbirros.getSelectedIndex();
         if (index != -1) {
             model.remove(index);
             List<Esbirro> esbirro = this.subEsbirros.get(padres.peek());
@@ -234,26 +240,28 @@ public class GestionEsbirros extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void bntAgregarEsbirroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAgregarEsbirroActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "nuevoEsbirro");
+    }//GEN-LAST:event_bntAgregarEsbirroActionPerformed
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+    private void listaEsbirrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaEsbirrosMouseClicked
         if (evt.getClickCount() == 2) {
-            int index = jList1.getSelectedIndex();
+            int index = listaEsbirros.getSelectedIndex();
             Esbirro esbirroSeleccionado = subEsbirros.get(padres.peek()).get(index);
             this.esbirroSeleccionado = esbirroSeleccionado;
             this.nivel +=1;
             if (esbirroSeleccionado instanceof Demonio){
                 Demonio demonio = (Demonio) esbirroSeleccionado;
                 padres.push(demonio.getNombre());
-                jList1.setModel(this.actualizarLista(demonio.getEsbirros()));
+                listaEsbirros.setModel(this.actualizarLista(demonio.getEsbirros()));
                 subEsbirros.put(demonio.getNombre(), demonio.getEsbirros());
                 pacto.setVisible(true);
                 jTextField4.setVisible(true);
                 jTextField4.setText(demonio.getPacto());
             } else {
-                jList1.setVisible(false);
+                listaEsbirros.setVisible(false);
                 if (esbirroSeleccionado instanceof Humano){
                     Humano humano = (Humano) esbirroSeleccionado;
                     jComboBox1.setVisible(true);
@@ -278,11 +286,13 @@ public class GestionEsbirros extends javax.swing.JPanel {
             
             regresar.setVisible(true);
         }        
-    }//GEN-LAST:event_jList1MouseClicked
+    }//GEN-LAST:event_listaEsbirrosMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuEditarPersonaje");
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
@@ -298,7 +308,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
             this.actualizarLista(this.subEsbirros.get(x));
             jComboBox2.setVisible(false);
             jComboBox1.setVisible(false);
-            jList1.setVisible(true);
+            listaEsbirros.setVisible(true);
             jLabel4.setVisible(false);
             jLabel5.setVisible(false);
             if (x.equals(this.nombrePersonaje)){
@@ -309,7 +319,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
                 jComboBox3.setVisible(false);
                 jTextField4.setVisible(false);
                 pacto.setVisible(false);
-                jList1.setModel(this.actualizarLista(this.esbirros));
+                listaEsbirros.setModel(this.actualizarLista(this.esbirros));
             } else {
                 this.nivel -=1;
                 String j = padres.pop();
@@ -330,7 +340,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
                         jTextField4.setVisible(true);
                         jTextField4.setText(demonio.getPacto());
                         pacto.setVisible(true);
-                        jList1.setModel(this.actualizarLista(demonio.getEsbirros()));
+                        listaEsbirros.setModel(this.actualizarLista(demonio.getEsbirros()));
                     }
                 
                 
@@ -341,7 +351,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         Humano h = (Humano)this.esbirroSeleccionado;
-        h.setLealdad((Lealdad) jComboBox1.getSelectedItem());
+        h.setLealdad((Lealtad) jComboBox1.getSelectedItem());
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
@@ -368,10 +378,10 @@ public class GestionEsbirros extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntAgregarEsbirro;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -380,17 +390,17 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JList<String> listaEsbirros;
     private javax.swing.JLabel pacto;
     private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 
-    private DefaultListModel<String> actualizarLista(List<Esbirro> esbirros) {
+    public DefaultListModel<String> actualizarLista(List<Esbirro> esbirros) {
         DefaultListModel<String> itemsVector = new DefaultListModel<>();
         if(esbirros != null && !esbirros.isEmpty()){
             for (Esbirro esbirro : esbirros) {
@@ -411,5 +421,21 @@ public class GestionEsbirros extends javax.swing.JPanel {
 
     public List<Esbirro> getEsbirros() {
         return this.subEsbirros.get(this.nombrePersonaje);
+    }
+    
+    public int getNivel(){
+        return this.nivel;
+    }
+    
+    public Esbirro getEsbirroSeleccionado(){
+        return this.esbirroSeleccionado;
+    }
+    
+    public void addEsbirro(Esbirro esbirro){
+        this.esbirros.add(esbirro);
+    }
+    
+    public String getNombrePersonaje(){
+        return this.nombrePersonaje;
     }
 }

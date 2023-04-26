@@ -1,18 +1,20 @@
 package practicamp;
 
+import java.awt.CardLayout;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Addy
  */
-public class CreaciónPersonaje extends javax.swing.JPanel {
+public class CreacionPersonaje extends javax.swing.JPanel {
 
     private String nombre;
     private String tipo;
     
-    public CreaciónPersonaje() {
+    public CreacionPersonaje() {
         initComponents();
         this.CajaTipo = new JComboBox<>(Almacen.getPersonajes().stream()
                 .map(Personaje::getNombre)
@@ -30,8 +32,8 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
         CajaNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         CajaTipo = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
 
         jLabel1.setText("Creacion de personaje");
 
@@ -46,17 +48,17 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Confirmar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setText("Confirmar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -78,9 +80,9 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
                                 .addComponent(CajaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton1)
+                                    .addComponent(btnVolver)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2))
+                                    .addComponent(btnAceptar))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(18, 18, 18)
@@ -102,8 +104,8 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
                     .addComponent(CajaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnVolver)
+                    .addComponent(btnAceptar))
                 .addGap(33, 33, 33))
         );
 
@@ -123,11 +125,13 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuUsuario");
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String auxNombre = CajaNombre.getText().trim();
         String auxTipo = (String) CajaTipo.getSelectedItem();
 
@@ -139,7 +143,7 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
         this.nombre = auxNombre;
         this.tipo = auxTipo;
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void CajaTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CajaTipoActionPerformed
         // TODO add your handling code here:
@@ -157,8 +161,8 @@ public class CreaciónPersonaje extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CajaNombre;
     private javax.swing.JComboBox<String> CajaTipo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

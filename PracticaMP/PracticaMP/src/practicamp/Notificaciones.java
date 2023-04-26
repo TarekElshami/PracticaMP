@@ -41,8 +41,6 @@ public class Notificaciones extends javax.swing.JPanel {
                 i = i + 1;
             
             }
-        }else{
-            javax.swing.JOptionPane.showMessageDialog(this, "No tiene notificaciones");
         }
         return vacio;
     }

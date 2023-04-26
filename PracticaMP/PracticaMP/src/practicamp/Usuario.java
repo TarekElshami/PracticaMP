@@ -20,6 +20,7 @@ public class Usuario implements Serializable {
     private List<Desafio> historial;
     private List<Notificacion> notificaciones;
     private int oro;
+    private int victorias;
     private Almacen almacen;
 
     public Usuario(String nick, String contrasena) {
@@ -30,6 +31,7 @@ public class Usuario implements Serializable {
         this.armasActivas = new ArrayList<>();
         this.armaduraActiva = null;
         this.baneado = false;
+        this.victorias = 0;
         this.oro = 500;
         this.historial = new ArrayList<>();
         this.notificaciones =  new ArrayList<>();
