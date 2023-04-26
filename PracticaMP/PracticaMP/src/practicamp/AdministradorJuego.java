@@ -34,6 +34,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(menuEditarPersonaje, "menuEditarPersonaje");
         add(gestionEsbirros, "gestionEsbirros");
         add(nuevoEsbirro, "nuevoEsbirro");
+        add(creacionPersonaje, "creacionPersonaje");
     }
     
     public void showGame() {
@@ -70,6 +71,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
             menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen);
             validarDesafios = new practicamp.ValidarDesafios(almacen);
+            creacionPersonaje = new practicamp.CreacionPersonaje();
             gestionEsbirros = new practicamp.GestionEsbirros();
             nuevoEsbirro = new practicamp.NuevoEsbirro(gestionEsbirros);
             menuEditarPersonaje = new practicamp.MenuEditarPersonaje(gestionEsbirros);
@@ -129,6 +131,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
         nuevoEsbirro.setName("nuevoEsbirro");
         getContentPane().add(nuevoEsbirro, "card13");
 
+        creacionPersonaje.setName("creacionPersonaje");
+        getContentPane().add(nuevoEsbirro, "card14");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,5 +151,6 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.MenuEditarPersonaje menuEditarPersonaje;
     private practicamp.GestionEsbirros gestionEsbirros;
     private practicamp.NuevoEsbirro nuevoEsbirro;
+    private practicamp.CreacionPersonaje creacionPersonaje;
     // End of variables declaration//GEN-END:variables
 }

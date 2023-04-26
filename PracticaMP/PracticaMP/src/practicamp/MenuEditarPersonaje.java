@@ -43,7 +43,12 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
         btnVolver = new javax.swing.JButton();
         tipoPersonaje = new javax.swing.JLabel();
 
-        btmPersonaje.setText("Personaje");
+        btmPersonaje.setText("Habilidad");
+        btmPersonaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmPersonajeActionPerformed(evt);
+            }
+        });
 
         btnEquipo.setText("Equipo");
 
@@ -116,6 +121,10 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "gestionEsbirros");
     }//GEN-LAST:event_btnEsbirroActionPerformed
+
+    private void btmPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmPersonajeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btmPersonajeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

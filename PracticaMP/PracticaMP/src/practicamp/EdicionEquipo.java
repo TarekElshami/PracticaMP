@@ -74,6 +74,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
 
         jList2.setModel(modeloArmaduras);
     }
+    
 
 
     /**
