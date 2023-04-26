@@ -158,18 +158,27 @@ public class MenuUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void btnDesafiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesafiarActionPerformed
-        JPanel parent = (JPanel) getParent();
-        CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "desafios");
+        if (this.almacen.getUsuarioActivo().getTipoPersonaje()!= null){
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "desafios");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+        }
     }//GEN-LAST:event_btnDesafiarActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
         boolean vacio = this.notificaciones.actualizarLista();// si no hay notificaciones que no entre en la pantalla 
-        if (!vacio){
+        if (!vacio && this.almacen.getUsuarioActivo().getTipoPersonaje()!= null){
             JPanel parent = (JPanel) getParent();
             CardLayout cl = (CardLayout) parent.getLayout();
             cl.show(parent, "notificaciones");
+        } else if(vacio){
+            javax.swing.JOptionPane.showMessageDialog(this, "No tiene notificaciones");
+        } else if(this.almacen.getUsuarioActivo().getTipoPersonaje()== null){
+            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
         }
+        
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

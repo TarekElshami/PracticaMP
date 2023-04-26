@@ -130,9 +130,9 @@ public class Desafios extends javax.swing.JPanel {
         }
         else{
             //Si todo esta bien (seleccionamos contrincante y oro):
-            if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& Integer.parseInt(goldText.getText())<= this.oro) {// el boton solo hace cosas si eliges un nombre de la lista 
+            int oroApostado = Integer.parseInt(goldText.getText());
+            if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& oroApostado<= this.oro && oroApostado >= 0) {// el boton solo hace cosas si eliges un nombre de la lista 
                 String contrincante = userList.getSelectedValue();
-                int oroApostado = Integer.parseInt(goldText.getText());
                 Desafio newDesafio = new Desafio(this.almacen.getUsuarioActivo(),this.almacen.getContrincante(contrincante), oroApostado);
                 try {
                     this.almacen.agregarDesafioAValidacion(newDesafio);
@@ -144,9 +144,11 @@ public class Desafios extends javax.swing.JPanel {
                 cl.show(parent, "menuUsuario");
             }else if (userList.getSelectedIndex() == -1){
                 javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un contrincante");
-            }else if(Integer.parseInt(goldText.getText()) > this.oro){
+            }else if(oroApostado > this.oro){
                 javax.swing.JOptionPane.showMessageDialog(this, "No tiene suficiente oro");
                 goldText.setText("Apostar oro");
+            } else if(oroApostado < 0){
+                javax.swing.JOptionPane.showMessageDialog(this, "No se pueden apostar cantidades negativas");
             }
         }
     }//GEN-LAST:event_desafiarActionPerformed
