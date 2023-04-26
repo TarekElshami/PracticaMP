@@ -20,12 +20,10 @@
               <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnSalir" max="32767" attributes="0"/>
-                  <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnEditarPersonaje" alignment="0" max="32767" attributes="0"/>
                   <Component id="jButton3" alignment="0" pref="150" max="32767" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="btnValidarDesafios" pref="150" max="32767" attributes="0"/>
-                      <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="btnValidarDesafios" alignment="1" pref="150" max="32767" attributes="0"/>
+                  <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="245" max="32767" attributes="0"/>
           </Group>
@@ -41,7 +39,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="jButton4" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="btnEditarPersonaje" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnSalir" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace pref="87" max="32767" attributes="0"/>
@@ -68,10 +66,13 @@
         <Property name="text" type="java.lang.String" value="Desbanear usuarios"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="btnEditarPersonaje">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar personaje"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarPersonajeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>

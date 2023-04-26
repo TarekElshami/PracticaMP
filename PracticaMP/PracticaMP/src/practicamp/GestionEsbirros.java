@@ -1,5 +1,6 @@
 package practicamp;
 
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Stack;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 
 public class GestionEsbirros extends javax.swing.JPanel {
     private List<Esbirro> esbirros;
@@ -17,8 +19,12 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private int nivel;
     private Esbirro esbirroSeleccionado;
                         
-    public GestionEsbirros(String nombrePersonaje) {
+    public GestionEsbirros() {
         initComponents();
+        
+    }
+    
+    public void añadirInfo(String nombrePersonaje){
         this.nombrePersonaje = nombrePersonaje;
         this.nivel = 0;
         Lealdad[] lealdad = Lealdad.values();
@@ -59,12 +65,12 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
+        bntAgregarEsbirro = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -82,14 +88,14 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(640, 480));
         jPanel1.setLayout(null);
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(6, 453, 72, 22);
+        jPanel1.add(btnVolver);
+        btnVolver.setBounds(6, 453, 72, 23);
 
         jButton2.setText("Confirmar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -114,14 +120,14 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(6, 34, 320, 332);
 
-        jButton3.setText("Agregar esbirro");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bntAgregarEsbirro.setText("Agregar esbirro");
+        bntAgregarEsbirro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bntAgregarEsbirroActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(6, 384, 120, 22);
+        jPanel1.add(bntAgregarEsbirro);
+        bntAgregarEsbirro.setBounds(6, 384, 120, 23);
 
         btnEliminar.setText("Eliminar esbirro");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +136,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnEliminar);
-        btnEliminar.setBounds(213, 384, 120, 22);
+        btnEliminar.setBounds(213, 384, 120, 23);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +165,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
             }
         });
         jPanel1.add(regresar);
-        regresar.setBounds(500, 320, 100, 22);
+        regresar.setBounds(500, 320, 100, 23);
 
         jLabel3.setText("Salud esbirro:");
         jPanel1.add(jLabel3);
@@ -234,9 +240,9 @@ public class GestionEsbirros extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bntAgregarEsbirroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAgregarEsbirroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bntAgregarEsbirroActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         if (evt.getClickCount() == 2) {
@@ -280,9 +286,11 @@ public class GestionEsbirros extends javax.swing.JPanel {
         }        
     }//GEN-LAST:event_jList1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuEditarPersonaje");
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
@@ -368,10 +376,10 @@ public class GestionEsbirros extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntAgregarEsbirro;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;

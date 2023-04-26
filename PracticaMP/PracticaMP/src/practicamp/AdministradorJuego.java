@@ -30,6 +30,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(notificaciones, "notificaciones");
         add(menuOperador, "menuOperador");
         add(validarDesafios, "validarDesafios");
+        add(menuSeleccionPersonaje, "menuSeleccionPersonaje");
+        add(menuEditarPersonaje, "menuEditarPersonaje");
+        add(gestionEsbirros, "gestionEsbirros");
     }
     
     public void showGame() {
@@ -66,6 +69,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
             menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen);
             validarDesafios = new practicamp.ValidarDesafios(almacen);
+            gestionEsbirros = new practicamp.GestionEsbirros();
+            menuEditarPersonaje = new practicamp.MenuEditarPersonaje(gestionEsbirros);
+            menuSeleccionPersonaje = new practicamp.MenuSeleccionPersonaje(menuEditarPersonaje);
             menuOperador = new practicamp.MenuOperador(validarDesafios);
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
@@ -109,6 +115,15 @@ public class AdministradorJuego extends javax.swing.JFrame {
         validarDesafios.setName("validarDesafios");
         getContentPane().add(validarDesafios, "card9");
 
+        menuSeleccionPersonaje.setName("menuSeleccionPersonaje");
+        getContentPane().add(menuSeleccionPersonaje, "card10");
+
+        menuEditarPersonaje.setName("menuEditarPersonaje");
+        getContentPane().add(menuEditarPersonaje, "card11");
+
+        gestionEsbirros.setName("gestionEsbirros");
+        getContentPane().add(gestionEsbirros, "card12");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,5 +137,8 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.Notificaciones notificaciones;
     private practicamp.MenuOperador menuOperador;
     private practicamp.ValidarDesafios validarDesafios;
+    private practicamp.MenuSeleccionPersonaje menuSeleccionPersonaje;
+    private practicamp.MenuEditarPersonaje menuEditarPersonaje;
+    private practicamp.GestionEsbirros gestionEsbirros;
     // End of variables declaration//GEN-END:variables
 }
