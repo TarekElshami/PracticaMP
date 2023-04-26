@@ -16,81 +16,105 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="69" max="32767" attributes="0"/>
-              <Component id="btnHumano" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Component id="btnDemonio" linkSize="1" min="-2" pref="133" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="btnGhoul" linkSize="1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnVolver" linkSize="4" min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace min="69" pref="69" max="-2" attributes="0"/>
+                      <Component id="btnHumano" min="-2" pref="141" max="-2" attributes="0"/>
+                      <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
+                      <Component id="btnDemonio" min="-2" pref="141" max="-2" attributes="0"/>
+                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnGhoul" min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="etiqNombre" max="32767" attributes="0"/>
-                              <Component id="etiqSalud" max="32767" attributes="0"/>
-                              <Component id="etiqLealtad" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="etiqDependencia" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="etiqNombre" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etiqSalud" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="etiqLealtad" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="etiqDependencia" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="textNombre" max="32767" attributes="0"/>
-                          <Component id="opSalud" max="32767" attributes="0"/>
-                          <Component id="opLealtad" max="32767" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="textNombre" min="-2" pref="202" max="-2" attributes="0"/>
+                          <Component id="opSalud" min="-2" pref="202" max="-2" attributes="0"/>
+                          <Component id="opLealtad" min="-2" pref="202" max="-2" attributes="0"/>
                           <Component id="opDependencia" min="-2" pref="202" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="textPacto" min="-2" pref="190" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                              <Component id="etiqPacto" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="btnVolver" min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace min="450" pref="450" max="-2" attributes="0"/>
+                      <Component id="btnAceptar" min="-2" pref="89" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnAceptar" linkSize="4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnDemonio" linkSize="2" alignment="3" pref="65" max="32767" attributes="0"/>
-                  <Component id="btnGhoul" linkSize="2" alignment="3" max="32767" attributes="0"/>
-                  <Component id="btnHumano" linkSize="2" alignment="3" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnHumano" min="-2" pref="65" max="-2" attributes="0"/>
+                  <Component id="btnDemonio" min="-2" pref="65" max="-2" attributes="0"/>
+                  <Component id="btnGhoul" min="-2" pref="65" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="textNombre" linkSize="3" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="etiqNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="48" pref="48" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                              <Component id="etiqNombre" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="54" pref="54" max="-2" attributes="0"/>
+                              <Component id="etiqSalud" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
+                              <Component id="etiqLealtad" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
+                              <Component id="etiqDependencia" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="textNombre" min="-2" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                              <Component id="opSalud" min="-2" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                              <Component id="opLealtad" min="-2" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                              <Component id="opDependencia" min="-2" pref="44" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="etiqPacto" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="textPacto" min="-2" pref="215" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="opSalud" linkSize="3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="etiqSalud" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnVolver" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnAceptar" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="opLealtad" linkSize="3" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="etiqLealtad" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="opDependencia" linkSize="3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="etiqDependencia" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnAceptar" pref="40" max="32767" attributes="0"/>
-                  <Component id="btnVolver" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -201,6 +225,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textPacto">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etiqPacto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pacto :"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -400,7 +400,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
     private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 
-    private DefaultListModel<String> actualizarLista(List<Esbirro> esbirros) {
+    public DefaultListModel<String> actualizarLista(List<Esbirro> esbirros) {
         DefaultListModel<String> itemsVector = new DefaultListModel<>();
         if(esbirros != null && !esbirros.isEmpty()){
             for (Esbirro esbirro : esbirros) {
@@ -427,11 +427,15 @@ public class GestionEsbirros extends javax.swing.JPanel {
         return this.nivel;
     }
     
-    public void setEsbirroSeleccionado(Esbirro esbirro){
-        this.esbirroSeleccionado = esbirro;
+    public Esbirro getEsbirroSeleccionado(){
+        return this.esbirroSeleccionado;
     }
     
     public void addEsbirro(Esbirro esbirro){
         this.esbirros.add(esbirro);
+    }
+    
+    public String getNombrePersonaje(){
+        return this.nombrePersonaje;
     }
 }
