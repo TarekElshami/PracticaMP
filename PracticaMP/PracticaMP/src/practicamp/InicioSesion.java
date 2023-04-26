@@ -159,6 +159,8 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
             }
         });
 
+        botonMostrarContrasena.setBackground(new java.awt.Color(204, 204, 204));
+        botonMostrarContrasena.setText("ver contraseña");
         botonMostrarContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 botonMostrarContrasenaMousePressed(evt);
@@ -212,11 +214,11 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
                             .addComponent(fieldNick, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                             .addComponent(fieldContrasena))
                         .addGap(10, 10, 10)
-                        .addComponent(botonMostrarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonMostrarContrasena))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(botonVolver)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +236,7 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
                     .addComponent(fieldContrasena))
                 .addGap(79, 79, 79)
                 .addComponent(botonInicio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(botonVolver)
                 .addContainerGap())
         );

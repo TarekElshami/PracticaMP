@@ -1,0 +1,41 @@
+Cazador:
+
+Armas de 1 mano:
+
+Cuchillo de caza (+2 ataque, 0 defensa)
+Pistola con balas de plata (+1 ataque, +1 defensa)
+Estaca de madera (+1 ataque, 2 defensa)
+
+Armas de 2 manos:
+
+Ballesta con flechas de plata (+2 ataque, +2 defensa)
+Escopeta con balas de plata (+3 ataque, +1 defensa)
+Hacha de cazador (+3 ataque, +1 defensa)
+
+Vampiro:
+
+Armas de 1 mano:
+
+Garras (+2 ataque, 0 defensa)
+Daga de obsidiana (+1 ataque, +1 defensa)
+Espada de sangre (+1 ataque, 2 defensa)
+
+Armas de 2 manos:
+
+Guadaña (+2 ataque, +2 defensa)
+Lanza de plata (+3 ataque, +1 defensa)
+Martillo de hueso (+3 ataque, +1 defensa)
+
+Licantropos:
+
+Armas de 1 mano:
+
+Garras (+2 ataque, 0 defensa)
+Cuchillo de plata (+1 ataque, +1 defensa)
+Látigo de hueso (+1 ataque, +2 defensa)
+
+Armas de 2 manos:
+
+Garrote de plata (+2 ataque, 2 defensa)
+Espada de lobo (+3 ataque, 1 defensa)
+Maza de hueso (+3 ataque, 1 defensa)

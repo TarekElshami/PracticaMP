@@ -13,8 +13,10 @@ public class GameApp {
         /*AdministradorJuego admin = new AdministradorJuego();
         admin.showGame();*/
         
+        
         Almacen a = new Almacen();
-        EdicionHabilidades h = new EdicionHabilidades("Cazador");
+        List<Arma> armas = new ArrayList<>();
+        EleccionEquipo h = new EleccionEquipo("Cazador",true,armas);
         JFrame j = new JFrame();
         j.setSize(640, 480);
         j.add(h);

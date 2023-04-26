@@ -148,6 +148,8 @@ public class Registro extends javax.swing.JPanel implements Serializable {
             }
         });
 
+        botonMostrarContrasena.setBackground(new java.awt.Color(204, 204, 204));
+        botonMostrarContrasena.setText("ver contraseña");
         botonMostrarContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 botonMostrarContrasenaMousePressed(evt);
@@ -205,22 +207,22 @@ public class Registro extends javax.swing.JPanel implements Serializable {
                             .addComponent(fieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(botonMostrarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(labelEstadoNick))))
+                                .addComponent(labelEstadoNick))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(botonMostrarContrasena))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(botonVolver)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(labelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldNick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelInputNick)
@@ -279,19 +281,25 @@ public class Registro extends javax.swing.JPanel implements Serializable {
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     private void fieldNickCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_fieldNickCaretUpdate
-        if (!fieldNick.getText().equals("")) {
+        String fieldText = fieldNick.getText();
+        boolean res = verificarNick(fieldText);
+
+        if (!fieldText.equals("")) {
             labelEstadoNick.setVisible(true);
-        }
-        boolean res = verificarNick(fieldNick.getText());
-        if (res) {
-            labelEstadoNick.setText("✗ El nick ya está en uso");
-            labelEstadoNick.setForeground(Color.red);
+
+            if (res) {
+                labelEstadoNick.setText("✗ El nick ya está en uso");
+                labelEstadoNick.setForeground(Color.red);
+            } else {
+                labelEstadoNick.setText("✓ El nick está disponible");
+                labelEstadoNick.setForeground(Color.green);
+            }
         } else {
-            labelEstadoNick.setText("✓ El nick está disponible");
-            labelEstadoNick.setForeground(Color.green);
+            // Ocultar el label si el campo de texto está vacío
+            labelEstadoNick.setVisible(false);
         }
 
-        if ((fieldContrasena.getPassword().length > 0) && (fieldNick.getText().length() > 0) && !res) {
+        if ((fieldContrasena.getPassword().length > 0) && (fieldText.length() > 0) && !res) {
             botonRegistro.setEnabled(true);
         } else {
             botonRegistro.setEnabled(false);

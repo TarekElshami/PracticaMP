@@ -1,0 +1,25 @@
+Cazador
+
+Chaleco de cuero: +1 defensa
+Armadura de malla: +2 defensa
+Armadura de placa: +3 defensa
+Armadura de cazador: +2 defensa, +1 ataque
+Armadura de cuero reforzado: +2 defensa
+
+
+Vampiro
+
+Túnica de cuero oscuro: +1 defensa
+Armadura de piel de murciélago: +2 defensa
+Armadura de cuero endurecido: +3 defensa
+Armadura de las sombras: +2 defensa, +1 ataque
+Armadura de hueso: +2 defensa
+
+
+Licantropos
+
+Piel de lobo: +1 defensa
+Armadura de cuero endurecido: +2 defensa
+Armadura de placas de acero: +3 defensa
+Armadura de cazador de licántropos: +2 defensa, +1 ataque
+Armadura de escamas de dragón: +2 defensa

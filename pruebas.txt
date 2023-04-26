@@ -1,0 +1,6 @@
+Pruebas de unidad: esto implica probar cada módulo individualmente para asegurarse de que funciona según lo previsto. En su caso, los módulos podrían ser la creación de cuenta, inicio de sesión, elección de personaje, etc.
+
+Pruebas de integración: esto implica probar cómo los diferentes módulos interactúan entre sí para asegurarse de que funcionen correctamente en conjunto.
+
+Pruebas de sistema: esto implica probar el sistema completo para asegurarse de que todas las funciones principales funcionen correctamente. En su caso, esto podría incluir la creación de cuenta, inicio de sesión, elección de personaje y desafiar a otros usuarios.
+
