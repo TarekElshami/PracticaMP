@@ -53,7 +53,7 @@ public class CreacionPersonaje extends javax.swing.JPanel {
             }
         });
 
-        opTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vampiro", "Humano", "Licantropo" }));
+        opTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vampiro", "Cazador", "Licantropo" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

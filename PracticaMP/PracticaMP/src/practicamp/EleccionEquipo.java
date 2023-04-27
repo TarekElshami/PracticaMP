@@ -1,53 +1,81 @@
 package practicamp;
 
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class EleccionEquipo extends javax.swing.JPanel {
     private List<Arma> armas;
     private List<Armadura> armaduras;
-    private Arma arma;
+    private List<Arma> armasSeleccionadas;
     private Armadura armadura;
+    private boolean esArma;
+    private int manosDisponibles;
 
     
-    public EleccionEquipo(String nombrePersonaje, boolean esArma) {
+    public EleccionEquipo() {
         initComponents();
+        
+    }
+    
+    public void actualizarLista(String nombrePersonaje, boolean esArma){
+        this.esArma = esArma;
         if (esArma) {
+            this.armasSeleccionadas = new ArrayList<>();
+            this.manosDisponibles = 2;
+            List<Arma> armasActivas = Almacen.getUsuarioActivo().getArmasActivas();
             List<Arma> armas = new ArrayList<>();
             List<Personaje> personajes = Almacen.getPersonajes(); 
             DefaultListModel<String> itemsVector = new DefaultListModel<>(); 
             for (Personaje personaje : personajes) {
                 if (personaje.getNombre().equals(nombrePersonaje)) {
                     for (Arma arma : personaje.getArmas()) {
-                        itemsVector.addElement(arma.getNombre() + ": Atq = " + arma.getAtaque() + "/ Def = " + arma.getDefensa());
+                        String text = arma.getNombre() + ": Atq = " + arma.getAtaque() + "/ Def = " + arma.getDefensa();
+                        if (armasActivas.contains(arma)){
+                            this.manosDisponibles -= arma.getManos();
+                            this.armasSeleccionadas.add(arma);
+                            text = "<html><font color='green'>" + text + "</font></html>";
+                        }
+                        itemsVector.addElement(text);
                         armas.add(arma);
                     }
                 }
             }
-            jList1.setModel(itemsVector);
+            armasList.setModel(itemsVector);
             this.armas = armas;
-            jList2.setVisible(false);
-            jLabel2.setVisible(false);
+            armasList.setVisible(true);
+            armadurasList.setVisible(false);
+            etiqArmas.setVisible(true);
+            etiqArmaduras.setVisible(false);
 
         } else {
             List<Armadura> armaduras = new ArrayList<>();
+            Armadura armaduraActiva = Almacen.getUsuarioActivo().getArmaduraActiva();
             List<Personaje> personajes = Almacen.getPersonajes(); 
             DefaultListModel<String> itemsVector = new DefaultListModel<>(); 
             for (Personaje personaje : personajes) {
                 if (personaje.getNombre().equals(nombrePersonaje)) {
                     for (Armadura armadura : personaje.getArmaduras()) {
-                        itemsVector.addElement(armadura.getNombre() + ": Atq = " + armadura.getAtaque() + "/ Def = " + armadura.getDefensa());
+                        String text = armadura.getNombre() + ": Atq = " + armadura.getAtaque() + "/ Def = " + armadura.getDefensa();
+                        if (armaduraActiva == armadura){
+                            this.armadura = armadura;
+                            text = "<html><font color='green'>" + text + "</font></html>";
+                        }
+                        itemsVector.addElement(text);
                         armaduras.add(armadura);
                     }
                 }
             }
-            jList2.setModel(itemsVector);
+            armadurasList.setModel(itemsVector);
             this.armaduras = armaduras;
-            jList1.setVisible(false);
-            jLabel1.setVisible(false);
+            armadurasList.setVisible(true);
+            armasList.setVisible(false);
+            etiqArmas.setVisible(false);
+            etiqArmaduras.setVisible(true);
         }
     }
 
@@ -57,51 +85,51 @@ public class EleccionEquipo extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        etiqArmas = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        armasList = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        armadurasList = new javax.swing.JList<>();
+        btnVolver = new javax.swing.JButton();
+        btnConfiramar = new javax.swing.JButton();
+        etiqArmaduras = new javax.swing.JLabel();
 
-        jLabel1.setText("Eleccion Armas");
+        etiqArmas.setText("Eleccion Armas");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        armasList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { " " };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+        armasList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
+                armasListMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(armasList);
 
-        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+        armadurasList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList2MouseClicked(evt);
+                armadurasListMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(armadurasList);
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Confirmar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnConfiramar.setText("Confirmar");
+        btnConfiramar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnConfiramarActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Eleccion Armadura");
+        etiqArmaduras.setText("Eleccion Armadura");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,19 +139,19 @@ public class EleccionEquipo extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnVolver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(btnConfiramar)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
-                .addComponent(jLabel1)
+                .addComponent(etiqArmas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(etiqArmaduras)
                 .addGap(148, 148, 148))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,16 +159,16 @@ public class EleccionEquipo extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(etiqArmas)
+                    .addComponent(etiqArmaduras))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnVolver)
+                    .addComponent(btnConfiramar))
                 .addGap(26, 26, 26))
         );
 
@@ -160,49 +188,82 @@ public class EleccionEquipo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Volver a la pantalla de usuario
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuUsuario");
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //Volver a la pantalla de usuario
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnConfiramarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiramarActionPerformed
+        if (!this.armasSeleccionadas.isEmpty() && esArma){
+            Almacen.getUsuarioActivo().setArmasActivas(this.armasSeleccionadas);
+        } else if(this.armadura != null && !esArma){
+            Almacen.getUsuarioActivo().setArmaduraActiva(this.armadura);
+        } 
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuUsuario");
+    }//GEN-LAST:event_btnConfiramarActionPerformed
 
-    public Arma getArma() {
-        return arma;
-    }
-
-    public Armadura getArmadura() {
-        return armadura;
-    }
+   
     
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+    private void armasListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_armasListMouseClicked
         if (evt.getClickCount() == 1) { // Verifica que se haya hecho un solo click
             JList<String> list = (JList<String>) evt.getSource();
             int index = list.locationToIndex(evt.getPoint());
+            String item = list.getModel().getElementAt(index);
             Arma armaSeleccionada = this.armas.get(index);
-            JOptionPane.showMessageDialog(null, "Esta arma requiere " + armaSeleccionada.getManos() + " mano(s).");
-            this.arma = armaSeleccionada;
+            if (item.contains("<font color='green'>")) {
+                item = item.replace("<font color='green'>", "");
+                item = item.replace("</font>", "");
+                this.armasSeleccionadas.remove(armaSeleccionada);
+                this.manosDisponibles += armaSeleccionada.getManos();
+                JOptionPane.showMessageDialog(null, "Tienes " + this.manosDisponibles + " mano(s) disponibles.");
+            } else if (armaSeleccionada.getManos()<= this.manosDisponibles) {
+                item = "<html><font color='green'>" + item + "</font></html>";
+                this.armasSeleccionadas.add(armaSeleccionada);
+                this.manosDisponibles -= armaSeleccionada.getManos();
+                JOptionPane.showMessageDialog(null, "Tienes " + this.manosDisponibles + " mano(s) disponibles.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No tienes suficientes manos");
+            }
+            DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
+            model.setElementAt(item, index);
+            //this.arma = armaSeleccionada;
         }
-    }//GEN-LAST:event_jList1MouseClicked
+    }//GEN-LAST:event_armasListMouseClicked
 
-    private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
+    private void armadurasListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_armadurasListMouseClicked
         if (evt.getClickCount() == 1) { // Verifica que se haya hecho un solo click
             JList<String> list = (JList<String>) evt.getSource();
             int index = list.locationToIndex(evt.getPoint());    // TODO add your handling code here:
+            String item = list.getModel().getElementAt(index);
             Armadura armaduraSeleccionada = this.armaduras.get(index);
-            this.armadura = armaduraSeleccionada;
+            if (item.contains("<font color='green'>")) {
+                item = item.replace("<font color='green'>", "");
+                item = item.replace("</font>", "");
+                this.armadura = null;
+                JOptionPane.showMessageDialog(null, "Te has quitado la armadura");
+            } else if (this.armadura == null) {
+                item = "<html><font color='green'>" + item + "</font></html>";
+                this.armadura = armaduraSeleccionada;
+                JOptionPane.showMessageDialog(null, "Te has equipado " + this.armadura.getNombre()+".");
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes llevar más de una armadura a la vez");
+            }
+            DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
+            model.setElementAt(item, index);
         }
-    }//GEN-LAST:event_jList2MouseClicked
+    }//GEN-LAST:event_armadurasListMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> armadurasList;
+    private javax.swing.JList<String> armasList;
+    private javax.swing.JButton btnConfiramar;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel etiqArmaduras;
+    private javax.swing.JLabel etiqArmas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

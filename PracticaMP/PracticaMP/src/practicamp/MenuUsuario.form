@@ -21,8 +21,8 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnNotificaciones" linkSize="1" max="32767" attributes="0"/>
                   <Component id="btnDesafiar" linkSize="1" max="32767" attributes="0"/>
-                  <Component id="jButton3" linkSize="1" max="32767" attributes="0"/>
-                  <Component id="jButton2" linkSize="1" max="32767" attributes="0"/>
+                  <Component id="btnElegirArmaduras" linkSize="1" max="32767" attributes="0"/>
+                  <Component id="btnElegirArmas" linkSize="1" max="32767" attributes="0"/>
                   <Component id="btnConultarOro" linkSize="1" min="-2" pref="163" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="142" max="32767" attributes="0"/>
@@ -48,12 +48,12 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton7" linkSize="2" pref="38" max="32767" attributes="0"/>
-                  <Component id="jButton2" linkSize="2" max="32767" attributes="0"/>
+                  <Component id="btnElegirArmas" linkSize="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnCrearPersonaje" linkSize="2" pref="42" max="32767" attributes="0"/>
-                  <Component id="jButton3" linkSize="2" max="32767" attributes="0"/>
+                  <Component id="btnElegirArmaduras" linkSize="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -79,15 +79,21 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConultarOroActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnElegirArmas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Elegir armas"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnElegirArmasActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btnElegirArmaduras">
       <Properties>
         <Property name="text" type="java.lang.String" value="Elegir armaduras"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnElegirArmadurasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDesafiar">
       <Properties>

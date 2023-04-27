@@ -21,7 +21,6 @@ public class Usuario implements Serializable {
     private List<Notificacion> notificaciones;
     private int oro;
     private int victorias;
-    private Almacen almacen;
 
     public Usuario(String nick, String contrasena) {
         this.nick = nick;
@@ -202,5 +201,5 @@ public class Usuario implements Serializable {
     public Armadura getArmaduraActiva() {
         return armaduraActiva;
     }
-          
+              
 }
