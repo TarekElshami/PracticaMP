@@ -70,7 +70,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaEsbirros = new javax.swing.JList<>();
-        bntAgregarEsbirro = new javax.swing.JButton();
+        btnAgregarEsbirro = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -120,14 +120,14 @@ public class GestionEsbirros extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(6, 34, 320, 332);
 
-        bntAgregarEsbirro.setText("Agregar esbirro");
-        bntAgregarEsbirro.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarEsbirro.setText("Agregar esbirro");
+        btnAgregarEsbirro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAgregarEsbirroActionPerformed(evt);
+                btnAgregarEsbirroActionPerformed(evt);
             }
         });
-        jPanel1.add(bntAgregarEsbirro);
-        bntAgregarEsbirro.setBounds(6, 384, 120, 23);
+        jPanel1.add(btnAgregarEsbirro);
+        btnAgregarEsbirro.setBounds(6, 384, 120, 23);
 
         btnEliminar.setText("Eliminar esbirro");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -240,11 +240,11 @@ public class GestionEsbirros extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void bntAgregarEsbirroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAgregarEsbirroActionPerformed
+    private void btnAgregarEsbirroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEsbirroActionPerformed
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "nuevoEsbirro");
-    }//GEN-LAST:event_bntAgregarEsbirroActionPerformed
+    }//GEN-LAST:event_btnAgregarEsbirroActionPerformed
 
     private void listaEsbirrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaEsbirrosMouseClicked
         if (evt.getClickCount() == 2) {
@@ -262,6 +262,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
                 jTextField4.setText(demonio.getPacto());
             } else {
                 listaEsbirros.setVisible(false);
+                btnAgregarEsbirro.setVisible(false);
                 if (esbirroSeleccionado instanceof Humano){
                     Humano humano = (Humano) esbirroSeleccionado;
                     jComboBox1.setVisible(true);
@@ -378,7 +379,7 @@ public class GestionEsbirros extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntAgregarEsbirro;
+    private javax.swing.JButton btnAgregarEsbirro;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton2;

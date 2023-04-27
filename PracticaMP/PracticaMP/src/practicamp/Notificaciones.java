@@ -27,7 +27,7 @@ public class Notificaciones extends javax.swing.JPanel {
     public boolean actualizarLista(){
         mod.clear();
         int i = 0;
-        Usuario usuario = this.almacen.getUsuarioActivo();
+        Usuario usuario = Almacen.getUsuarioActivo();
         boolean vacio = true;
         if (!usuario.getNotificaciones().isEmpty()){
             List<Notificacion> notificaciones = usuario.getNotificaciones();

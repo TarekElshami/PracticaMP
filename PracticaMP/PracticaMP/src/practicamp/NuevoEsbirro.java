@@ -244,12 +244,16 @@ public class NuevoEsbirro extends javax.swing.JPanel {
         } else if (btnPulsado == 1){
             String eleccion = opLealtad.getSelectedItem().toString();
             Lealtad lealtad = null;
-            if (eleccion.equals("ALTA")){
-                lealtad = lealtad.alta;
-            } else if(eleccion.equals("NORMAL")){
+            switch (eleccion) {
+                case "ALTA":
+                    lealtad = lealtad.alta;
+                    break;
+                case "NORMAL":
                     lealtad = lealtad.media;
-            } else {
-                lealtad = lealtad.baja;
+                    break;
+                default:
+                    lealtad = lealtad.baja;
+                    break;
             }
             esbirro = new Humano(nombre, salud,lealtad);
         } else{

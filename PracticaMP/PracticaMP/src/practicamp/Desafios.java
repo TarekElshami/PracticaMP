@@ -32,14 +32,14 @@ public class Desafios extends javax.swing.JPanel {
     DefaultListModel mod = new DefaultListModel();
     public void actualizatList(){
         int i = 0;
-        List<Usuario> usuarios = this.almacen.getUsuarios();
+        List<Usuario> usuarios = Almacen.getUsuarios();
         userList.setModel(mod); // para añadir los elementos a la lista
         mod.clear();
         while (i < usuarios.size()){
             String candidato = usuarios.get(i).getNick();
-            if (!candidato.equalsIgnoreCase(almacen.getUsuarioActivo().getNick())){
+            if ((!candidato.equalsIgnoreCase(Almacen.getUsuarioActivo().getNick())) && usuarios.get(i).getRol() != Rol.admin){
                 mod.addElement(candidato);
-            }else {
+            }else if (candidato.equalsIgnoreCase(Almacen.getUsuarioActivo().getNick())){
                 this.oro = usuarios.get(i).getOro();
             }
             i = i + 1;
@@ -135,7 +135,7 @@ public class Desafios extends javax.swing.JPanel {
                 oroApostado = Integer.parseInt(goldText.getText());
                 if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& oroApostado<= this.oro && oroApostado >= 0) {// el boton solo hace cosas si eliges un nombre de la lista 
                     String contrincante = userList.getSelectedValue();
-                    Desafio newDesafio = new Desafio(this.almacen.getUsuarioActivo(),this.almacen.getContrincante(contrincante), oroApostado);
+                    Desafio newDesafio = new Desafio(Almacen.getUsuarioActivo(),this.almacen.getContrincante(contrincante), oroApostado);
                     try {
                         this.almacen.agregarDesafioAValidacion(newDesafio);
                     } catch (IOException ex) {

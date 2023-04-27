@@ -100,12 +100,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="bntAgregarEsbirro">
+        <Component class="javax.swing.JButton" name="btnAgregarEsbirro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar esbirro"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAgregarEsbirroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarEsbirroActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

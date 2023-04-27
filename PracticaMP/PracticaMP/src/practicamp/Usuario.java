@@ -182,4 +182,8 @@ public class Usuario implements Serializable {
         return rol;
     }
     
+    public void setTipoPersonaje(String newPers){
+        this.tipoPersonaje = newPers;
+    }
+    
 }

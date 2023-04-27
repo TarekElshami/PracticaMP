@@ -44,7 +44,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
             i += 1;
         }
         i = 0;
-        List<Modificador> modificadores = this.almacen.getModificadores();
+        List<Modificador> modificadores = Almacen.getModificadores();
         while (i < modificadores.size()){
             Modificador element = modificadores.get(i);
             String aux = element.getNombre();
@@ -57,7 +57,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
         int valor = 0; // es 1 si es una debilidad, 2 si es una fortaleza y 0 si no está
         String persUsuario = usuario.getTipoPersonaje();
         if (persUsuario != null){
-            List<Personaje> personajes = almacen.getPersonajes();
+            List<Personaje> personajes = Almacen.getPersonajes();
             int i = 0;
             while(!personajes.get(i).getNombre().equals(persUsuario)){
                 i += 1;
@@ -180,7 +180,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
        int ind = modificadoresList.getSelectedIndex();
         if (ind != -1){
             mod2.remove(ind);// esto no se si funciona 
-            this.modificadoresSelec.add(this.almacen.getModificadores().get(ind));
+            this.modificadoresSelec.add(Almacen.getModificadores().get(ind));
             
         }else {
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un modificador");
@@ -203,14 +203,14 @@ public class ValidarDesafios extends javax.swing.JPanel {
                     selected.addDebilidad(modif);
                 } else if(j==2){
                     selected.addFortaleza(modif);
-                };
+                }
                 modificadoresSelec.remove(i);
             }
             Notificacion noti = new Notificacion(selected);
-            List<Usuario> usuarios = this.almacen.getUsuarios();
+            List<Usuario> usuarios = Almacen.getUsuarios();
             int locLista = buscarDesafiado(usuarios, selected.getDesafiado().getNick());
             if (locLista>=0){
-                this.almacen.getUsuarios().get(locLista).addNotificacion(noti);
+                Almacen.getUsuarios().get(locLista).addNotificacion(noti);
             } else{
                 javax.swing.JOptionPane.showMessageDialog(this, "El desafiado ha borrado la cuenta");
             }

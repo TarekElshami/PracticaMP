@@ -317,7 +317,6 @@ public class Registro extends javax.swing.JPanel implements Serializable {
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuPrincipal");
