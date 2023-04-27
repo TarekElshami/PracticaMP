@@ -18,5 +18,8 @@ public class Vampiro extends Personaje {
         this.sangre = sangre;
     }
     
+    public void setEdad(int edad){
+        this.edad = edad;
+    }
        
 }

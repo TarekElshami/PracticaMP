@@ -25,11 +25,16 @@ public class EdicionModificadores extends javax.swing.JPanel {
             if (p.getNombre().equals(nombrePersonaje)) {
                 debilidades = p.getFortalezas();
                 fortalezas = p.getDebilidades();
-                opSalud.setSelectedItem(p.getSalud());
-                opSalud.setSelectedItem(p.getPoder());
                 personaje = p;
+                if (!p.getNombre().equals("Vampiro")){
+                    textEdad.setVisible(false);
+                    etiqEdad.setVisible(false);
+                }
             }
         }
+        opSalud.setSelectedIndex(personaje.getSalud());
+        System.out.println(personaje.getPoder());
+        opPoder.setSelectedIndex(personaje.getPoder());
         actualizarListas();
     }
     private void actualizarListas() {
@@ -67,12 +72,12 @@ public class EdicionModificadores extends javax.swing.JPanel {
         opSalud = new javax.swing.JComboBox<>();
         opPoder = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        opEdad = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        textEdad = new javax.swing.JTextField();
+        etiqEdad = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
 
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         debilidadesList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,16 +86,13 @@ public class EdicionModificadores extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(debilidadesList);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(17, 57, 306, 326);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 57, 306, 326));
 
         jLabel1.setText("Debilidades");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(17, 35, 306, 16);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 35, 306, -1));
 
         jLabel2.setText("Fortalezas");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(323, 35, 306, 16);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 35, 306, -1));
 
         fortalezasList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,46 +101,39 @@ public class EdicionModificadores extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(fortalezasList);
 
-        jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(323, 57, 306, 326);
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 57, 306, 326));
 
         jLabel3.setText("Salud:");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(23, 414, 60, 16);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 414, 48, 22));
 
-        opSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        opSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin cambios", "1", "2", "3", "4", "5" }));
         opSalud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opSaludActionPerformed(evt);
             }
         });
-        jPanel1.add(opSalud);
-        opSalud.setBounds(90, 410, 72, 22);
+        jPanel1.add(opSalud, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 414, 100, -1));
 
-        opPoder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        opPoder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin Cambios", "1", "2", "3", "4", "5" }));
         opPoder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opPoderActionPerformed(evt);
             }
         });
-        jPanel1.add(opPoder);
-        opPoder.setBounds(243, 411, 72, 22);
+        jPanel1.add(opPoder, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 414, 122, -1));
 
         jLabel4.setText("Poder:");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(197, 414, 40, 16);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 414, 40, 22));
 
-        opEdad.addActionListener(new java.awt.event.ActionListener() {
+        textEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opEdadActionPerformed(evt);
+                textEdadActionPerformed(evt);
             }
         });
-        jPanel1.add(opEdad);
-        opEdad.setBounds(390, 410, 64, 22);
+        jPanel1.add(textEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 414, 110, -1));
 
-        jLabel5.setText("Edad:");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(340, 420, 50, 16);
+        etiqEdad.setText("Edad:");
+        jPanel1.add(etiqEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 414, 50, 22));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -146,8 +141,7 @@ public class EdicionModificadores extends javax.swing.JPanel {
                 btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver);
-        btnVolver.setBounds(6, 445, 100, 23);
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 445, 100, -1));
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -155,8 +149,7 @@ public class EdicionModificadores extends javax.swing.JPanel {
                 btnConfirmarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConfirmar);
-        btnConfirmar.setBounds(530, 445, 100, 23);
+        jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 445, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -287,9 +280,9 @@ public class EdicionModificadores extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_fortalezasListMouseClicked
 
-    private void opEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opEdadActionPerformed
+    private void textEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEdadActionPerformed
         
-    }//GEN-LAST:event_opEdadActionPerformed
+    }//GEN-LAST:event_textEdadActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         JPanel parent = (JPanel) getParent();
@@ -304,6 +297,23 @@ public class EdicionModificadores extends javax.swing.JPanel {
         }
         Almacen.getPersonajes().get(i).setDebilidades(this.debilidades);
         Almacen.getPersonajes().get(i).setFortalezas(this.fortalezas);
+        if (!opSalud.getSelectedItem().toString().equals("Sin Cambios")){
+            Almacen.getPersonajes().get(i).setSalud(Integer.parseInt(opSalud.getSelectedItem().toString()));
+        }
+        if (!opPoder.getSelectedItem().toString().equals("Sin Cambios")){
+            Almacen.getPersonajes().get(i).setPoder(Integer.parseInt(opPoder.getSelectedItem().toString()));
+            System.out.println(Almacen.getPersonajes().get(i).getPoder());
+        }
+        if (!textEdad.getText().equals( "")){
+            try {
+                int nuevaEdad = Integer.parseInt(textEdad.getText());
+                Vampiro pers = (Vampiro) Almacen.getPersonajes().get(i);
+                pers.setEdad(nuevaEdad);
+            } catch (NumberFormatException e){
+                javax.swing.JOptionPane.showMessageDialog(this, "El oro apostado tiene que ser un número");
+            }
+            
+        }
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuEditarPersonaje");
@@ -314,18 +324,18 @@ public class EdicionModificadores extends javax.swing.JPanel {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JList<String> debilidadesList;
+    private javax.swing.JLabel etiqEdad;
     private javax.swing.JList<String> fortalezasList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField opEdad;
     private javax.swing.JComboBox<String> opPoder;
     private javax.swing.JComboBox<String> opSalud;
+    private javax.swing.JTextField textEdad;
     // End of variables declaration//GEN-END:variables
     
 }
