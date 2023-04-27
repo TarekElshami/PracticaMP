@@ -165,4 +165,21 @@ public class Usuario implements Serializable {
     public void addNotificacion(Notificacion noti){
         this.notificaciones.add(noti);
     }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+    
 }
