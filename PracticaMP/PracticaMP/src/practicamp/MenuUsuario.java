@@ -203,9 +203,13 @@ public class MenuUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnCrearPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPersonajeActionPerformed
-        JPanel parent = (JPanel) getParent();
-        CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "creacionPersonaje");
+        if (Almacen.getUsuarioActivo().getTipoPersonaje() == null) {
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "creacionPersonaje");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas borrar primero tu personaje para crear otro");
+        }
     }//GEN-LAST:event_btnCrearPersonajeActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
