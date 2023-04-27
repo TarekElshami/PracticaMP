@@ -35,6 +35,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(nuevoEsbirro, "nuevoEsbirro");
         add(creacionPersonaje, "creacionPersonaje");
         add(eleccionEquipo, "eleccionEquipo");
+        add(edicionModificadores, "edicionModificadores");
     }
     
     public void showGame() {
@@ -58,12 +59,13 @@ public class AdministradorJuego extends javax.swing.JFrame {
             notificaciones = new practicamp.Notificaciones(almacen);
             eleccionEquipo = new practicamp.EleccionEquipo();
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
+            edicionModificadores = new practicamp.EdicionModificadores();
             menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen, eleccionEquipo);
             validarDesafios = new practicamp.ValidarDesafios(almacen);
             creacionPersonaje = new practicamp.CreacionPersonaje();
             gestionEsbirros = new practicamp.GestionEsbirros();
             nuevoEsbirro = new practicamp.NuevoEsbirro(gestionEsbirros);
-            menuEditarPersonaje = new practicamp.MenuEditarPersonaje(gestionEsbirros);
+            menuEditarPersonaje = new practicamp.MenuEditarPersonaje(gestionEsbirros, edicionModificadores);
             menuSeleccionPersonaje = new practicamp.MenuSeleccionPersonaje(menuEditarPersonaje);
             menuOperador = new practicamp.MenuOperador(validarDesafios);
         } catch (java.io.IOException e1) {
@@ -126,6 +128,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
         eleccionEquipo.setName("eleccionEquipo");
         getContentPane().add(eleccionEquipo, "card15");
 
+        edicionModificadores.setName("edicionHabilidades");
+        getContentPane().add(edicionModificadores, "card16");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,5 +150,6 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.NuevoEsbirro nuevoEsbirro;
     private practicamp.CreacionPersonaje creacionPersonaje;
     private practicamp.EleccionEquipo eleccionEquipo;
+    private practicamp.EdicionModificadores edicionModificadores;
     // End of variables declaration//GEN-END:variables
 }

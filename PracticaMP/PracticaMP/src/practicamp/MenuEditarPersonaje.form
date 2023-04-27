@@ -27,7 +27,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnEquipo" min="-2" pref="242" max="-2" attributes="0"/>
                           <Component id="btnEsbirro" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
-                          <Component id="btmPersonaje" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                          <Component id="btmModificadores" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                           <Component id="tipoPersonaje" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -42,7 +42,7 @@
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Component id="tipoPersonaje" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btmPersonaje" linkSize="1" min="-2" pref="77" max="-2" attributes="0"/>
+              <Component id="btmModificadores" linkSize="1" min="-2" pref="77" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnEquipo" linkSize="1" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -55,12 +55,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btmPersonaje">
+    <Component class="javax.swing.JButton" name="btmModificadores">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Habilidad"/>
+        <Property name="text" type="java.lang.String" value="Modificadores"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btmPersonajeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btmModificadoresActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEquipo">

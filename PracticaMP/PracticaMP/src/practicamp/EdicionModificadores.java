@@ -1,21 +1,26 @@
 package practicamp;
 
+import java.awt.CardLayout;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
-public class EdicionHabilidades extends javax.swing.JPanel {
+public class EdicionModificadores extends javax.swing.JPanel {
 
     private List<Modificador> modificadores;
     private Map<String, Integer> debilidades;
     private Map<String, Integer> fortalezas;
     private Personaje personaje;
 
-    public EdicionHabilidades(String nombrePersonaje) {
+    public EdicionModificadores() {
         initComponents();
         modificadores = Almacen.getModificadores();
+        
+    }
+    public void cargarPersonaje(String nombrePersonaje){
         for (Personaje p : Almacen.getPersonajes()) {
             if (p.getNombre().equals(nombrePersonaje)) {
                 debilidades = p.getFortalezas();
@@ -27,7 +32,6 @@ public class EdicionHabilidades extends javax.swing.JPanel {
         }
         actualizarListas();
     }
-
     private void actualizarListas() {
         DefaultListModel<String> itemsVector1 = new DefaultListModel<>();
         DefaultListModel<String> itemsVector2 = new DefaultListModel<>();
@@ -65,6 +69,10 @@ public class EdicionHabilidades extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jPanel1.setLayout(null);
 
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,9 +81,16 @@ public class EdicionHabilidades extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(17, 57, 306, 326);
+
         jLabel1.setText("Debilidades");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(17, 35, 306, 16);
 
         jLabel2.setText("Fortalezas");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(323, 35, 306, 16);
 
         jList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -84,7 +99,12 @@ public class EdicionHabilidades extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(jList2);
 
+        jPanel1.add(jScrollPane3);
+        jScrollPane3.setBounds(323, 57, 306, 326);
+
         jLabel3.setText("Salud");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(23, 414, 29, 16);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +112,8 @@ public class EdicionHabilidades extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jComboBox1);
+        jComboBox1.setBounds(59, 411, 72, 22);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -99,82 +121,47 @@ public class EdicionHabilidades extends javax.swing.JPanel {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jComboBox2);
+        jComboBox2.setBounds(243, 411, 72, 22);
 
         jLabel4.setText("Poder");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(206, 414, 31, 16);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextField1);
+        jTextField1.setBounds(363, 411, 64, 22);
 
         jLabel5.setText("Edad:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(327, 414, 29, 16);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver);
+        btnVolver.setBounds(6, 445, 100, 23);
+
+        jButton2.setText("Confirmar");
+        jPanel1.add(jButton2);
+        jButton2.setBounds(530, 445, 100, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 641, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -299,8 +286,16 @@ public class EdicionHabilidades extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuEditarPersonaje");
+    }//GEN-LAST:event_btnVolverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

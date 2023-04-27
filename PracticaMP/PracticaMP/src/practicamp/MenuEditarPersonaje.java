@@ -15,12 +15,14 @@ import practicamp.*;
 public class MenuEditarPersonaje extends javax.swing.JPanel {
     private GestionEsbirros gEsbirros;
     private String nombrePeronaje;
+    private EdicionModificadores edHabilidades;
 
     /**
      * Creates new form MenuCambioPersonaje
      */
-    public MenuEditarPersonaje(GestionEsbirros gEsbirros) {
+    public MenuEditarPersonaje(GestionEsbirros gEsbirros, EdicionModificadores edHabilidades) {
         this.gEsbirros = gEsbirros;
+        this.edHabilidades = edHabilidades;
         initComponents();
     }
     
@@ -37,16 +39,16 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btmPersonaje = new javax.swing.JButton();
+        btmModificadores = new javax.swing.JButton();
         btnEquipo = new javax.swing.JButton();
         btnEsbirro = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         tipoPersonaje = new javax.swing.JLabel();
 
-        btmPersonaje.setText("Habilidad");
-        btmPersonaje.addActionListener(new java.awt.event.ActionListener() {
+        btmModificadores.setText("Modificadores");
+        btmModificadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btmPersonajeActionPerformed(evt);
+                btmModificadoresActionPerformed(evt);
             }
         });
 
@@ -85,7 +87,7 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEsbirro, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btmPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btmModificadores, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tipoPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(203, 203, 203))
         );
@@ -95,7 +97,7 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addComponent(tipoPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btmPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btmModificadores, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -105,7 +107,7 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btmPersonaje, btnEquipo, btnEsbirro});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btmModificadores, btnEquipo, btnEsbirro});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,13 +124,16 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
         cl.show(parent, "gestionEsbirros");
     }//GEN-LAST:event_btnEsbirroActionPerformed
 
-    private void btmPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmPersonajeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btmPersonajeActionPerformed
+    private void btmModificadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmModificadoresActionPerformed
+        JPanel parent = (JPanel) getParent();
+        edHabilidades.cargarPersonaje(this.nombrePeronaje);
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "edicionModificadores");
+    }//GEN-LAST:event_btmModificadoresActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btmPersonaje;
+    private javax.swing.JButton btmModificadores;
     private javax.swing.JButton btnEquipo;
     private javax.swing.JButton btnEsbirro;
     private javax.swing.JButton btnVolver;
