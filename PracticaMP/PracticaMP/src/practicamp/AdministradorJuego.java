@@ -43,18 +43,6 @@ public class AdministradorJuego extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    public void registrarse() throws IOException, FileNotFoundException, ClassNotFoundException {
-        
-    }
-
-    public void iniciar_sesion() throws IOException, FileNotFoundException, ClassNotFoundException {
-        
-    }
-
-    public void salir() {
-        
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

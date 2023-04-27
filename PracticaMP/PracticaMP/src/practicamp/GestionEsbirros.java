@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Stack;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class GestionEsbirros extends javax.swing.JPanel {

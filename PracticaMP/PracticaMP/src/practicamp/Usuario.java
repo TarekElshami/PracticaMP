@@ -3,7 +3,6 @@ package practicamp;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class Usuario implements Serializable {
 
@@ -12,16 +11,16 @@ public class Usuario implements Serializable {
     private String nick;
     private String contrasena;
     private String id;
-    private String personaje;
-    private List<Arma> armasActivas;
-    private Armadura armaduraActiva;
-    private String tipoPersonaje;
     private boolean baneado;
     private List<Desafio> historial;
     private List<Notificacion> notificaciones;
     private int oro;
     private int victorias;
-
+    private String personaje;
+    private List<Arma> armasActivas;
+    private Armadura armaduraActiva;
+    private String tipoPersonaje;
+    
     public Usuario(String nick, String contrasena) {
         this.nick = nick;
         this.contrasena = contrasena;
@@ -35,110 +34,45 @@ public class Usuario implements Serializable {
         this.historial = new ArrayList<>();
         this.notificaciones =  new ArrayList<>();
     }
-
-    public void show() {
-
+    
+    public void addNotificacion(Notificacion noti) {
+        this.notificaciones.add(noti);
     }
 
-    public void validarDesafio() {
-
+    public void setTipoPersonaje(String tipoPersonaje) {
+        this.tipoPersonaje = tipoPersonaje;
     }
 
-    public void banDesbanUsuario() {
-
+    public void setArmasActivas(List<Arma> armasActivas) {
+        this.armasActivas = armasActivas;
     }
 
-    public void editarPersonaje() {
-
+    public void setArmaduraActiva(Armadura armaduraActiva) {
+        this.armaduraActiva = armaduraActiva;
     }
 
-    public void darDeBajaCuenta() {
+    public void setOro(int ammount) {
+        this.oro = ammount;
+    }
+    
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getId() {
         return id;
     }
 
-    public void ban() {
-
-    }
-
-    public void desBan() {
-
-    }
-
-    public void crearPersonaje() {
-        //Hace falta llamar a CreacionPersonaje y obtener los datos con los getters y asignarlos a los atributos
-    }
-
-    public void elegirArmas() {
-        //Hace falta verificar que tiene personaje
-        // se llama a eleccionEquipo y con el getArma se intenta insertar en el personaje y sino se puede pues no se cambia en el usuario
-    }
-
-    public void elegirArmaduras() {
-        //Hace falta verificar que tiene personaje
-        // se llama a eleccionEquipo y con el getArmadura y se cambia en el usuario.
-    }
-
-    public void desafiarJugadores() {
-
-    }
-
-    public void verNotificaciones() {
-
-    /**
-     *
-     */
-    }
-    /**
-     *
-     * @return
-     */
     public List<Notificacion> getNotificaciones() {
         return this.notificaciones;
-    }
-
-    public void historial() {
-
-    }
-
-    public void añadirDesafioAHistorial(Desafio desafio) {
-
-    }
-
-    public void añadirNotificaciones(Notificacion notificacion) {
-        
-    }
-
-    private void showDesafios() {
-
-    }
-
-    private void showUsuarios() {
-
-    }
-
-
-    public void sendNotification(Usuario contrincante, Desafio desafío) {
-
-    }
-
-    public void aceptarDesafio() {
-        
-    }
-
-    public void rechazarDesafio() {
-
-    }
-
-    public void showPersonajes() {
-
-    }
-
-    public void salirDelSistema() {
-
     }
 
     public String getNick() {
@@ -153,45 +87,12 @@ public class Usuario implements Serializable {
         return this.oro;
     }
 
-    public void setOro(int ammount) {
-        this.oro = ammount;
-    }
-
     public String getTipoPersonaje() {
         return tipoPersonaje;
-    }
-    
-    public void addNotificacion(Notificacion noti){
-        this.notificaciones.add(noti);
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Rol getRol() {
         return rol;
-    }
-
-    // DEBUG COMBATE
-    public void setTipoPersonaje(String tipoPersonaje) {
-        this.tipoPersonaje = tipoPersonaje;
-    }
-
-    public void setArmasActivas(List<Arma> armasActivas) {
-        this.armasActivas = armasActivas;
-    }
-
-    public void setArmaduraActiva(Armadura armaduraActiva) {
-        this.armaduraActiva = armaduraActiva;
     }
 
     public List<Arma> getArmasActivas() {

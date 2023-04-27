@@ -1,16 +1,13 @@
 package practicamp;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class Personaje implements Serializable, ActionListener {
+public class Personaje implements Serializable {
     
 
     private String nombre;
@@ -46,11 +43,6 @@ public class Personaje implements Serializable, ActionListener {
         this.habilidad = habilidad;
     }
     
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-    }
-
     public void setSalud(int salud) {
         this.salud = salud;
     }

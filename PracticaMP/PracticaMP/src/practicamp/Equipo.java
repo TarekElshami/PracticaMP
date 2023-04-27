@@ -13,18 +13,6 @@ public class Equipo implements Serializable{
         this.ataque = ataque;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setDefensa(int defensa) {
-        this.defensa = defensa;
-    }
-
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
-    }
-
     public String getNombre() {
         return nombre;
     }

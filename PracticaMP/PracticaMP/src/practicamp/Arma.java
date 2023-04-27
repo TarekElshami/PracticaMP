@@ -8,10 +8,6 @@ public class Arma extends Equipo {
         this.manos = manos;
     }
 
-    public void setManos(int manos) {
-        this.manos = manos;
-    }
-
     public int getManos() {
         return manos;
     }

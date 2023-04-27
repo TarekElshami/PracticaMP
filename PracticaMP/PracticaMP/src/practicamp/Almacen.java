@@ -11,8 +11,8 @@ import java.util.*;
 
 public class Almacen {
 
-    private static int usuarioActivo;
     private static List<Usuario> usuarios;
+    private static int usuarioActivo;
     private static List<Desafio> desafiosSinValidar;
     private Ranking ranking;
     private static List<Esbirro> esbirros;
@@ -160,6 +160,31 @@ public class Almacen {
         }
     }
 
+    public void agregarDesafioAValidacion(Desafio desafio) throws IOException {
+        Almacen.desafiosSinValidar.add(desafio);
+        this.actualizarFicheroDesafios();
+    }
+
+    public void mostrarRanking() {
+        
+    }
+
+    public void addUsuario(Usuario nuevoUsuario) {
+        Almacen.usuarios.add(nuevoUsuario);
+    }
+    
+    public static void setUsuarioActivo(int index) {
+        Almacen.usuarioActivo = index;
+    }
+    
+    public static Usuario getUsuarioActivo() {
+        return Almacen.usuarios.get(Almacen.usuarioActivo);
+    }
+
+    public static List<Esbirro> getEsbirros() {
+        return esbirros;
+    }
+    
     public static List<Modificador> getModificadores() {
         return modificadores;
     }
@@ -167,22 +192,13 @@ public class Almacen {
     public List<Desafio> getDesafiosSinValidar() {
         return desafiosSinValidar;
     }
-
-    public void agregarDesafioAValidacion(Desafio desafio) throws IOException {
-        Almacen.desafiosSinValidar.add(desafio);
-        this.actualizarFicheroDesafios();
+    
+    public static List<Arma> getArmas() {
+        return armas;
     }
 
-    public void mostrarRanking() {
-    }
-
-    public Usuario getContrincante(String contrincante) {
-        for (Usuario usuario : Almacen.usuarios) {
-            if (usuario.getNick().equals(contrincante)){
-                return usuario;
-            }
-        }
-        return null;
+    public static List<Usuario> getUsuarios() {
+        return Almacen.usuarios;
     }
 
     public static List<Personaje> getPersonajes() {
@@ -192,31 +208,16 @@ public class Almacen {
     public static List<Armadura> getArmaduras() {
         return armaduras;
     }
-
-    public static List<Arma> getArmas() {
-        return armas;
-    }
     
-    public static List<Usuario> getUsuarios() {
-        return Almacen.usuarios;
+    public Usuario getContrincante(String contrincante) {
+        for (Usuario usuario : Almacen.usuarios) {
+            if (usuario.getNick().equals(contrincante)) {
+                return usuario;
+            }
+        }
+        return null;
     }
 
-    public static void setUsuarioActivo(int index) {
-        Almacen.usuarioActivo = index;
-    }
-
-    public void addUsuario(Usuario nuevoUsuario) {
-        Almacen.usuarios.add(nuevoUsuario);
-    }
-
-    public static Usuario getUsuarioActivo() {
-        return Almacen.usuarios.get(Almacen.usuarioActivo);
-    }
-
-    public static List<Esbirro> getEsbirros() {
-        return esbirros;
-    }
-    
     public static int getIndexUsuarioActivo(){
         return Almacen.usuarioActivo;
     }
