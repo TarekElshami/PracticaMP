@@ -11,9 +11,9 @@ import java.util.*;
 
 public class Almacen {
 
-    private int usuarioActivo;
-    private List<Usuario> usuarios;
-    private List<Desafio> desafiosSinValidar;
+    private static int usuarioActivo;
+    private static List<Usuario> usuarios;
+    private static List<Desafio> desafiosSinValidar;
     private Ranking ranking;
     private static List<Esbirro> esbirros;
     private static List<Personaje> personajes;
@@ -154,7 +154,7 @@ public class Almacen {
             List<Personaje> personajes = (List<Personaje>) ois.readObject();
             ois.close();
             fis.close();
-            this.personajes = personajes;
+            Almacen.personajes = personajes;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -169,7 +169,7 @@ public class Almacen {
     }
 
     public void agregarDesafioAValidacion(Desafio desafio) throws IOException {
-        this.desafiosSinValidar.add(desafio);
+        Almacen.desafiosSinValidar.add(desafio);
         this.actualizarFicheroDesafios();
     }
 
@@ -177,7 +177,7 @@ public class Almacen {
     }
 
     public Usuario getContrincante(String contrincante) {
-        for (Usuario usuario : this.usuarios) {
+        for (Usuario usuario : Almacen.usuarios) {
             if (usuario.getNick().equals(contrincante)){
                 return usuario;
             }
@@ -197,20 +197,20 @@ public class Almacen {
         return armas;
     }
     
-    public List<Usuario> getUsuarios() {
-        return this.usuarios;
+    public static List<Usuario> getUsuarios() {
+        return Almacen.usuarios;
     }
 
-    public void setUsuarioActivo(int index) {
-        this.usuarioActivo = index;
+    public static void setUsuarioActivo(int index) {
+        Almacen.usuarioActivo = index;
     }
 
     public void addUsuario(Usuario nuevoUsuario) {
-        this.usuarios.add(nuevoUsuario);
+        Almacen.usuarios.add(nuevoUsuario);
     }
 
-    public Usuario getUsuarioActivo() {
-        return this.usuarios.get(this.usuarioActivo);
+    public static Usuario getUsuarioActivo() {
+        return Almacen.usuarios.get(Almacen.usuarioActivo);
     }
 
     public static List<Esbirro> getEsbirros() {

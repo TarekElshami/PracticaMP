@@ -18,10 +18,9 @@ import javax.swing.JPanel;
  * @author aserr
  */
 public class Desafios extends javax.swing.JPanel {
-
+    
     private Almacen almacen;
     private int oro;
-
     /**
      * Creates new form Desafios
      */
@@ -29,26 +28,24 @@ public class Desafios extends javax.swing.JPanel {
         this.almacen = almacen;
         initComponents();
     }
-
+    
     DefaultListModel mod = new DefaultListModel();
-
-    public void actualizatList() {
+    public void actualizatList(){
         int i = 0;
-        List<Usuario> usuarios = this.almacen.getUsuarios();
+        List<Usuario> usuarios = Almacen.getUsuarios();
         userList.setModel(mod); // para añadir los elementos a la lista
         mod.clear();
-        while (i < usuarios.size()) {
+        while (i < usuarios.size()){
             String candidato = usuarios.get(i).getNick();
-            if (!candidato.equalsIgnoreCase(almacen.getUsuarioActivo().getNick())) {
+            if ((!candidato.equalsIgnoreCase(Almacen.getUsuarioActivo().getNick())) && usuarios.get(i).getRol() != Rol.admin){
                 mod.addElement(candidato);
-            } else {
+            }else if (candidato.equalsIgnoreCase(Almacen.getUsuarioActivo().getNick())){
                 this.oro = usuarios.get(i).getOro();
             }
             i = i + 1;
-
+            
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,24 +99,24 @@ public class Desafios extends javax.swing.JPanel {
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(goldText, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(desafiar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                            .addComponent(desafiar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(105, 105, 105)
+                        .addComponent(goldText, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(desafiar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(goldText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(desafiar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addContainerGap())
@@ -127,20 +124,18 @@ public class Desafios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desafiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desafiarActionPerformed
-
-        if (goldText.getText().isEmpty() || goldText.getText().equals("Apostar oro")) {
+        
+        if(goldText.getText().isEmpty() || goldText.getText().equals("Apostar oro")){
             JOptionPane.showMessageDialog(this, "Introduce una cantidad de oro a apostar"); // Muestra un mensaje si está vacío
-        } else if (Integer.parseInt(goldText.getText()) < 0) {
-            JOptionPane.showMessageDialog(this, "No puedes apostar una cantidad negativa"); // Muestra un mensaje si está vacío
-        } else {
+        }
+        else{
             //Si todo esta bien (seleccionamos contrincante y oro):
-            int oroApostado = -1; // inicializamos esta variable a -1
+            int oroApostado = -1;
             try {
                 oroApostado = Integer.parseInt(goldText.getText());
-
-                if ((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro")) && oroApostado <= this.oro && oroApostado >= 0) {// el boton solo hace cosas si eliges un nombre de la lista 
+                if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& oroApostado<= this.oro && oroApostado >= 0) {// el boton solo hace cosas si eliges un nombre de la lista 
                     String contrincante = userList.getSelectedValue();
-
+                    
                     // Deducimos el oro del desafiante
                     Usuario desafiante = this.almacen.getUsuarioActivo();
                     desafiante.setOro(desafiante.getOro() - oroApostado);
@@ -151,32 +146,33 @@ public class Desafios extends javax.swing.JPanel {
                     // Combate newCombate = new Combate(almacen);
                     // newCombate.DEBUG_Initialize_Players(newDesafio);
                     // END DEBUG COMBATE
-
+                    
                     try {
                         this.almacen.agregarDesafioAValidacion(newDesafio);
                     } catch (IOException ex) {
                         Logger.getLogger(Desafios.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                     // DEBUG COMBATE
                     // newCombate.iniciarCombate(newDesafio);
                     // END DEBUG COMBATE
-                    
+
+
                     JPanel parent = (JPanel) getParent();
                     CardLayout cl = (CardLayout) parent.getLayout();
                     cl.show(parent, "menuUsuario");
-                } else if (userList.getSelectedIndex() == -1) {
+                }else if (userList.getSelectedIndex() == -1){
                     javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un contrincante");
-                } else if (oroApostado > this.oro) {
+                }else if(oroApostado > this.oro){
                     javax.swing.JOptionPane.showMessageDialog(this, "No tiene suficiente oro");
                     goldText.setText("Apostar oro");
-                } else if (oroApostado < 0) {
+                } else if(oroApostado < 0){
                     javax.swing.JOptionPane.showMessageDialog(this, "No se pueden apostar cantidades negativas");
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e){
                 javax.swing.JOptionPane.showMessageDialog(this, "El oro apostado tiene que ser un número");
-            }            
-
+            }
+            
         }
     }//GEN-LAST:event_desafiarActionPerformed
 

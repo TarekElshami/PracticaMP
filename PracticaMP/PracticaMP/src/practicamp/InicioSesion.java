@@ -250,7 +250,7 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         boolean[] res = verificarDatos(fieldNick.getText(), String.valueOf(fieldContrasena.getPassword()));
         if (res[0] && res[1]) {
             JPanel parent = (JPanel) getParent();
-            this.almacen.setUsuarioActivo(this.indexUsuario);
+            Almacen.setUsuarioActivo(this.indexUsuario);
             this.desafios.actualizatList();
             CardLayout cl = (CardLayout) parent.getLayout();
             if (!fieldNick.getText().equals("admin")){//(alvaro) he cambiado esto provisionalmente

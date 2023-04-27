@@ -85,6 +85,11 @@ public class MenuUsuario extends javax.swing.JPanel {
         });
 
         jButton10.setText("Dar de baja personaje");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -159,20 +164,20 @@ public class MenuUsuario extends javax.swing.JPanel {
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
         boolean vacio = this.notificaciones.actualizarLista();// si no hay notificaciones que no entre en la pantalla 
-        if (!vacio && this.almacen.getUsuarioActivo().getTipoPersonaje()!= null){
+        if (!vacio && Almacen.getUsuarioActivo().getTipoPersonaje()!= null){
             JPanel parent = (JPanel) getParent();
             CardLayout cl = (CardLayout) parent.getLayout();
             cl.show(parent, "notificaciones");
         } else if(vacio){
             javax.swing.JOptionPane.showMessageDialog(this, "No tiene notificaciones");
-        } else if(this.almacen.getUsuarioActivo().getTipoPersonaje()== null){
+        } else if(Almacen.getUsuarioActivo().getTipoPersonaje()== null){
             javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
         }
         
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnConultarOroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConultarOroActionPerformed
-        int goldAmmount = this.almacen.getUsuarioActivo().getOro();
+        int goldAmmount = Almacen.getUsuarioActivo().getOro();
         JOptionPane.showMessageDialog(null, "Oro: " + goldAmmount, "Consultor de oro", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
     }//GEN-LAST:event_btnConultarOroActionPerformed
 
@@ -190,6 +195,10 @@ public class MenuUsuario extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "creacionPersonaje");
     }//GEN-LAST:event_btnCrearPersonajeActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

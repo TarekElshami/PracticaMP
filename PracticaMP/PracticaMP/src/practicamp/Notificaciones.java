@@ -27,7 +27,7 @@ public class Notificaciones extends javax.swing.JPanel {
     public boolean actualizarLista(){
         mod.clear();
         int i = 0;
-        Usuario usuario = this.almacen.getUsuarioActivo();
+        Usuario usuario = Almacen.getUsuarioActivo();
         boolean vacio = true;
         if (!usuario.getNotificaciones().isEmpty()){
             List<Notificacion> notificaciones = usuario.getNotificaciones();
@@ -111,7 +111,7 @@ public class Notificaciones extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         /* Cuando se seleccione un desafío y se de a aceptar, se debe ejecutar esto:
-        Combate newCombate = new Combate(almacen) //Hay que pasarle almacen al combate
+        Combate newCombate = new Combate(almacen); //Hay que pasarle almacen al combate
         newCombate.iniciarCombate(desafioSeleccionado) //Este metodo recibe el desafio seleccionado (solo funcionará si los jugadores tienen personajes asociados)
               
         */

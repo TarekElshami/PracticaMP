@@ -202,6 +202,5 @@ public class Usuario implements Serializable {
     public Armadura getArmaduraActiva() {
         return armaduraActiva;
     }
-    
-      
+          
 }

@@ -51,6 +51,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
         i = 0;
         List<Modificador> modificadores = this.almacen.getModificadores();
         while (i < modificadores.size()) {
+
             Modificador element = modificadores.get(i);
             String aux = element.getNombre();
             mod2.addElement(aux);
@@ -63,6 +64,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
         String persUsuario = usuario.getTipoPersonaje();
         if (persUsuario != null) {
             List<Personaje> personajes = almacen.getPersonajes();
+
             int i = 0;
             while (!personajes.get(i).getNombre().equals(persUsuario)) {
                 i += 1;
@@ -189,6 +191,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
             this.modificadoresSelec.add(this.almacen.getModificadores().get(ind));
 
         } else {
+
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un modificador");
         }
     }//GEN-LAST:event_btnAñadirModActionPerformed
@@ -209,15 +212,16 @@ public class ValidarDesafios extends javax.swing.JPanel {
                     selected.addDebilidad(modif);
                 } else if (j == 2) {
                     selected.addFortaleza(modif);
-                };
+                }
                 modificadoresSelec.remove(i);
             }
             Notificacion noti = new Notificacion(selected);
-            List<Usuario> usuarios = this.almacen.getUsuarios();
+            List<Usuario> usuarios = Almacen.getUsuarios();
             int locLista = buscarDesafiado(usuarios, selected.getDesafiado().getNick());
             if (locLista >= 0) {
                 this.almacen.getUsuarios().get(locLista).addNotificacion(noti);
             } else {
+
                 javax.swing.JOptionPane.showMessageDialog(this, "El desafiado ha borrado la cuenta");
             }
             this.almacen.getDesafiosSinValidar().remove(desafioIndex);
