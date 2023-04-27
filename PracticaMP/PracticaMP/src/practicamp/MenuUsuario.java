@@ -165,13 +165,13 @@ public class MenuUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDesafiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesafiarActionPerformed
-        //if (this.almacen.getUsuarioActivo().getTipoPersonaje()!= null){
+        if (this.almacen.getUsuarioActivo().getTipoPersonaje()!= null){
             JPanel parent = (JPanel) getParent();
             CardLayout cl = (CardLayout) parent.getLayout();
             cl.show(parent, "desafios");
-//        } else {
-//            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
-//        }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+        }
     }//GEN-LAST:event_btnDesafiarActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed

@@ -187,8 +187,16 @@ public class ValidarDesafios extends javax.swing.JPanel {
     private void btnAñadirModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirModActionPerformed
         int ind = modificadoresList.getSelectedIndex();
         if (ind != -1) {
-            mod2.remove(ind);// esto no se si funciona 
-            this.modificadoresSelec.add(this.almacen.getModificadores().get(ind));
+            String text = modificadoresList.getSelectedValue();
+            if (text.contains("<font color='green'>")){
+                text = text.replace("<font color='green'>", "");
+                text = text.replace("</font>", "");
+                this.modificadoresSelec.remove(Almacen.getModificadores().get(ind));
+            }else {
+                text = "<html><font color='green'>" + text + "</font></html>";
+                this.modificadoresSelec.add(Almacen.getModificadores().get(ind));
+            }
+            mod2.setElementAt(text, ind);
 
         } else {
 

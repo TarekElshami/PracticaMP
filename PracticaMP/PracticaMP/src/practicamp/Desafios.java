@@ -37,9 +37,12 @@ public class Desafios extends javax.swing.JPanel {
         mod.clear();
         while (i < usuarios.size()){
             String candidato = usuarios.get(i).getNick();
-            if ((!candidato.equalsIgnoreCase(Almacen.getUsuarioActivo().getNick())) && usuarios.get(i).getRol() != Rol.admin){
+            boolean soyYo = candidato.equalsIgnoreCase(Almacen.getUsuarioActivo().getNick());
+            boolean esAdmin = usuarios.get(i).getRol() == Rol.admin;
+            boolean tienePersonaje = usuarios.get(i).getTipoPersonaje() != null;
+            if (!soyYo && !esAdmin  && tienePersonaje){
                 mod.addElement(candidato);
-            }else if (candidato.equalsIgnoreCase(Almacen.getUsuarioActivo().getNick())){
+            }else if (soyYo){
                 this.oro = usuarios.get(i).getOro();
             }
             i = i + 1;
@@ -137,10 +140,10 @@ public class Desafios extends javax.swing.JPanel {
                     String contrincante = userList.getSelectedValue();
                     
                     // Deducimos el oro del desafiante
-                    Usuario desafiante = this.almacen.getUsuarioActivo();
+                    Usuario desafiante = Almacen.getUsuarioActivo();
                     desafiante.setOro(desafiante.getOro() - oroApostado);
 
-                    Desafio newDesafio = new Desafio(this.almacen.getUsuarioActivo(), this.almacen.getContrincante(contrincante), oroApostado);
+                    Desafio newDesafio = new Desafio(Almacen.getUsuarioActivo(), this.almacen.getContrincante(contrincante), oroApostado);
 
                     // DEBUG COMBATE
                     // Combate newCombate = new Combate(almacen);
