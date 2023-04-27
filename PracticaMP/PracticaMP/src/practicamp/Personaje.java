@@ -169,6 +169,39 @@ public class Personaje implements Serializable, ActionListener {
 
     public Map<String, Integer> getFortalezas() {
         return fortalezas;
-    }
+    }    
     
+    public int getValorFortalezaODebilidad(String nombre, boolean fortaleza){
+        if (fortaleza){
+            return this.fortalezas.get(nombre);
+        }
+        else{
+            return this.debilidades.get(nombre);
+        }
+    }
+
+    public List<Arma> getArmaActiva() {
+        return armaActiva;
+    }
+
+    public Armadura getArmaduraActiva() {
+        return armaduraActiva;
+    }
+
+    public void setArmas(List<Arma> armas) {
+        this.armas = armas;
+    }
+
+    public void setArmaActiva(List<Arma> armaActiva) {
+        this.armaActiva = armaActiva;
+    }
+
+    public void setArmaduras(List<Armadura> armaduras) {
+        this.armaduras = armaduras;
+    }
+
+    public void setArmaduraActiva(Armadura armaduraActiva) {
+        this.armaduraActiva = armaduraActiva;
+    }
+        
 }

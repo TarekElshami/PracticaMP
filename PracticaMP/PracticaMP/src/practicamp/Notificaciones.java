@@ -109,7 +109,12 @@ public class Notificaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
+        /* Cuando se seleccione un desafío y se de a aceptar, se debe ejecutar esto:
+        Combate newCombate = new Combate(almacen) //Hay que pasarle almacen al combate
+        newCombate.iniciarCombate(desafioSeleccionado) //Este metodo recibe el desafio seleccionado (solo funcionará si los jugadores tienen personajes asociados)
+              
+        */
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

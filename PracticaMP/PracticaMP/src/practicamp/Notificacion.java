@@ -1,6 +1,8 @@
 package practicamp;
 
-public class Notificacion {
+import java.io.Serializable;
+
+public class Notificacion implements Serializable {
 
     private Desafio desafio;
 

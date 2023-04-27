@@ -147,7 +147,7 @@ public class Almacen {
         }
     }
 
-    private void cargarPersonajes() {
+    public void cargarPersonajes() {
         try {
             FileInputStream fis = new FileInputStream("personajes.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);

@@ -5,9 +5,12 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
@@ -16,8 +19,10 @@ import javax.swing.JPanel;
  * @author aserr
  */
 public class ValidarDesafios extends javax.swing.JPanel {
+
     private Almacen almacen;
     private List<Modificador> modificadoresSelec;
+
     /**
      * Creates new form ValidarDesafios
      */
@@ -28,45 +33,45 @@ public class ValidarDesafios extends javax.swing.JPanel {
     }
     DefaultListModel mod = new DefaultListModel();
     DefaultListModel mod2 = new DefaultListModel();
-    
-    public void actualizarInfo(){
+
+    public void actualizarInfo() {
         desafiosList.setModel(mod);
         mod.clear();
         modificadoresList.setModel(mod2);
         mod2.clear();
         List<Desafio> desafios = this.almacen.getDesafiosSinValidar();
         int i = 0;
-        while (i < desafios.size()){
+        while (i < desafios.size()) {
             Desafio element = desafios.get(i);
             String aux = element.getDesafiante().getNick();
-            aux = aux +" -> "+element.getDesafiado().getNick();
+            aux = aux + " -> " + element.getDesafiado().getNick();
             mod.addElement(aux);
             i += 1;
         }
         i = 0;
         List<Modificador> modificadores = this.almacen.getModificadores();
-        while (i < modificadores.size()){
+        while (i < modificadores.size()) {
             Modificador element = modificadores.get(i);
             String aux = element.getNombre();
             mod2.addElement(aux);
             i += 1;
         }
     }
-    
-    public int comprobarTipo(Usuario usuario, String nombreMod){
+
+    public int comprobarTipo(Usuario usuario, String nombreMod) {
         int valor = 0; // es 1 si es una debilidad, 2 si es una fortaleza y 0 si no está
         String persUsuario = usuario.getTipoPersonaje();
-        if (persUsuario != null){
+        if (persUsuario != null) {
             List<Personaje> personajes = almacen.getPersonajes();
             int i = 0;
-            while(!personajes.get(i).getNombre().equals(persUsuario)){
+            while (!personajes.get(i).getNombre().equals(persUsuario)) {
                 i += 1;
             }
             Map<String, Integer> debilidades = personajes.get(i).getDebilidades();
             Map<String, Integer> fortalezas = personajes.get(i).getFortalezas();
-            if(debilidades.containsKey(nombreMod)){ 
+            if (debilidades.containsKey(nombreMod)) {
                 valor = 1;
-            } else if (fortalezas.containsKey(nombreMod)){
+            } else if (fortalezas.containsKey(nombreMod)) {
                 valor = 2;
             } else {
                 valor = 0;
@@ -74,6 +79,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
         }
         return valor;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,31 +183,31 @@ public class ValidarDesafios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAñadirModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirModActionPerformed
-       int ind = modificadoresList.getSelectedIndex();
-        if (ind != -1){
+        int ind = modificadoresList.getSelectedIndex();
+        if (ind != -1) {
             mod2.remove(ind);// esto no se si funciona 
             this.modificadoresSelec.add(this.almacen.getModificadores().get(ind));
-            
-        }else {
+
+        } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un modificador");
-        } 
+        }
     }//GEN-LAST:event_btnAñadirModActionPerformed
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         int desafioIndex = desafiosList.getSelectedIndex();
-        if (desafioIndex!=-1){
+        if (desafioIndex != -1) {
             //this.desafios.remove(this.desafioIndex);// esto tengo que comprovar que lo quita de todas las listas
             Desafio selected = this.almacen.getDesafiosSinValidar().get(desafioIndex);
             int i = 0;
-            while (!this.modificadoresSelec.isEmpty()){//para comprobar si se ha seleccionado algún modificador 
+            while (!this.modificadoresSelec.isEmpty()) {//para comprobar si se ha seleccionado algún modificador 
                 Modificador modif = modificadoresSelec.get(i);
                 int j = comprobarTipo(selected.getDesafiante(), modif.getNombre());
-                if (j==0){
+                if (j == 0) {
                     j = comprobarTipo(selected.getDesafiado(), modif.getNombre());
                 }
-                if (j == 1){
+                if (j == 1) {
                     selected.addDebilidad(modif);
-                } else if(j==2){
+                } else if (j == 2) {
                     selected.addFortaleza(modif);
                 };
                 modificadoresSelec.remove(i);
@@ -209,16 +215,30 @@ public class ValidarDesafios extends javax.swing.JPanel {
             Notificacion noti = new Notificacion(selected);
             List<Usuario> usuarios = this.almacen.getUsuarios();
             int locLista = buscarDesafiado(usuarios, selected.getDesafiado().getNick());
-            if (locLista>=0){
+            if (locLista >= 0) {
                 this.almacen.getUsuarios().get(locLista).addNotificacion(noti);
-            } else{
+            } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "El desafiado ha borrado la cuenta");
             }
             this.almacen.getDesafiosSinValidar().remove(desafioIndex);
+
+            //Actualizar ficheros
+            try {
+                this.almacen.updateFiles();
+            } catch (IOException ex) {
+                Logger.getLogger(ValidarDesafios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                this.almacen.actualizarFicheroDesafios();
+            } catch (IOException ex) {
+                Logger.getLogger(ValidarDesafios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //----------
+
             JPanel parent = (JPanel) getParent();
             CardLayout cl = (CardLayout) parent.getLayout();
             cl.show(parent, "menuOperador");
-        }else {
+        } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un desafio para validar");
         }
     }//GEN-LAST:event_btnValidarActionPerformed
@@ -238,12 +258,12 @@ public class ValidarDesafios extends javax.swing.JPanel {
 
     private int buscarDesafiado(List<Usuario> usuarios, String nick) {
         int i = 0;
-        while ((i<usuarios.size())&&(!nick.equals(usuarios.get(i).getNick()))){
+        while ((i < usuarios.size()) && (!nick.equals(usuarios.get(i).getNick()))) {
             i += 1;
         }
-        if (i == usuarios.size()){// en caso de que se haya borrado el usuario
+        if (i == usuarios.size()) {// en caso de que se haya borrado el usuario
             return -1;
-        }else{
+        } else {
             return i;
         }
     }

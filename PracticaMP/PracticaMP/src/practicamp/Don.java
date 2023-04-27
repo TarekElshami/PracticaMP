@@ -8,5 +8,9 @@ public class Don extends Habilidad {
         super(nombre, ataque, defensa);
         this.costeRabia = costeRabia;
     }
+
+    public int getCosteRabia() {
+        return costeRabia;
+    }
     
 }

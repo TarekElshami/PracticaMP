@@ -9,10 +9,11 @@ import java.util.List;
 import javax.swing.JFrame;
 
 public class GameApp {
+
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         AdministradorJuego admin = new AdministradorJuego();
         admin.showGame();
-                
+
         /*
         //Esbirros cazador
         List<Esbirro> esbirros = new ArrayList<>();
@@ -20,14 +21,14 @@ public class GameApp {
         List<Esbirro> esbirrosD1 = new ArrayList<>();
         esbirrosD1.add(h1);
         Demonio d1 = new Demonio("Leviatán", 3, esbirrosD1, "El demonio otorga poderes sobrenaturales al amo, pero a cambio, debe ofrecerle una ofrenda de sangre cada día.");
-        
+
         //Esbirros Licantropos 
         List<Esbirro> esbirrosD2 = new ArrayList<>();
 
-        Ghoul g1 = new Ghoul ("Aisha", 2, 1);
+        Ghoul g1 = new Ghoul("Aisha", 2, 1);
         esbirrosD2.add(g1);
         Demonio d2 = new Demonio("Mefistófeles", 2, esbirrosD2, "El demonio otorga habilidades de lucha y defensa al amo, pero a cambio, debe ofrecerle una ofrenda de su propia vida cada mes.");
-        
+
         //Esbirros Vampiro
         Demonio d3 = new Demonio("Asmodeo", 3, null, "El demonio otorga el conocimiento de la magia oscura al amo, pero a cambio, debe ofrecerle una ofrenda de una parte de su cuerpo cada año.");
         Demonio d4 = new Demonio("Astaroth", 1, null, "El demonio otorga la habilidad de controlar la mente de otros al amo, pero a cambio, debe ofrecerle una ofrenda de una persona inocente cada semana.");
@@ -38,7 +39,7 @@ public class GameApp {
         esbirros.add(d2);
         esbirros.add(d3);
         esbirros.add(d4);
-        
+
         List<Arma> armas = new ArrayList<>();
 
         // Creación de objetos Arma
@@ -79,7 +80,6 @@ public class GameApp {
         armas.add(espadaDeLobo);
         armas.add(mazaDeHueso);
 
-
         List<Armadura> armaduras = new ArrayList<>();
 
         // Creación de objetos Armadura
@@ -118,8 +118,7 @@ public class GameApp {
         armaduras.add(armaduraDeCazadorDeLycanthropos);
         armaduras.add(armaduraDeEscamasDeDragon);
 
-
-        List<Modificador> modificadores = new ArrayList<>();        
+        List<Modificador> modificadores = new ArrayList<>();
         Modificador plata = new Modificador("Plata");
         modificadores.add(plata);
         Modificador controlMental = new Modificador("Control mental");
@@ -153,7 +152,7 @@ public class GameApp {
         Modificador resistencia = new Modificador("Resistencia fisica");
         modificadores.add(resistencia);
 
-        Modificador luzSol = new Modificador ("La luz solar");
+        Modificador luzSol = new Modificador("La luz solar");
         modificadores.add(luzSol);
         Modificador estaca = new Modificador("Estacas de madera");
         modificadores.add(estaca);
@@ -167,8 +166,9 @@ public class GameApp {
         Modificador agudizados = new Modificador("Sentidos agudizados");
         modificadores.add(agudizados);
 
-
         Vampiro v = new Vampiro("Vampiro");
+        v.setPoder(5);
+
         Disciplina d = new Disciplina("Disciplina", 3, 3, 3);
         v.setHabilidad(d);
         v.agregarDebilidad(luzSol.getNombre(), 5);
@@ -178,24 +178,26 @@ public class GameApp {
         v.agregarFortaleza(Velocidad.getNombre(), 4);
         v.agregarFortaleza(regeneracion.getNombre(), 3);
         v.agregarFortaleza(agudizados.getNombre(), 3);
-        
+
         v.agregarArmadura(chalecoDeCuero);
         v.agregarArmadura(armaduraDeMalla);
         v.agregarArmadura(armaduraDePlaca);
         v.agregarArmadura(armaduraDeCazador);
         v.agregarArmadura(armaduraDeCueroReforzado);
-        
+
         v.agregarArma(garras);
         v.agregarArma(dagaDeObsidiana);
         v.agregarArma(espadaDeSangre);
         v.agregarArma(guadaña);
         v.agregarArma(lanzaDePlata);
         v.agregarArma(martilloDeHueso);
-        
+
         v.agregarEsbirro(d3);
         v.agregarEsbirro(d4);
 
-        Licantropo l = new Licantropo ("Licantropo");
+        Licantropo l = new Licantropo("Licantropo");
+        l.setPoder(4);
+
         Don don = new Don("Don", 2, 2, 0);
         l.setHabilidad(don);
         l.agregarDebilidad(plata.getNombre(), 5);
@@ -207,41 +209,42 @@ public class GameApp {
         l.agregarFortaleza(fuerzaSobrehumana.getNombre(), 4);
         l.agregarFortaleza(agilidad.getNombre(), 3);
         l.agregarFortaleza(sentidos.getNombre(), 3);
-        
+
         l.agregarArmadura(tunicaDeCueroOscuro);
         l.agregarArmadura(armaduraDePielDeMurcielago);
         l.agregarArmadura(armaduraDeCueroEndurecido);
         l.agregarArmadura(armaduraDeLasSombras);
         l.agregarArmadura(armaduraDeHueso);
-        
+
         l.agregarArma(garras);
         l.agregarArma(cuchilloDePlata);
         l.agregarArma(latigoDeHueso);
         l.agregarArma(garroteDePlata);
         l.agregarArma(espadaDeLobo);
         l.agregarArma(mazaDeHueso);
-        
+
         l.agregarEsbirro(d2);
-        
+
         Cazador c = new Cazador("Cazador");
-        Talento t = new Talento("Talento",1,1);
+        c.setPoder(3);
+        Talento t = new Talento("Talento", 1, 1);
         c.setHabilidad(t);
 
-        c.agregarDebilidad(noche.getNombre(),3);
-        c.agregarDebilidad(fuego.getNombre(),4);
+        c.agregarDebilidad(noche.getNombre(), 3);
+        c.agregarDebilidad(fuego.getNombre(), 4);
 
-        c.agregarFortaleza(habilidad.getNombre(),5);
-        c.agregarFortaleza(combate.getNombre(),4);
-        c.agregarFortaleza(conocimiento.getNombre(),3);
-        c.agregarFortaleza(resistencia.getNombre(),2);
-        c.agregarFortaleza(sigilo.getNombre(),3);
-        
+        c.agregarFortaleza(habilidad.getNombre(), 5);
+        c.agregarFortaleza(combate.getNombre(), 4);
+        c.agregarFortaleza(conocimiento.getNombre(), 3);
+        c.agregarFortaleza(resistencia.getNombre(), 2);
+        c.agregarFortaleza(sigilo.getNombre(), 3);
+
         c.agregarArmadura(pielDeLobo);
         c.agregarArmadura(armaduraDeCueroEndurecido);
         c.agregarArmadura(armaduraDePlacasDeAcero);
         c.agregarArmadura(armaduraDeCazadorDeLycanthropos);
         c.agregarArmadura(armaduraDeEscamasDeDragon);
-        
+
         c.agregarArma(cuchilloDeCaza);
         c.agregarArma(pistolaConBalasDePlata);
         c.agregarArma(estacaDeMadera);
@@ -263,7 +266,7 @@ public class GameApp {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        
+
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("modificadores.dat"));
             oos.writeObject(modificadores);
@@ -282,8 +285,8 @@ public class GameApp {
             System.out.println("Armaduras guardadas en el archivo armaduras.dat");
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        }    
-        
+        }
+
         try {
             FileOutputStream fos = new FileOutputStream("armas.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -294,7 +297,7 @@ public class GameApp {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        
+
         try {
             FileOutputStream fos = new FileOutputStream("personajes.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -305,10 +308,8 @@ public class GameApp {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        
+
         Almacen a = new Almacen();
         */
     }
 }
-    
-

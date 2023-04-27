@@ -19,5 +19,16 @@ public class Vampiro extends Personaje {
         } else {
             super.agregarEsbirro(esbirro);
         }
+        
     }
+    
+    public int getSangre(){
+        return this.sangre;
+    }
+
+    public void setSangre(int sangre) {
+        this.sangre = sangre;
+    }
+    
+    
 }

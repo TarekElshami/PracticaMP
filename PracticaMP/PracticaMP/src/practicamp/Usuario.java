@@ -14,7 +14,7 @@ public class Usuario implements Serializable {
     private String id;
     private String personaje;
     private List<Arma> armasActivas;
-    private List<Armadura> armaduraActiva;
+    private Armadura armaduraActiva;
     private String tipoPersonaje;
     private boolean baneado;
     private List<Desafio> historial;
@@ -165,4 +165,43 @@ public class Usuario implements Serializable {
     public void addNotificacion(Notificacion noti){
         this.notificaciones.add(noti);
     }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    // DEBUG COMBATE
+    public void setTipoPersonaje(String tipoPersonaje) {
+        this.tipoPersonaje = tipoPersonaje;
+    }
+
+    public void setArmasActivas(List<Arma> armasActivas) {
+        this.armasActivas = armasActivas;
+    }
+
+    public void setArmaduraActiva(Armadura armaduraActiva) {
+        this.armaduraActiva = armaduraActiva;
+    }
+
+    public List<Arma> getArmasActivas() {
+        return armasActivas;
+    }
+
+    public Armadura getArmaduraActiva() {
+        return armaduraActiva;
+    }
+    
+      
 }

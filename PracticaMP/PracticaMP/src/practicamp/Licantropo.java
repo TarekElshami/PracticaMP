@@ -8,5 +8,13 @@ public class Licantropo extends Personaje {
         super(nombre);
         this.rabia = 0;
     }
-    
+
+    public int getRabia() {
+        return rabia;
+    }
+
+    public void setRabia(int rabia) {
+        this.rabia = rabia;
+    }
+        
 }

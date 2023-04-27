@@ -8,6 +8,14 @@ public class Cazador extends Personaje {
         super(nombre);
         this.voluntad = 3;
     }
+
+    public int getVoluntad() {
+        return voluntad;
+    }
+
+    public void setVoluntad(int voluntad) {
+        this.voluntad = voluntad;
+    }
     
 
 }
