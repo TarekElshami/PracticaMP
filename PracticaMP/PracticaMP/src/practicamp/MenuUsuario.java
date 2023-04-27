@@ -217,8 +217,8 @@ public class MenuUsuario extends javax.swing.JPanel {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas continuar?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
                 Almacen.getUsuarioActivo().setTipoPersonaje(null);
-                if (Almacen.getUsuarioActivo().getArmasActivas() != null) {
-                    Almacen.getUsuarioActivo().setArmasActivas(null);
+                if (Almacen.getUsuarioActivo().getArmasActivas().size() != 0) {
+                    Almacen.getUsuarioActivo().getArmasActivas().clear();
                 }
                 if (Almacen.getUsuarioActivo().getArmaduraActiva() != null) {
                     Almacen.getUsuarioActivo().setArmaduraActiva(null);
