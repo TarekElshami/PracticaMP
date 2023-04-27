@@ -20,19 +20,21 @@ import javax.swing.JPanel;
  */
 public class EdicionEquipo extends javax.swing.JPanel {
 
-    List<Armadura> armadurasPersonaje;
-    List<Arma> armasPersonaje;
-    List<Arma> armas;
-    List<Armadura> armaduras;
+    private List<Armadura> armadurasPersonaje;
+    private List<Arma> armasPersonaje;
+    private List<Arma> armas;
+    private List<Armadura> armaduras;
+    private int personajeIndex;
+    
     
     public EdicionEquipo() {
         initComponents();
-        this.armadurasPersonaje = new ArrayList<>();
-        this.armasPersonaje = new ArrayList<>();
     }
     
     public void actualizarListas(String nombrePersonaje){
         // Obtener todas las armas
+        this.armadurasPersonaje = new ArrayList<>();
+        this.armasPersonaje = new ArrayList<>();
         List<Arma> armas = Almacen.getArmas();
         List<Armadura> armaduras = Almacen.getArmaduras();
         this.armas = armas;
@@ -41,6 +43,10 @@ public class EdicionEquipo extends javax.swing.JPanel {
         // Obtener las armas y armaduras del personaje
         List<String> armasPersonaje = new ArrayList<>();
         List<String> armadurasPersonaje = new ArrayList<>();
+        int i = 0;
+        while(nombrePersonaje.equals(Almacen.getPersonajes().get(i).getNombre())){
+            i += 1;
+        }
         for (Personaje personaje : Almacen.getPersonajes()) {
             if (personaje.getNombre().equals(nombrePersonaje)) {
                 for (Arma arma : personaje.getArmas()) {
@@ -95,7 +101,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         btnVolver = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
@@ -122,7 +128,12 @@ public class EdicionEquipo extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Confirmar");
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,7 +149,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(btnVolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(btnConfirmar)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(281, 281, 281)
@@ -157,7 +168,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver)
-                    .addComponent(jButton2))
+                    .addComponent(btnConfirmar))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -220,6 +231,14 @@ public class EdicionEquipo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jList2MouseClicked
 
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        Almacen.getPersonajes().get(this.personajeIndex).setArmas(armasPersonaje);
+        Almacen.getPersonajes().get(this.personajeIndex).setArmaduras(armadurasPersonaje);
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuEditarPersonaje");
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
     public List<Armadura> getArmadurasPersonaje() {
         return armadurasPersonaje;
     }
@@ -230,8 +249,8 @@ public class EdicionEquipo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
