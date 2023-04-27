@@ -201,7 +201,7 @@ public class MenuUsuario extends javax.swing.JPanel {
 
     private void btnConultarOroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConultarOroActionPerformed
         if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
-        int goldAmmount = Almacen.getUsuarioActivo().getOro();
+        double goldAmmount = Almacen.getUsuarioActivo().getOro();
         JOptionPane.showMessageDialog(null, "Oro: " + goldAmmount, "Consultor de oro", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
         } else {
             JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:

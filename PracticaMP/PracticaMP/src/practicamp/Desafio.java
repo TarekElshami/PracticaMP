@@ -10,12 +10,12 @@ public class Desafio implements Serializable {
     private Usuario desafiado;
     private EstadoDesafio estado;
     private Usuario ganador;
-    private int oro;
+    private double oro;
     private List<Modificador> fortalezasAdmitidas;
     private List<Modificador> debilidadesAdmitidas;
     private List<String> historial; // ESTO ES UN ARRAY DE STRINGS QUE CONTIENE LO QUE HA OCURRIDO EN EL TRASCURSO DEL COMBATE (imprimir con un for cada linea de este arrayList)
 
-    public Desafio(Usuario desafiante, Usuario desafiado, int oroApostado) {
+    public Desafio(Usuario desafiante, Usuario desafiado, double oroApostado) {
         this.desafiante = desafiante;
         this.desafiado = desafiado;
         this.oro = oroApostado;
@@ -41,7 +41,7 @@ public class Desafio implements Serializable {
         return desafiado;
     }
 
-    public int getOro() {
+    public double getOro() {
         return this.oro;
     }
 

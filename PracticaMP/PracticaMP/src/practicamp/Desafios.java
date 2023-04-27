@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class Desafios extends javax.swing.JPanel {
     
     private Almacen almacen;
-    private int oro;
+    private double oro;
     /**
      * Creates new form Desafios
      */
@@ -133,7 +133,7 @@ public class Desafios extends javax.swing.JPanel {
         }
         else{
             //Si todo esta bien (seleccionamos contrincante y oro):
-            int oroApostado = -1;
+            double oroApostado = -1;
             try {
                 oroApostado = Integer.parseInt(goldText.getText());
                 if((userList.getSelectedIndex() != -1) && (!goldText.getText().equals("Apostar oro"))&& oroApostado<= this.oro && oroApostado >= 0) {// el boton solo hace cosas si eliges un nombre de la lista 

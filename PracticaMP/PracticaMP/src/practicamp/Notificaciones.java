@@ -15,9 +15,8 @@ import javax.swing.JPanel;
  */
 public class Notificaciones extends javax.swing.JPanel {
     private Almacen almacen;
-    /**
-     * Creates new form Notificaciones
-     */
+    private List<Notificacion> notificaciones;
+    
     public Notificaciones(Almacen almacen) {
         this.almacen = almacen;
         initComponents();
@@ -31,6 +30,7 @@ public class Notificaciones extends javax.swing.JPanel {
         boolean vacio = true;
         if (!usuario.getNotificaciones().isEmpty()){
             List<Notificacion> notificaciones = usuario.getNotificaciones();
+            this.notificaciones = notificaciones;
             notificationList.setModel(mod); // para añadir los elementos a la lista
             vacio = false;
             mod.clear();
@@ -58,6 +58,7 @@ public class Notificaciones extends javax.swing.JPanel {
         notificationList = new javax.swing.JList<>();
         btnVolver = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         notificationList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { " " };
@@ -80,41 +81,49 @@ public class Notificaciones extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Rechazar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(286, 286, 286)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        /* Cuando se seleccione un desafío y se de a aceptar, se debe ejecutar esto:
-        Combate newCombate = new Combate(almacen); //Hay que pasarle almacen al combate
-        newCombate.iniciarCombate(desafioSeleccionado) //Este metodo recibe el desafio seleccionado (solo funcionará si los jugadores tienen personajes asociados)
-              
-        */
+        Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());        
+        Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();;
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -123,9 +132,20 @@ public class Notificaciones extends javax.swing.JPanel {
         cl.show(parent, "menuUsuario");
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());
+        double oroPerdido = notificacionSeleccionado.getOroApostado() * 0.1;
+        Usuario usuario = Almacen.getUsuarioActivo();
+        usuario.restarOro(oroPerdido);
+        this.notificaciones.remove(notificationList.getSelectedIndex());
+        usuario.setNotificaciones(this.notificaciones);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> notificationList;

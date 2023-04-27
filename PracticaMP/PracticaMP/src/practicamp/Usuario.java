@@ -14,7 +14,7 @@ public class Usuario implements Serializable {
     private boolean baneado;
     private List<Desafio> historial;
     private List<Notificacion> notificaciones;
-    private int oro;
+    private double oro;
     private int victorias;
     private String personaje;
     private List<Arma> armasActivas;
@@ -35,9 +35,22 @@ public class Usuario implements Serializable {
         this.notificaciones =  new ArrayList<>();
     }
     
+    public void restarOro(double cantidad){
+        this.oro -= cantidad;
+    }
+    
+    public void sumarOro(double cantidad){
+        this.oro += cantidad;
+    }
+    
     public void addNotificacion(Notificacion noti) {
         this.notificaciones.add(noti);
     }
+
+    public void setNotificaciones(List<Notificacion> notificaciones) {
+        this.notificaciones = notificaciones;
+    }
+    
 
     public void setTipoPersonaje(String tipoPersonaje) {
         this.tipoPersonaje = tipoPersonaje;
@@ -55,7 +68,7 @@ public class Usuario implements Serializable {
         this.armaduraActiva = armaduraActiva;
     }
 
-    public void setOro(int ammount) {
+    public void setOro(double ammount) {
         this.oro = ammount;
     }
     
@@ -87,7 +100,7 @@ public class Usuario implements Serializable {
         return contrasena;
     }
 
-    public int getOro() {
+    public double getOro() {
         return this.oro;
     }
 

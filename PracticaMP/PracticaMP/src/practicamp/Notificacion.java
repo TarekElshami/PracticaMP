@@ -20,13 +20,12 @@ public class Notificacion implements Serializable {
 
     public Desafio obtenerDesafio() {
         // TODO implement here
-        return null;
+        return desafio;
     }
     
     
-    public int getOroApostado(){
-        int oro = this.desafio.getOro();
-        return oro;
+    public double getOroApostado(){
+        return this.desafio.getOro();
     }
     
 
