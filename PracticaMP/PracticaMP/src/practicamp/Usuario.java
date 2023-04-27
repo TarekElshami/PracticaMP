@@ -43,6 +43,10 @@ public class Usuario implements Serializable {
         this.tipoPersonaje = tipoPersonaje;
     }
 
+    public void setPersonaje(String personaje) {
+        this.personaje = personaje;
+    }
+   
     public void setArmasActivas(List<Arma> armasActivas) {
         this.armasActivas = armasActivas;
     }

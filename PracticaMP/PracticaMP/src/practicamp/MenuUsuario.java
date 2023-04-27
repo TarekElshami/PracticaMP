@@ -209,8 +209,25 @@ public class MenuUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCrearPersonajeActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-       System.out.println(Almacen.getUsuarioActivo().getTipoPersonaje());
-       System.out.println(Almacen.getUsuarios().get(Almacen.getIndexUsuarioActivo()).getArmaduraActiva().getNombre());
+        if (Almacen.getUsuarioActivo().getTipoPersonaje() != null) {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas continuar?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                Almacen.getUsuarioActivo().setTipoPersonaje(null);
+                if (Almacen.getUsuarioActivo().getArmasActivas() != null) {
+                    Almacen.getUsuarioActivo().setArmasActivas(null);
+                }
+                if (Almacen.getUsuarioActivo().getArmaduraActiva() != null) {
+                    Almacen.getUsuarioActivo().setArmaduraActiva(null);
+                }
+                Almacen.getUsuarioActivo().setPersonaje(null);
+                JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha eliminado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } else{
+            JOptionPane.showMessageDialog(null, "No tienes un personaje creado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }        
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void btnElegirArmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirArmasActionPerformed
