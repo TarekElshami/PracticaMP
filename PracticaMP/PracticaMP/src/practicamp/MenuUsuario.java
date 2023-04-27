@@ -19,14 +19,16 @@ public class MenuUsuario extends javax.swing.JPanel {
     private Notificaciones notificaciones;
     private Almacen almacen;
     private EleccionEquipo eleccionEquipo;
+    private PantallaRanking pRanking;
     /**
      * Creates new form MenuUsuario
      * @param notificaciones
      */
-    public MenuUsuario(Notificaciones notificaciones, Almacen almacen, EleccionEquipo eleccionEquipo) {
+    public MenuUsuario(Notificaciones notificaciones, Almacen almacen, EleccionEquipo eleccionEquipo,PantallaRanking pRanking ) {
         this.notificaciones = notificaciones;
         this.almacen = almacen;
         this.eleccionEquipo = eleccionEquipo;
+        this.pRanking = pRanking;
         initComponents();
     }
 
@@ -291,14 +293,10 @@ public class MenuUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnElegirArmadurasActionPerformed
 
     private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
-        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
-
+        this.pRanking.actualizarLista();
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "pantallaRanking");
-        } else {
-            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
-        }
     }//GEN-LAST:event_btnRankingActionPerformed
 
 

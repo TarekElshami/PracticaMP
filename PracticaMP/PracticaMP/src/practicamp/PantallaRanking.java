@@ -5,7 +5,9 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
+import java.util.LinkedList;
 
 /**
  *
@@ -19,7 +21,18 @@ public class PantallaRanking extends javax.swing.JPanel {
     public PantallaRanking() {
         initComponents();
     }
-
+    
+    DefaultListModel mod = new DefaultListModel();
+    public void actualizarLista(){
+        mod.clear();
+        rankingList.setModel(mod);
+        int i = 1;
+        for (Jugador j : Ranking.getRanking()) {
+            String texto = i + ". " + j.getNombre() + " - " + j.getVictorias() + " victorias";
+            mod.addElement(texto);
+            i++;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -3,7 +3,7 @@ package practicamp;
 import java.awt.CardLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+import java.util.LinkedList;
 
 /**
  *
@@ -12,6 +12,7 @@ import java.io.IOException;
 public class AdministradorJuego extends javax.swing.JFrame {
     
     private Almacen almacen;
+    private Ranking ranking;
     
     /**
      * Creates new form gui
@@ -19,6 +20,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
      */
     public AdministradorJuego() throws IOException, FileNotFoundException, ClassNotFoundException {
         almacen = new Almacen();
+        this.ranking = new Ranking();
         initComponents();
         this.setLayout(new CardLayout());
         add(menuPrincipal, "menuPrincipal");
@@ -64,7 +66,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
             edicionModificadores = new practicamp.EdicionModificadores();
             edicionEquipo = new practicamp.EdicionEquipo();
-            menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen, eleccionEquipo);
+            menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen, eleccionEquipo, pantallaRanking);
             validarDesafios = new practicamp.ValidarDesafios(almacen);
             creacionPersonaje = new practicamp.CreacionPersonaje();
             gestionEsbirros = new practicamp.GestionEsbirros();
@@ -78,7 +80,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
             e2.printStackTrace();
         }
         try {
-            registro = new practicamp.Registro(almacen);
+            registro = new practicamp.Registro(almacen, this.ranking);
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
         } catch (java.lang.ClassNotFoundException e2) {

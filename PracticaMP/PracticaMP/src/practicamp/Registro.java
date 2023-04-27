@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import java.util.LinkedList;
 
 /**
  *
@@ -24,9 +25,10 @@ public class Registro extends javax.swing.JPanel implements Serializable {
 
     private List<Usuario> usuarios;
     private Almacen almacen;
+    private Ranking ranking;
 
     
-    public Registro(Almacen almacen) throws IOException, FileNotFoundException, ClassNotFoundException {
+    public Registro(Almacen almacen, Ranking ranking) throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
         this.usuarios = new ArrayList<>();
         this.almacen = almacen;
@@ -37,7 +39,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
     }
 
     private void loadUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
-        this.usuarios = this.almacen.getUsuarios();
+        this.usuarios = Almacen.getUsuarios();
     }
 
     
@@ -308,9 +310,16 @@ public class Registro extends javax.swing.JPanel implements Serializable {
             String id = generarId();
             System.out.println(id);
             nuevoUsuario.setId(id);
+            Jugador nuevoJugador  = new Jugador(fieldNick.getText(),0);
+            try {
+                Ranking.agregarJugador(nuevoJugador);
+            } catch (IOException ex) {
+                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         this.usuarios.add(nuevoUsuario);
         this.almacen.addUsuario(nuevoUsuario);
+        
 
         try {
             this.almacen.updateFiles();
