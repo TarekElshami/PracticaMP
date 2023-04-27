@@ -5,7 +5,7 @@ public class Vampiro extends Personaje {
     private int edad;
     
     public Vampiro(String nombre) {
-        super(nombre);
+        super(nombre, 5);
         this.edad = 711;
         this.sangre = 0;
     }

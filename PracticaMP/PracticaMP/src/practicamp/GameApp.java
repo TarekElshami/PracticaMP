@@ -167,7 +167,6 @@ public class GameApp {
         modificadores.add(agudizados);
 
         Vampiro v = new Vampiro("Vampiro");
-        v.setPoder(5);
 
         Disciplina d = new Disciplina("Disciplina", 3, 3, 3);
         v.setHabilidad(d);
@@ -196,7 +195,6 @@ public class GameApp {
         v.agregarEsbirro(d4);
 
         Licantropo l = new Licantropo("Licantropo");
-        l.setPoder(4);
 
         Don don = new Don("Don", 2, 2, 0);
         l.setHabilidad(don);
@@ -226,7 +224,6 @@ public class GameApp {
         l.agregarEsbirro(d2);
 
         Cazador c = new Cazador("Cazador");
-        c.setPoder(3);
         Talento t = new Talento("Talento", 1, 1);
         c.setHabilidad(t);
 

@@ -5,7 +5,7 @@ public class Licantropo extends Personaje {
     private int rabia;
 
     public Licantropo(String nombre) {
-        super(nombre);
+        super(nombre, 4);
         this.rabia = 0;
     }
 

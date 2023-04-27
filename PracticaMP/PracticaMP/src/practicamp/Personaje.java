@@ -22,7 +22,7 @@ public class Personaje implements Serializable {
     private Map<String, Integer> debilidades;
     private Map<String, Integer> fortalezas;
 
-    public Personaje(String nombre) {
+    public Personaje(String nombre, int poder) {
         this.nombre = nombre;
         this.salud = 5;
         this.armaActiva = new ArrayList<>();
@@ -33,6 +33,7 @@ public class Personaje implements Serializable {
         this.esbirros = new ArrayList<>();
         this.debilidades = new HashMap<>();
         this.fortalezas = new HashMap<>();
+        this.poder = poder;
     }
 
     public Habilidad getHabilidad() {
