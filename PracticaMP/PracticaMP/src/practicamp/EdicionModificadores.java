@@ -1,6 +1,10 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
@@ -18,7 +22,20 @@ public class EdicionModificadores extends javax.swing.JPanel {
     public EdicionModificadores() {
         initComponents();
         modificadores = Almacen.getModificadores();
-        
+        // Crear un arreglo de números del 1 al 5
+        Integer[] numeros = {1, 2, 3, 4, 5};
+
+        opSalud.addItem(0);
+        // Agregar los números al JComboBox opSalud
+        for (Integer num : numeros) {
+            opSalud.addItem(num);
+        }
+
+        // Agregar los números al JComboBox opPoder
+        for (Integer num : numeros) {
+            opPoder.addItem(num);
+        }
+
     }
     public void cargarPersonaje(String nombrePersonaje){
         for (Personaje p : Almacen.getPersonajes()) {
@@ -26,15 +43,16 @@ public class EdicionModificadores extends javax.swing.JPanel {
                 debilidades = p.getFortalezas();
                 fortalezas = p.getDebilidades();
                 personaje = p;
+                opSalud.setSelectedItem(Integer.valueOf(personaje.getSalud()));
+                opPoder.setSelectedItem(Integer.valueOf(personaje.getPoder()));
                 if (!p.getNombre().equals("Vampiro")){
                     textEdad.setVisible(false);
                     etiqEdad.setVisible(false);
                 }
             }
         }
-        opSalud.setSelectedIndex(personaje.getSalud());
-        System.out.println(personaje.getPoder());
-        opPoder.setSelectedIndex(personaje.getPoder());
+        
+
         actualizarListas();
     }
     private void actualizarListas() {
@@ -69,13 +87,13 @@ public class EdicionModificadores extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         fortalezasList = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
-        opSalud = new javax.swing.JComboBox<>();
-        opPoder = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         textEdad = new javax.swing.JTextField();
         etiqEdad = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
+        opSalud = new javax.swing.JComboBox<>();
+        opPoder = new javax.swing.JComboBox<>();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -104,36 +122,20 @@ public class EdicionModificadores extends javax.swing.JPanel {
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 57, 306, 326));
 
         jLabel3.setText("Salud:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 414, 48, 22));
-
-        opSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin cambios", "1", "2", "3", "4", "5" }));
-        opSalud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opSaludActionPerformed(evt);
-            }
-        });
-        jPanel1.add(opSalud, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 414, 100, -1));
-
-        opPoder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin Cambios", "1", "2", "3", "4", "5" }));
-        opPoder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opPoderActionPerformed(evt);
-            }
-        });
-        jPanel1.add(opPoder, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 414, 122, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 48, 22));
 
         jLabel4.setText("Poder:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 414, 40, 22));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 40, 22));
 
         textEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textEdadActionPerformed(evt);
             }
         });
-        jPanel1.add(textEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 414, 110, -1));
+        jPanel1.add(textEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 110, -1));
 
         etiqEdad.setText("Edad:");
-        jPanel1.add(etiqEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 414, 50, 22));
+        jPanel1.add(etiqEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, 50, 22));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +153,15 @@ public class EdicionModificadores extends javax.swing.JPanel {
         });
         jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 445, 100, -1));
 
+        jPanel1.add(opSalud, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+
+        opPoder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opPoderActionPerformed(evt);
+            }
+        });
+        jPanel1.add(opPoder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,18 +173,6 @@ public class EdicionModificadores extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void opPoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opPoderActionPerformed
-        String valorSeleccionado = (String) opSalud.getSelectedItem();
-        int valorNumerico = Integer.parseInt(valorSeleccionado);
-        personaje.setPoder(valorNumerico);
-    }//GEN-LAST:event_opPoderActionPerformed
-
-    private void opSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opSaludActionPerformed
-        String valorSeleccionado = (String) opSalud.getSelectedItem();
-        int valorNumerico = Integer.parseInt(valorSeleccionado);
-        personaje.setSalud(valorNumerico);
-    }//GEN-LAST:event_opSaludActionPerformed
 
     private void debilidadesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debilidadesListMouseClicked
         String elementoSeleccionado = (String) debilidadesList.getSelectedValue();
@@ -292,32 +291,55 @@ public class EdicionModificadores extends javax.swing.JPanel {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         int i = 0;
-        while (i < Almacen.getPersonajes().size() && Almacen.getPersonajes().get(i).getNombre().equals(this.personaje.getNombre())){
-            i += 1;
+        while (i < Almacen.getPersonajes().size() && !Almacen.getPersonajes().get(i).equals(this.personaje)) {
+            i++;
         }
-        Almacen.getPersonajes().get(i).setDebilidades(this.debilidades);
-        Almacen.getPersonajes().get(i).setFortalezas(this.fortalezas);
-        if (!opSalud.getSelectedItem().toString().equals("Sin Cambios")){
-            Almacen.getPersonajes().get(i).setSalud(Integer.parseInt(opSalud.getSelectedItem().toString()));
-        }
-        if (!opPoder.getSelectedItem().toString().equals("Sin Cambios")){
-            Almacen.getPersonajes().get(i).setPoder(Integer.parseInt(opPoder.getSelectedItem().toString()));
-            System.out.println(Almacen.getPersonajes().get(i).getPoder());
-        }
-        if (!textEdad.getText().equals( "")){
-            try {
-                int nuevaEdad = Integer.parseInt(textEdad.getText());
-                Vampiro pers = (Vampiro) Almacen.getPersonajes().get(i);
-                pers.setEdad(nuevaEdad);
-            } catch (NumberFormatException e){
-                javax.swing.JOptionPane.showMessageDialog(this, "El oro apostado tiene que ser un número");
+        if (i < Almacen.getPersonajes().size()) {
+            // Se encontró el personaje en la lista, actualizarlo
+            Personaje pers = Almacen.getPersonajes().get(i);
+            pers.setSalud(Integer.parseInt(opSalud.getSelectedItem().toString()));
+            pers.setPoder(Integer.parseInt(opPoder.getSelectedItem().toString()));
+            pers.setFortalezas(fortalezas);
+            pers.setDebilidades(debilidades);
+
+            if (!textEdad.getText().equals("")) {
+                try {
+                    int nuevaEdad = Integer.parseInt(textEdad.getText());
+                    if (pers instanceof Vampiro) {
+                        ((Vampiro) pers).setEdad(nuevaEdad);
+                    }
+                } catch (NumberFormatException e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "La edad tiene que ser un número entero");
+                }
             }
-            
+        } else {
+            // No se encontró el personaje en la lista
+            System.err.println("No se encontró el personaje en la lista");
         }
+
+// Código adicional para guardar los cambios en el archivo
+// (sin eliminar el archivo existente)
+        try {
+            FileOutputStream fileOut = new FileOutputStream("personajes.dat");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(Almacen.getPersonajes());
+            objectOut.close();
+            fileOut.close();
+            System.out.println("Los cambios se han guardado correctamente en el archivo personajes.dat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+// Código adicional para cambiar al panel de edición del menú principal
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuEditarPersonaje");
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void opPoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opPoderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opPoderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -333,8 +355,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JComboBox<String> opPoder;
-    private javax.swing.JComboBox<String> opSalud;
+    private javax.swing.JComboBox<Integer> opPoder;
+    private javax.swing.JComboBox<Integer> opSalud;
     private javax.swing.JTextField textEdad;
     // End of variables declaration//GEN-END:variables
     

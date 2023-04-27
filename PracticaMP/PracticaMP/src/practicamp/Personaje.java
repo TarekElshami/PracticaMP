@@ -149,11 +149,11 @@ public class Personaje implements Serializable {
     }    
     
     public int getSalud() {
-        return salud;
+        return this.salud;
     }
 
     public int getPoder() {
-        return poder;
+        return this.poder;
     }
 
     public Map<String, Integer> getDebilidades() {

@@ -106,7 +106,7 @@ public class MenuSeleccionPersonaje extends javax.swing.JPanel {
 
     private void btnVampiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVampiroActionPerformed
         JPanel parent = (JPanel) getParent();
-        String tipo = btnVampiro.getText();
+        String tipo = "Vampiro";
         menuEdPers.setTipo(tipo);
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuEditarPersonaje");
@@ -114,7 +114,7 @@ public class MenuSeleccionPersonaje extends javax.swing.JPanel {
 
     private void btnCazadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCazadorActionPerformed
         JPanel parent = (JPanel) getParent();
-        String tipo = btnCazador.getText();
+        String tipo = "Cazador";
         menuEdPers.setTipo(tipo);
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuEditarPersonaje");
@@ -122,7 +122,7 @@ public class MenuSeleccionPersonaje extends javax.swing.JPanel {
 
     private void btnLicantropoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLicantropoActionPerformed
         JPanel parent = (JPanel) getParent();
-        String tipo = btnLicantropo.getText();
+        String tipo = "Licantropo";
         menuEdPers.setTipo(tipo);
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuEditarPersonaje");
