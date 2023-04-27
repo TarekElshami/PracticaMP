@@ -16,13 +16,15 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
     private GestionEsbirros gEsbirros;
     private String nombrePeronaje;
     private EdicionModificadores edHabilidades;
+    private EdicionEquipo edEquipo;
 
     /**
      * Creates new form MenuCambioPersonaje
      */
-    public MenuEditarPersonaje(GestionEsbirros gEsbirros, EdicionModificadores edHabilidades) {
+    public MenuEditarPersonaje(GestionEsbirros gEsbirros, EdicionModificadores edHabilidades, EdicionEquipo edEquipo) {
         this.gEsbirros = gEsbirros;
         this.edHabilidades = edHabilidades;
+        this.edEquipo = edEquipo;
         initComponents();
     }
     
@@ -53,6 +55,11 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
         });
 
         btnEquipo.setText("Equipo");
+        btnEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEquipoActionPerformed(evt);
+            }
+        });
 
         btnEsbirro.setText("Esbirro");
         btnEsbirro.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +137,13 @@ public class MenuEditarPersonaje extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "edicionModificadores");
     }//GEN-LAST:event_btmModificadoresActionPerformed
+
+    private void btnEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipoActionPerformed
+        JPanel parent = (JPanel) getParent();
+        edEquipo.actualizarListas(this.nombrePeronaje);
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "edicionEquipo");
+    }//GEN-LAST:event_btnEquipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

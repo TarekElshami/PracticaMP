@@ -25,8 +25,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
             if (p.getNombre().equals(nombrePersonaje)) {
                 debilidades = p.getFortalezas();
                 fortalezas = p.getDebilidades();
-                jComboBox1.setSelectedItem(p.getSalud());
-                jComboBox1.setSelectedItem(p.getPoder());
+                opSalud.setSelectedItem(p.getSalud());
+                opSalud.setSelectedItem(p.getPoder());
                 personaje = p;
             }
         }
@@ -48,8 +48,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
                 itemsVector2.addElement(modificador.getNombre());
             }            
         }
-        jList1.setModel(itemsVector1);
-        jList2.setModel(itemsVector2);
+        debilidadesList.setModel(itemsVector1);
+        fortalezasList.setModel(itemsVector2);
     }
 
     @SuppressWarnings("unchecked")
@@ -58,28 +58,28 @@ public class EdicionModificadores extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        debilidadesList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        fortalezasList = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        opSalud = new javax.swing.JComboBox<>();
+        opPoder = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        opEdad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
 
         jPanel1.setLayout(null);
 
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+        debilidadesList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
+                debilidadesListMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(debilidadesList);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(17, 57, 306, 326);
@@ -92,53 +92,53 @@ public class EdicionModificadores extends javax.swing.JPanel {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(323, 35, 306, 16);
 
-        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+        fortalezasList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList2MouseClicked(evt);
+                fortalezasListMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(jList2);
+        jScrollPane3.setViewportView(fortalezasList);
 
         jPanel1.add(jScrollPane3);
         jScrollPane3.setBounds(323, 57, 306, 326);
 
-        jLabel3.setText("Salud");
+        jLabel3.setText("Salud:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(23, 414, 29, 16);
+        jLabel3.setBounds(23, 414, 60, 16);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        opSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        opSalud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                opSaludActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(59, 411, 72, 22);
+        jPanel1.add(opSalud);
+        opSalud.setBounds(90, 410, 72, 22);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        opPoder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        opPoder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                opPoderActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(243, 411, 72, 22);
+        jPanel1.add(opPoder);
+        opPoder.setBounds(243, 411, 72, 22);
 
-        jLabel4.setText("Poder");
+        jLabel4.setText("Poder:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(206, 414, 31, 16);
+        jLabel4.setBounds(197, 414, 40, 16);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        opEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                opEdadActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(363, 411, 64, 22);
+        jPanel1.add(opEdad);
+        opEdad.setBounds(390, 410, 64, 22);
 
         jLabel5.setText("Edad:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(327, 414, 29, 16);
+        jLabel5.setBounds(340, 420, 50, 16);
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -149,9 +149,14 @@ public class EdicionModificadores extends javax.swing.JPanel {
         jPanel1.add(btnVolver);
         btnVolver.setBounds(6, 445, 100, 23);
 
-        jButton2.setText("Confirmar");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(530, 445, 100, 23);
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnConfirmar);
+        btnConfirmar.setBounds(530, 445, 100, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -165,20 +170,20 @@ public class EdicionModificadores extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        String valorSeleccionado = (String) jComboBox1.getSelectedItem();
+    private void opPoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opPoderActionPerformed
+        String valorSeleccionado = (String) opSalud.getSelectedItem();
         int valorNumerico = Integer.parseInt(valorSeleccionado);
         personaje.setPoder(valorNumerico);
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_opPoderActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String valorSeleccionado = (String) jComboBox1.getSelectedItem();
+    private void opSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opSaludActionPerformed
+        String valorSeleccionado = (String) opSalud.getSelectedItem();
         int valorNumerico = Integer.parseInt(valorSeleccionado);
         personaje.setSalud(valorNumerico);
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_opSaludActionPerformed
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        String elementoSeleccionado = (String) jList1.getSelectedValue();
+    private void debilidadesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_debilidadesListMouseClicked
+        String elementoSeleccionado = (String) debilidadesList.getSelectedValue();
         if (elementoSeleccionado.contains("red")) {
             JOptionPane.showMessageDialog(null, "Este elemento ya está seleccionado");
         } else {
@@ -212,12 +217,12 @@ public class EdicionModificadores extends javax.swing.JPanel {
             }
 
             if (quitarModificador) {
-                int indiceSeleccionado = jList1.getSelectedIndex();
+                int indiceSeleccionado = debilidadesList.getSelectedIndex();
                 Modificador modificador = modificadores.get(indiceSeleccionado);
                 String nombreModificador = modificador.getNombre();
                 debilidades.remove(nombreModificador);
             } else if (valorNumerico >= 1 && valorNumerico <= 5) {
-                int indiceSeleccionado = jList1.getSelectedIndex();
+                int indiceSeleccionado = debilidadesList.getSelectedIndex();
                 Modificador modificador = modificadores.get(indiceSeleccionado);
                 String nombreModificador = modificador.getNombre();
                 debilidades.put(nombreModificador, valorNumerico);
@@ -228,10 +233,10 @@ public class EdicionModificadores extends javax.swing.JPanel {
             this.actualizarListas();
         }
     
-    }//GEN-LAST:event_jList1MouseClicked
+    }//GEN-LAST:event_debilidadesListMouseClicked
 
-    private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
-        String elementoSeleccionado = (String) jList2.getSelectedValue();
+    private void fortalezasListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fortalezasListMouseClicked
+        String elementoSeleccionado = (String) fortalezasList.getSelectedValue();
         if (elementoSeleccionado.contains("red")) {
             JOptionPane.showMessageDialog(null, "Este elemento ya está seleccionado");
         } else {
@@ -265,12 +270,12 @@ public class EdicionModificadores extends javax.swing.JPanel {
             }
 
             if (quitarModificador) {
-                int indiceSeleccionado = jList2.getSelectedIndex();
+                int indiceSeleccionado = fortalezasList.getSelectedIndex();
                 Modificador modificador = modificadores.get(indiceSeleccionado);
                 String nombreModificador = modificador.getNombre();
                 fortalezas.remove(nombreModificador);
             } else if (valorNumerico >= 1 && valorNumerico <= 5) {
-                int indiceSeleccionado = jList2.getSelectedIndex();
+                int indiceSeleccionado = fortalezasList.getSelectedIndex();
                 Modificador modificador = modificadores.get(indiceSeleccionado);
                 String nombreModificador = modificador.getNombre();
                 fortalezas.put(nombreModificador, valorNumerico);
@@ -280,11 +285,11 @@ public class EdicionModificadores extends javax.swing.JPanel {
 
             this.actualizarListas();
         }
-    }//GEN-LAST:event_jList2MouseClicked
+    }//GEN-LAST:event_fortalezasListMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void opEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opEdadActionPerformed
         
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_opEdadActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         JPanel parent = (JPanel) getParent();
@@ -292,23 +297,35 @@ public class EdicionModificadores extends javax.swing.JPanel {
         cl.show(parent, "menuEditarPersonaje");
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        int i = 0;
+        while (i < Almacen.getPersonajes().size() && Almacen.getPersonajes().get(i).getNombre().equals(this.personaje.getNombre())){
+            i += 1;
+        }
+        Almacen.getPersonajes().get(i).setDebilidades(this.debilidades);
+        Almacen.getPersonajes().get(i).setFortalezas(this.fortalezas);
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuEditarPersonaje");
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JList<String> debilidadesList;
+    private javax.swing.JList<String> fortalezasList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField opEdad;
+    private javax.swing.JComboBox<String> opPoder;
+    private javax.swing.JComboBox<String> opSalud;
     // End of variables declaration//GEN-END:variables
     
 }

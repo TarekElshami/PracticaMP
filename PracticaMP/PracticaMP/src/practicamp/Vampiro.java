@@ -18,5 +18,5 @@ public class Vampiro extends Personaje {
         this.sangre = sangre;
     }
     
-    
+       
 }

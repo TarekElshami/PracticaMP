@@ -4,6 +4,7 @@
  */
 package practicamp;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,10 +25,13 @@ public class EdicionEquipo extends javax.swing.JPanel {
     List<Arma> armas;
     List<Armadura> armaduras;
     
-    public EdicionEquipo(String nombrePersonaje) {
+    public EdicionEquipo() {
         initComponents();
         this.armadurasPersonaje = new ArrayList<>();
         this.armasPersonaje = new ArrayList<>();
+    }
+    
+    public void actualizarListas(String nombrePersonaje){
         // Obtener todas las armas
         List<Arma> armas = Almacen.getArmas();
         List<Armadura> armaduras = Almacen.getArmaduras();
@@ -74,8 +79,6 @@ public class EdicionEquipo extends javax.swing.JPanel {
 
         jList2.setModel(modeloArmaduras);
     }
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +94,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
         jList1 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
@@ -112,10 +115,10 @@ public class EdicionEquipo extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jList2);
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -133,7 +136,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(btnVolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -153,15 +156,17 @@ public class EdicionEquipo extends javax.swing.JPanel {
                     .addComponent(jScrollPane2))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnVolver)
                     .addComponent(jButton2))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuEditarPersonaje");
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         if (evt.getClickCount() == 1) { // asegurarse de que se hizo un solo clic
@@ -225,7 +230,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;

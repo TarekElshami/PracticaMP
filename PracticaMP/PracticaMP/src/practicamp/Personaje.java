@@ -196,5 +196,13 @@ public class Personaje implements Serializable {
     public void setArmaduraActiva(Armadura armaduraActiva) {
         this.armaduraActiva = armaduraActiva;
     }
+
+    public void setDebilidades(Map<String, Integer> debilidades) {
+        this.debilidades = debilidades;
+    }
+
+    public void setFortalezas(Map<String, Integer> fortalezas) {
+        this.fortalezas = fortalezas;
+    }
         
 }
