@@ -35,8 +35,8 @@ public class Notificaciones extends javax.swing.JPanel {
             vacio = false;
             mod.clear();
             while (i < notificaciones.size()){
-                String texto = "Desafio de: " + notificaciones.get(i).getRival();
-                texto += " apostando "+notificaciones.get(i).getOroApostado()+" de oro";
+                String texto = "¡¡" + notificaciones.get(i).getRival()+" te ha desafiado";
+                texto += " apostando "+notificaciones.get(i).getOroApostado()+" de oro!!";
                 mod.addElement(texto);
                 i = i + 1;
             

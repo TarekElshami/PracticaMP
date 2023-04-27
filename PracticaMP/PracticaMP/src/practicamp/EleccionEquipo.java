@@ -18,13 +18,13 @@ public class EleccionEquipo extends javax.swing.JPanel {
 
     
     public EleccionEquipo() {
-        this.armasSeleccionadas = new ArrayList<>();
-        this.armadura = null;
         initComponents();
         
     }
     
     public void actualizarLista(String nombrePersonaje, boolean esArma){
+        this.armasSeleccionadas = new ArrayList<>();
+        this.armadura = null;
         this.esArma = esArma;
         if (esArma) {
             this.armasSeleccionadas = new ArrayList<>();

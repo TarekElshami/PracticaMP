@@ -100,7 +100,7 @@ public class MenuOperador extends javax.swing.JPanel {
     }//GEN-LAST:event_btnValidarDesafiosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        //hay que hacer que se guarden los cambios en los ficheros 
+        System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEditarPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPersonajeActionPerformed
