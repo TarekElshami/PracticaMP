@@ -16,7 +16,6 @@ public class CreacionPersonaje extends javax.swing.JPanel {
     
     public CreacionPersonaje() {
         initComponents();
-
     }
 
     
@@ -137,7 +136,7 @@ public class CreacionPersonaje extends javax.swing.JPanel {
         } else{
             JOptionPane.showMessageDialog(this, "Por favor, introduce un nombre para tu personaje.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
-
+        CajaNombre.setText("");
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public String getNombre() {
