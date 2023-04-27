@@ -154,11 +154,6 @@ public class Almacen {
             List<Personaje> personajes = (List<Personaje>) ois.readObject();
             ois.close();
             fis.close();
-            for (Personaje personaje : personajes){
-                System.out.println(personaje.getNombre());
-                System.out.println(personaje.getSalud());
-                System.out.println(personaje.getPoder());
-            }
             Almacen.personajes = personajes;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
