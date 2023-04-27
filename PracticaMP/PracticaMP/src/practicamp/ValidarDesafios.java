@@ -44,7 +44,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
         while (i < desafios.size()) {
             Desafio element = desafios.get(i);
             String aux = element.getDesafiante().getNick();
-            aux = aux + " ( " + element.getDesafiante().getTipoPersonaje() + " ) -> " + element.getDesafiado().getNick() +" (" +element.getDesafiado().getTipoPersonaje() + " )";
+            aux = aux + " ( " + element.getDesafiante().getTipoPersonaje() + " ) -> " + element.getDesafiado().getNick() +" ( " +element.getDesafiado().getTipoPersonaje() + " )";
             mod.addElement(aux);
             i += 1;
         }

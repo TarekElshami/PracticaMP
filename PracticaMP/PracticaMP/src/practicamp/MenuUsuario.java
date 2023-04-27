@@ -170,12 +170,18 @@ public class MenuUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDesafiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesafiarActionPerformed
-        if (this.almacen.getUsuarioActivo().getTipoPersonaje()!= null){
-            JPanel parent = (JPanel) getParent();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            cl.show(parent, "desafios");
+        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
+
+            if (this.almacen.getUsuarioActivo().getTipoPersonaje()!= null){
+                JPanel parent = (JPanel) getParent();
+                CardLayout cl = (CardLayout) parent.getLayout();
+                cl.show(parent, "desafios");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+            }
+
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
         }
     }//GEN-LAST:event_btnDesafiarActionPerformed
 
@@ -194,8 +200,12 @@ public class MenuUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnConultarOroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConultarOroActionPerformed
+        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
         int goldAmmount = Almacen.getUsuarioActivo().getOro();
         JOptionPane.showMessageDialog(null, "Oro: " + goldAmmount, "Consultor de oro", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        } else {
+            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
     }//GEN-LAST:event_btnConultarOroActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -208,63 +218,87 @@ public class MenuUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnCrearPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPersonajeActionPerformed
-        if (Almacen.getUsuarioActivo().getTipoPersonaje() == null) {
-            JPanel parent = (JPanel) getParent();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            cl.show(parent, "creacionPersonaje");
+        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()) {
+            if (Almacen.getUsuarioActivo().getTipoPersonaje() == null) {
+                JPanel parent = (JPanel) getParent();
+                CardLayout cl = (CardLayout) parent.getLayout();
+                cl.show(parent, "creacionPersonaje");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Necesitas borrar primero tu personaje para crear otro");
+            }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas borrar primero tu personaje para crear otro");
+            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
         }
     }//GEN-LAST:event_btnCrearPersonajeActionPerformed
 
     private void btnDarBajaPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarBajaPersonajeActionPerformed
-        if (Almacen.getUsuarioActivo().getTipoPersonaje() != null) {
-            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas continuar?", "Confirmación", JOptionPane.YES_NO_OPTION);
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                Almacen.getUsuarioActivo().setTipoPersonaje(null);
-                if (Almacen.getUsuarioActivo().getArmasActivas().size() != 0) {
-                    Almacen.getUsuarioActivo().getArmasActivas().clear();
+        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
+
+            if (Almacen.getUsuarioActivo().getTipoPersonaje() != null) {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas continuar?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    Almacen.getUsuarioActivo().setTipoPersonaje(null);
+                    if (!Almacen.getUsuarioActivo().getArmasActivas().isEmpty()) {
+                        Almacen.getUsuarioActivo().getArmasActivas().clear();
+                    }
+                    if (Almacen.getUsuarioActivo().getArmaduraActiva() != null) {
+                        Almacen.getUsuarioActivo().setArmaduraActiva(null);
+                    }
+                    Almacen.getUsuarioActivo().setPersonaje(null);
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha eliminado", "Información", JOptionPane.INFORMATION_MESSAGE);
                 }
-                if (Almacen.getUsuarioActivo().getArmaduraActiva() != null) {
-                    Almacen.getUsuarioActivo().setArmaduraActiva(null);
-                }
-                Almacen.getUsuarioActivo().setPersonaje(null);
-                JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "No se ha eliminado", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-        } else{
-            JOptionPane.showMessageDialog(null, "No tienes un personaje creado.", "Información", JOptionPane.INFORMATION_MESSAGE);
-        }        
+
+            } else{
+                JOptionPane.showMessageDialog(null, "No tienes un personaje creado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }        
+        } else {
+            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
     }//GEN-LAST:event_btnDarBajaPersonajeActionPerformed
 
     private void btnElegirArmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirArmasActionPerformed
-        if (Almacen.getUsuarioActivo().getTipoPersonaje()!= null){
-            this.eleccionEquipo.actualizarLista(Almacen.getUsuarioActivo().getTipoPersonaje(), true);
-            JPanel parent = (JPanel) getParent();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            cl.show(parent, "eleccionEquipo");
+        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
+
+            if (Almacen.getUsuarioActivo().getTipoPersonaje()!= null){
+                this.eleccionEquipo.actualizarLista(Almacen.getUsuarioActivo().getTipoPersonaje(), true);
+                JPanel parent = (JPanel) getParent();
+                CardLayout cl = (CardLayout) parent.getLayout();
+                cl.show(parent, "eleccionEquipo");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+            }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
         }
     }//GEN-LAST:event_btnElegirArmasActionPerformed
 
     private void btnElegirArmadurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirArmadurasActionPerformed
-        if (Almacen.getUsuarioActivo().getTipoPersonaje()!= null){
-            this.eleccionEquipo.actualizarLista(Almacen.getUsuarioActivo().getTipoPersonaje(), false);
-            JPanel parent = (JPanel) getParent();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            cl.show(parent, "eleccionEquipo");
+        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
+
+            if (Almacen.getUsuarioActivo().getTipoPersonaje()!= null){
+                this.eleccionEquipo.actualizarLista(Almacen.getUsuarioActivo().getTipoPersonaje(), false);
+                JPanel parent = (JPanel) getParent();
+                CardLayout cl = (CardLayout) parent.getLayout();
+                cl.show(parent, "eleccionEquipo");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+            }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Necesitas tener un personaje para acceder a esta opción");
+            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
         }
     }//GEN-LAST:event_btnElegirArmadurasActionPerformed
 
     private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
+        if (Almacen.getUsuarioActivo().getNotificaciones().isEmpty()){
+
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "pantallaRanking");
+        } else {
+            JOptionPane.showMessageDialog(null, "No puedes acceder a esto hasta que vacies tus notificaciones", "Tienes notificaciones", JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
     }//GEN-LAST:event_btnRankingActionPerformed
 
 
