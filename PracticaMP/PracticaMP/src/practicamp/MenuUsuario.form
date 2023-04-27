@@ -28,9 +28,9 @@
               <EmptySpace pref="142" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton6" linkSize="1" max="32767" attributes="0"/>
-                  <Component id="jButton7" linkSize="1" max="32767" attributes="0"/>
+                  <Component id="btnRanking" linkSize="1" max="32767" attributes="0"/>
                   <Component id="btnCrearPersonaje" linkSize="1" max="32767" attributes="0"/>
-                  <Component id="jButton10" linkSize="1" max="32767" attributes="0"/>
+                  <Component id="btnDarBajaPersonaje" linkSize="1" max="32767" attributes="0"/>
                   <Component id="btnSalir" linkSize="1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton7" linkSize="2" pref="38" max="32767" attributes="0"/>
+                  <Component id="btnRanking" linkSize="2" pref="38" max="32767" attributes="0"/>
                   <Component id="btnElegirArmas" linkSize="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -58,7 +58,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnDesafiar" linkSize="2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jButton10" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDarBajaPersonaje" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -116,10 +116,13 @@
         <Property name="text" type="java.lang.String" value="Historial"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton7">
+    <Component class="javax.swing.JButton" name="btnRanking">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ranking"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRankingActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCrearPersonaje">
       <Properties>
@@ -129,12 +132,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearPersonajeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton10">
+    <Component class="javax.swing.JButton" name="btnDarBajaPersonaje">
       <Properties>
         <Property name="text" type="java.lang.String" value="Dar de baja personaje"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDarBajaPersonajeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">

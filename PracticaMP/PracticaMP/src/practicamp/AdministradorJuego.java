@@ -37,6 +37,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(eleccionEquipo, "eleccionEquipo");
         add(edicionModificadores, "edicionModificadores");
         add(edicionEquipo, "edicionEquipo");
+        add(pantallaRanking, "pantallaRanking");
     }
     
     public void showGame() {
@@ -59,6 +60,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
             desafios = new practicamp.Desafios(almacen);
             notificaciones = new practicamp.Notificaciones(almacen);
             eleccionEquipo = new practicamp.EleccionEquipo();
+            pantallaRanking = new practicamp.PantallaRanking();
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
             edicionModificadores = new practicamp.EdicionModificadores();
             edicionEquipo = new practicamp.EdicionEquipo();
@@ -136,6 +138,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
         edicionEquipo.setName("edicionEquipo");
         getContentPane().add(edicionEquipo, "card17");
 
+        pantallaRanking.setName("pantallaRanking");
+        getContentPane().add(pantallaRanking, "card18");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,5 +162,6 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.EleccionEquipo eleccionEquipo;
     private practicamp.EdicionModificadores edicionModificadores;
     private practicamp.EdicionEquipo edicionEquipo;
+    private practicamp.PantallaRanking pantallaRanking;
     // End of variables declaration//GEN-END:variables
 }

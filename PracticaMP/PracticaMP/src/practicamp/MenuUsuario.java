@@ -45,9 +45,9 @@ public class MenuUsuario extends javax.swing.JPanel {
         btnDesafiar = new javax.swing.JButton();
         btnNotificaciones = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnRanking = new javax.swing.JButton();
         btnCrearPersonaje = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnDarBajaPersonaje = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
         btnConultarOro.setText("Consultar oro");
@@ -87,7 +87,12 @@ public class MenuUsuario extends javax.swing.JPanel {
 
         jButton6.setText("Historial");
 
-        jButton7.setText("Ranking");
+        btnRanking.setText("Ranking");
+        btnRanking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRankingActionPerformed(evt);
+            }
+        });
 
         btnCrearPersonaje.setText("Crear personaje");
         btnCrearPersonaje.addActionListener(new java.awt.event.ActionListener() {
@@ -96,10 +101,10 @@ public class MenuUsuario extends javax.swing.JPanel {
             }
         });
 
-        jButton10.setText("Dar de baja personaje");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnDarBajaPersonaje.setText("Dar de baja personaje");
+        btnDarBajaPersonaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnDarBajaPersonajeActionPerformed(evt);
             }
         });
 
@@ -125,14 +130,14 @@ public class MenuUsuario extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrearPersonaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDarBajaPersonaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(85, 85, 85))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnConultarOro, btnCrearPersonaje, btnDesafiar, btnElegirArmaduras, btnElegirArmas, btnNotificaciones, btnSalir, jButton10, jButton6, jButton7});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnConultarOro, btnCrearPersonaje, btnDarBajaPersonaje, btnDesafiar, btnElegirArmaduras, btnElegirArmas, btnNotificaciones, btnRanking, btnSalir, jButton6});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +148,7 @@ public class MenuUsuario extends javax.swing.JPanel {
                     .addComponent(btnConultarOro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btnRanking, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(btnElegirArmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -152,7 +157,7 @@ public class MenuUsuario extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDesafiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10))
+                    .addComponent(btnDarBajaPersonaje))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +165,7 @@ public class MenuUsuario extends javax.swing.JPanel {
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConultarOro, btnCrearPersonaje, btnDesafiar, btnElegirArmaduras, btnElegirArmas, btnNotificaciones, btnSalir, jButton10, jButton6, jButton7});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConultarOro, btnCrearPersonaje, btnDarBajaPersonaje, btnDesafiar, btnElegirArmaduras, btnElegirArmas, btnNotificaciones, btnRanking, btnSalir, jButton6});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,7 +217,7 @@ public class MenuUsuario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCrearPersonajeActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btnDarBajaPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarBajaPersonajeActionPerformed
         if (Almacen.getUsuarioActivo().getTipoPersonaje() != null) {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas continuar?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
@@ -232,7 +237,7 @@ public class MenuUsuario extends javax.swing.JPanel {
         } else{
             JOptionPane.showMessageDialog(null, "No tienes un personaje creado.", "Información", JOptionPane.INFORMATION_MESSAGE);
         }        
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btnDarBajaPersonajeActionPerformed
 
     private void btnElegirArmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirArmasActionPerformed
         if (Almacen.getUsuarioActivo().getTipoPersonaje()!= null){
@@ -256,17 +261,23 @@ public class MenuUsuario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnElegirArmadurasActionPerformed
 
+    private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "pantallaRanking");
+    }//GEN-LAST:event_btnRankingActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConultarOro;
     private javax.swing.JButton btnCrearPersonaje;
+    private javax.swing.JButton btnDarBajaPersonaje;
     private javax.swing.JButton btnDesafiar;
     private javax.swing.JButton btnElegirArmaduras;
     private javax.swing.JButton btnElegirArmas;
     private javax.swing.JButton btnNotificaciones;
+    private javax.swing.JButton btnRanking;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     // End of variables declaration//GEN-END:variables
 }
