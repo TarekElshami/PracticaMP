@@ -253,7 +253,7 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
             Almacen.setUsuarioActivo(this.indexUsuario);
             this.desafios.actualizatList();
             CardLayout cl = (CardLayout) parent.getLayout();
-            if (!fieldNick.getText().equals("admin")){//(alvaro) he cambiado esto provisionalmente
+            if (Almacen.getUsuarioActivo().getRol() != Rol.admin){//(alvaro) he cambiado esto provisionalmente
                 cl.show(parent, "menuUsuario");
             } else{
                 cl.show(parent, "menuOperador");
