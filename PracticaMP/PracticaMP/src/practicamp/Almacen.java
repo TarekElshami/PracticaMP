@@ -217,4 +217,8 @@ public class Almacen {
         return esbirros;
     }
     
+    public static int getIndexUsuarioActivo(){
+        return Almacen.usuarioActivo;
+    }
+    
 }

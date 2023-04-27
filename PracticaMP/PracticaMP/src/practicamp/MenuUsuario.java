@@ -210,6 +210,7 @@ public class MenuUsuario extends javax.swing.JPanel {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
        System.out.println(Almacen.getUsuarioActivo().getTipoPersonaje());
+       System.out.println(Almacen.getUsuarios().get(Almacen.getIndexUsuarioActivo()).getArmaduraActiva().getNombre());
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void btnElegirArmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirArmasActionPerformed

@@ -18,6 +18,8 @@ public class EleccionEquipo extends javax.swing.JPanel {
 
     
     public EleccionEquipo() {
+        this.armasSeleccionadas = new ArrayList<>();
+        this.armadura = null;
         initComponents();
         
     }
@@ -35,10 +37,12 @@ public class EleccionEquipo extends javax.swing.JPanel {
                 if (personaje.getNombre().equals(nombrePersonaje)) {
                     for (Arma arma : personaje.getArmas()) {
                         String text = arma.getNombre() + ": Atq = " + arma.getAtaque() + "/ Def = " + arma.getDefensa();
-                        if (armasActivas.contains(arma)){
-                            this.manosDisponibles -= arma.getManos();
-                            this.armasSeleccionadas.add(arma);
-                            text = "<html><font color='green'>" + text + "</font></html>";
+                        for (Arma auxArma : armasActivas){
+                            if (auxArma.getNombre().equals(arma.getNombre())){
+                                this.manosDisponibles -= arma.getManos();
+                                this.armasSeleccionadas.add(arma);
+                                text = "<html><font color='green'>" + text + "</font></html>";
+                            }
                         }
                         itemsVector.addElement(text);
                         armas.add(arma);
@@ -61,9 +65,11 @@ public class EleccionEquipo extends javax.swing.JPanel {
                 if (personaje.getNombre().equals(nombrePersonaje)) {
                     for (Armadura armadura : personaje.getArmaduras()) {
                         String text = armadura.getNombre() + ": Atq = " + armadura.getAtaque() + "/ Def = " + armadura.getDefensa();
-                        if (armaduraActiva == armadura){
-                            this.armadura = armadura;
-                            text = "<html><font color='green'>" + text + "</font></html>";
+                        if (armaduraActiva != null){
+                            if (armaduraActiva.getNombre().equals(armadura.getNombre())){
+                                this.armadura = armadura;
+                                text = "<html><font color='green'>" + text + "</font></html>";
+                            }
                         }
                         itemsVector.addElement(text);
                         armaduras.add(armadura);
