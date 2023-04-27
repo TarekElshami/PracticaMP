@@ -119,5 +119,13 @@ public class Usuario implements Serializable {
     public Armadura getArmaduraActiva() {
         return armaduraActiva;
     }
+
+    public boolean isBaneado() {
+        return baneado;
+    }
+
+    public void setBaneado(boolean baneado) {
+        this.baneado = baneado;
+    }
               
 }
