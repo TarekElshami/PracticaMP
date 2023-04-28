@@ -113,9 +113,7 @@ public class PantallaHistorial extends javax.swing.JPanel {
             Desafio desafio = (Desafio) it.next();
             dlm.addElement(desafio.getDesafiante().getNick() + " ( " + desafio.getDesafiante().getTipoPersonaje() + " ) -> " + desafio.getDesafiado().getNick() +" ( " + desafio.getDesafiado().getTipoPersonaje() + " )");
         }
-        if (listaHistoriales.getSelectedIndices().length != 0) {
-            listaHistoriales.setSelectedIndex(0);
-        }
+        listaHistoriales.setSelectedIndex(0);
     }//GEN-LAST:event_formComponentShown
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed

@@ -41,26 +41,12 @@ public class MenuOperador extends javax.swing.JPanel {
             }
         });
 
-<<<<<<< Updated upstream
-        jButton2.setText("Banear usuarios");
-=======
         jButton2.setText("Banear / Desbanear usuarios");
->>>>>>> Stashed changes
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-<<<<<<< Updated upstream
-
-        jButton3.setText("Desbanear usuarios");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-=======
->>>>>>> Stashed changes
 
         btnEditarPersonaje.setText("Editar personaje");
         btnEditarPersonaje.addActionListener(new java.awt.event.ActionListener() {
@@ -112,9 +98,7 @@ public class MenuOperador extends javax.swing.JPanel {
     }//GEN-LAST:event_btnValidarDesafiosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        JPanel parent = (JPanel) getParent();
-        CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "menuInicio");
+        System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEditarPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPersonajeActionPerformed
@@ -123,23 +107,10 @@ public class MenuOperador extends javax.swing.JPanel {
         cl.show(parent, "menuSeleccionPersonaje");
     }//GEN-LAST:event_btnEditarPersonajeActionPerformed
 
-<<<<<<< Updated upstream
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JPanel parent = (JPanel) getParent();
-        CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "pantallaBaneo");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JPanel parent = (JPanel) getParent();
-        CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "menuPrincipal");
-=======
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "pantallaBaneo");
->>>>>>> Stashed changes
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

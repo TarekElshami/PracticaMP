@@ -221,9 +221,7 @@ public class MenuUsuario extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(MenuUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JPanel parent = (JPanel) getParent();
-        CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "menuPrincipal");
+        System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnCrearPersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPersonajeActionPerformed

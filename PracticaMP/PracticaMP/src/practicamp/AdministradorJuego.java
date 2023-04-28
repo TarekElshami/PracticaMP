@@ -41,10 +41,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
         add(edicionEquipo, "edicionEquipo");
         add(pantallaRanking, "pantallaRanking");
         add(pantallaBaneo, "pantallaBaneo");
-<<<<<<< Updated upstream
-=======
         add(pantallaHistorial, "pantallaHistorial");
->>>>>>> Stashed changes
     }
     
     public void showGame() {
@@ -71,12 +68,8 @@ public class AdministradorJuego extends javax.swing.JFrame {
             notificaciones = new practicamp.Notificaciones(almacen);
             eleccionEquipo = new practicamp.EleccionEquipo();
             pantallaRanking = new practicamp.PantallaRanking();
-<<<<<<< Updated upstream
-            pantallaBaneo = new practicamp.PantallaBaneo(almacen);
-=======
             pantallaBaneo = new practicamp.PantallaBaneo();
             pantallaHistorial = new practicamp.PantallaHistorial();
->>>>>>> Stashed changes
             inicioSesion = new practicamp.InicioSesion(almacen,desafios);
             edicionModificadores = new practicamp.EdicionModificadores();
             edicionEquipo = new practicamp.EdicionEquipo();
@@ -160,12 +153,9 @@ public class AdministradorJuego extends javax.swing.JFrame {
         pantallaBaneo.setName("pantallaBaneo");
         getContentPane().add(pantallaBaneo, "card19");
 
-<<<<<<< Updated upstream
-=======
         pantallaHistorial.setName("pantallaHistorial");
         getContentPane().add(pantallaHistorial, "card20");
 
->>>>>>> Stashed changes
         pack();
     }// </editor-fold>                        
 
@@ -189,10 +179,7 @@ public class AdministradorJuego extends javax.swing.JFrame {
     private practicamp.EdicionEquipo edicionEquipo;
     private practicamp.PantallaRanking pantallaRanking;
     private practicamp.PantallaBaneo pantallaBaneo;
-<<<<<<< Updated upstream
-=======
     private practicamp.PantallaHistorial pantallaHistorial;
->>>>>>> Stashed changes
     // End of variables declaration//GEN-END:variables
 }
 

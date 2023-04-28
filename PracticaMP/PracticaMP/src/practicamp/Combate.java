@@ -451,15 +451,7 @@ public class Combate {
             desafio.establecerGanador(jugador2);
         }
 
-<<<<<<< Updated upstream
-        desafio.setAHistorial("[!] => TOTAL RONDAS: " + ronda);
-        
-        for (String linea: desafio.getHistorial()){
-            System.out.println(linea);
-        }
-=======
         desafio.setAHistorial("[!] => TOTAL RONDAS: " + ronda + "\n");
->>>>>>> Stashed changes
     }
 
     private String printEsbirros(List<Esbirro> esbirrosP2, Desafio desafio) {
