@@ -107,13 +107,13 @@ public class PantallaHistorial extends javax.swing.JPanel {
         Usuario currentUser = almacen.getUsuarioActivo();
         List<Desafio> historiales = currentUser.getHistorial();
         DefaultListModel dlm = new DefaultListModel();
-        listaHistoriales.setModel(dlm);
         Iterator it = historiales.iterator();
         while (it.hasNext()) {
             Desafio desafio = (Desafio) it.next();
             dlm.addElement(desafio.getDesafiante().getNick() + " ( " + desafio.getDesafiante().getTipoPersonaje() + " ) -> " + desafio.getDesafiado().getNick() +" ( " + desafio.getDesafiado().getTipoPersonaje() + " )");
         }
         listaHistoriales.setSelectedIndex(0);
+        listaHistoriales.setModel(dlm);
     }//GEN-LAST:event_formComponentShown
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
@@ -124,17 +124,18 @@ public class PantallaHistorial extends javax.swing.JPanel {
 
     private void listaHistorialesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaHistorialesValueChanged
         areaTextoHistorial.setText("");
-        AdministradorJuego admin = (AdministradorJuego) getParent().getParent().getParent().getParent();
-        Almacen almacen = admin.getAlmacen();
-        Usuario currentUser = Almacen.getUsuarioActivo();
-        List<Desafio> historiales = currentUser.getHistorial();
-        List<String> currentHistory = historiales.get(listaHistoriales.getSelectedIndex()).getHistorial();
-        Iterator it = currentHistory.iterator();
-        while (it.hasNext()) {
-            String textoHistorial = (String) it.next();
-            areaTextoHistorial.append(textoHistorial);
+        if (!listaHistoriales.isSelectionEmpty()) {
+            AdministradorJuego admin = (AdministradorJuego) getParent().getParent().getParent().getParent();
+            Almacen almacen = admin.getAlmacen();
+            Usuario currentUser = Almacen.getUsuarioActivo();
+            List<Desafio> historiales = currentUser.getHistorial();
+            List<String> currentHistory = historiales.get(listaHistoriales.getSelectedIndex()).getHistorial();
+            Iterator it = currentHistory.iterator();
+            while (it.hasNext()) {
+                String textoHistorial = (String) it.next();
+                areaTextoHistorial.append(textoHistorial);
+            }
         }
-        
     }//GEN-LAST:event_listaHistorialesValueChanged
 
 
