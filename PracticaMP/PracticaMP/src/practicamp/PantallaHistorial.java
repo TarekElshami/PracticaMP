@@ -3,7 +3,7 @@
 package practicamp;
 
 import java.awt.CardLayout;
-import java.awt.Cursor;
+import java.awt.Font;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +23,7 @@ public class PantallaHistorial extends javax.swing.JPanel {
      */
     public PantallaHistorial() {
         initComponents();
+        areaTextoHistorial.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
     }
 
     /**

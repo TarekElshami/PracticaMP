@@ -1,16 +1,18 @@
 package practicamp;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JFrame;
+import java.util.Arrays;
+import javax.swing.UIManager;
 
 public class GameApp {
 
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         AdministradorJuego admin = new AdministradorJuego();
         admin.showGame();
 
@@ -20,7 +22,6 @@ public class GameApp {
 //        f.setSize(640, 480);
 //        f.add(p);
 //        f.setVisible(true);
-        
         /*
         //Esbirros cazador
         List<Esbirro> esbirros = new ArrayList<>();
@@ -314,6 +315,6 @@ public class GameApp {
         }
 
         Almacen a = new Almacen();
-        */
+         */
     }
 }
