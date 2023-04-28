@@ -427,6 +427,13 @@ public class Combate {
                 jugador2.addToHistorial(desafio);
                 Almacen.setUsuario(jugador1);
                 Almacen.setUsuario(jugador2);
+                if (personaje1.getSalud() == 0 && personaje2.getSalud() == 0) {
+                    desafio.setGanador(null);
+                } else if (personaje1.getSalud() == 0){
+                    desafio.setGanador(jugador2);
+                } else {
+                    desafio.setGanador(jugador1);
+                }
                 almacen.actualizarFicheroDesafios();
                 almacen.updateFiles();
             }
@@ -445,12 +452,15 @@ public class Combate {
         } else if (personaje1.getSalud() > personaje2.getSalud()) {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador1.getNick() + " con personaje : " + personaje1.getNombre() + "\n");
             desafio.establecerGanador(jugador1);
-
+            jugador1.setVictorias(1);
+            Ranking.agregarJugador(jugador1);
         } else if (personaje1.getSalud() < personaje2.getSalud()) {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador2.getNick() + " con personaje : " + personaje2.getNombre() + "\n");
             desafio.establecerGanador(jugador2);
+            jugador2.setVictorias(1);
+            Ranking.agregarJugador(jugador2);
         }
-
+        
         desafio.setAHistorial("[!] => TOTAL RONDAS: " + ronda + "\n");
     }
 

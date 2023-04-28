@@ -135,5 +135,14 @@ public class Usuario implements Serializable {
     public void setBaneado(boolean baneado) {
         this.baneado = baneado;
     }
+
+    public void setVictorias(int victorias) {
+        this.victorias += victorias;
+    }
+
+    public int getVictorias() {
+        return victorias;
+    }
               
+    
 }

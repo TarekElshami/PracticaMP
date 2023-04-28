@@ -72,8 +72,14 @@ public class Desafio implements Serializable {
     public List<String> getHistorial() {
         return historial;
     }
-    
-    
-    
+
+    public Usuario getGanador() {
+        return ganador;
+    }
+
+    public void setGanador(Usuario ganador) {
+        this.ganador = ganador;
+    }
+        
     
 }

@@ -127,15 +127,28 @@ public class Notificaciones extends javax.swing.JPanel {
         if (notificationList.getSelectedIndex() != -1) {
             Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());        
             Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();
+            Usuario u = Almacen.getUsuarioActivo();
+            u.restarOro(desafioSeleccionado.getOro());
             Combate newCombate = new Combate(almacen);
             try {
                 newCombate.iniciarCombate(desafioSeleccionado);
             } catch (IOException ex) {
                 Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
+            if (desafioSeleccionado.getGanador() != null){
+                desafioSeleccionado.getGanador().sumarOro(desafioSeleccionado.getOro()*2);
+            } else {
+                desafioSeleccionado.getDesafiado().sumarOro(desafioSeleccionado.getOro());
+                desafioSeleccionado.getDesafiante().sumarOro(desafioSeleccionado.getOro());
+            }
+            
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una notificación");
         }
+        Usuario usuario = Almacen.getUsuarioActivo();
+        this.notificaciones.remove(notificationList.getSelectedIndex());
+        usuario.setNotificaciones(this.notificaciones);
+
         boolean vacio = this.actualizarLista();
         if (vacio) {
             JPanel parent = (JPanel) getParent();
