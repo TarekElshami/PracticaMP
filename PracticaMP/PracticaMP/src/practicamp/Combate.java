@@ -222,7 +222,7 @@ public class Combate {
                 candidato.setSalud(candidato.getSalud() - 1); //PEGAR
 
                 desafio.setAHistorial("   |---> Se ataca al esbirro DEMONIO " + candidato.getNombre() + " SIN ESBIRROS ASOCIADOS\n");
-                
+
                 if (demonio.getSalud() < 1) { // si el esbirro en cuestión ya no tiene vida...
                     listaEsbirros.remove(candidato); // ...entonces lo eliminamos de la lista
 
@@ -422,53 +422,52 @@ public class Combate {
             ronda += 1;
             desafio.setAHistorial("\n");
             desafio.setAHistorial("\n");
-            if (personaje1.getSalud() == 0 || personaje2.getSalud() == 0) {
-                jugador1.addToHistorial(desafio);
-                jugador2.addToHistorial(desafio);
-                Almacen.setUsuario(jugador1);
-                Almacen.setUsuario(jugador2);
-                if (personaje1.getSalud() == 0 && personaje2.getSalud() == 0) {
-                    desafio.setGanador(null);
-                } else if (personaje1.getSalud() == 0){
-                    desafio.setGanador(jugador2);
-                } else {
-                    desafio.setGanador(jugador1);
-                }
-                almacen.actualizarFicheroDesafios();
-                almacen.updateFiles();
-            }
         } // Si se detiene el bucle es que alguno de los dos personajes han alcanzado 0 de vida, comprobaremos si es empate o veremos quien ganó
 
         desafio.setAHistorial("+----------------------------------------------------------------------+\n");
 
         desafio.setEstado(EstadoDesafio.acabado);
 
-        almacen.cargarPersonajes(); //Tenemos que recargar los personajes desde el fichero donde se encuentran con sus variables por defecto
-
         if (personaje1.getSalud() == personaje2.getSalud()) { // si ambos valores de salud son iguales = EMPATE
             desafio.setAHistorial("[!] EMPATE\n");
+            desafio.setGanador(null);
             //No se modifica el atributo ganador de desafio al empatar. En el historial se accederá al desafiante y desafiado
-
         } else if (personaje1.getSalud() > personaje2.getSalud()) {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador1.getNick() + " con personaje : " + personaje1.getNombre() + "\n");
-            desafio.establecerGanador(jugador1);
+            desafio.setGanador(jugador1);
             jugador1.setVictorias(1);
             //Ranking.agregarJugador(jugador1);
         } else if (personaje1.getSalud() < personaje2.getSalud()) {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador2.getNick() + " con personaje : " + personaje2.getNombre() + "\n");
-            desafio.establecerGanador(jugador2);
+            desafio.setGanador(jugador2);
             jugador2.setVictorias(1);
             //Ranking.agregarJugador(jugador2);
         }
-        
+
         desafio.setAHistorial("[!] => TOTAL RONDAS: " + ronda + "\n");
+
+        //Guardamos en la clase local los nuevos estados de los usuarios batidos en combate
+        Almacen.setUsuario(jugador1);
+        Almacen.setUsuario(jugador2);
+
+        //Almacenaje del desafio finalizado en el historial de cada jugador
+        jugador1.addToHistorial(desafio);
+        jugador2.addToHistorial(desafio);
+
+        //Actualizacion del fichero de desafios
+        almacen.actualizarFicheroDesafios();
+        almacen.updateFiles();
+
+        //Restablecimiento de personajes
+        almacen.cargarPersonajes(); //Tenemos que recargar los personajes desde el fichero donde se encuentran con sus variables por defecto
+
     }
 
     private String printEsbirros(List<Esbirro> esbirrosP2, Desafio desafio) {
         List<String> toPrint = new ArrayList<>();
 
         for (Esbirro esbirro : esbirrosP2) {
-            toPrint.add((esbirro.getNombre()) + " (" + "Tipo: " + esbirro.getClass().getSimpleName() + ", Salud: " + esbirro.getSalud() + ")" + "\n");
+            toPrint.add((esbirro.getNombre()) + " (" + "Tipo: " + esbirro.getClass().getSimpleName() + ", Salud: " + esbirro.getSalud() + ")");
         }
 
         return (toPrint.toString());
