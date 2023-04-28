@@ -44,8 +44,18 @@ public class MenuOperador extends javax.swing.JPanel {
         });
 
         jButton2.setText("Banear usuarios");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Desbanear usuarios");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         btnEditarPersonaje.setText("Editar personaje");
         btnEditarPersonaje.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +118,18 @@ public class MenuOperador extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuSeleccionPersonaje");
     }//GEN-LAST:event_btnEditarPersonajeActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "pantallaBaneo");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JPanel parent = (JPanel) getParent();
+        CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "pantallaBaneo");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

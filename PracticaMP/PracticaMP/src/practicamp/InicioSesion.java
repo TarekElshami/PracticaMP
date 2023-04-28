@@ -250,13 +250,19 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         boolean[] res = verificarDatos(fieldNick.getText(), String.valueOf(fieldContrasena.getPassword()));
         if (res[0] && res[1]) {
             JPanel parent = (JPanel) getParent();
-            Almacen.setUsuarioActivo(this.indexUsuario);
-            this.desafios.actualizatList();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            if (Almacen.getUsuarioActivo().getRol() != Rol.admin){//(alvaro) he cambiado esto provisionalmente
-                cl.show(parent, "menuUsuario");
-            } else{
-                cl.show(parent, "menuOperador");
+            if (!Almacen.getUsuarios().get(this.indexUsuario).isBaneado()){
+                Almacen.setUsuarioActivo(this.indexUsuario);
+                this.desafios.actualizatList();
+                CardLayout cl = (CardLayout) parent.getLayout();
+                if (Almacen.getUsuarioActivo().getRol() != Rol.admin){//(alvaro) he cambiado esto provisionalmente
+                    cl.show(parent, "menuUsuario");
+                } else{
+                    cl.show(parent, "menuOperador");
+                } 
+            }else {
+                JOptionPane errorPane = new JOptionPane();
+                errorPane.showMessageDialog(this, "Pongale las quejas al operador", "Estas baneado", JOptionPane.ERROR_MESSAGE);
+                errorPane.setOptionType(JOptionPane.DEFAULT_OPTION);       
             }
         } else {
             mostrarMensaje(res);
