@@ -65,12 +65,12 @@ public class AdministradorJuego extends javax.swing.JFrame {
         menuPrincipal = new practicamp.MenuInicial();
         try {
             desafios = new practicamp.Desafios(almacen);
-            notificaciones = new practicamp.Notificaciones(almacen);
-            eleccionEquipo = new practicamp.EleccionEquipo();
+            eleccionEquipo = new practicamp.EleccionEquipo(this);
+            notificaciones = new practicamp.Notificaciones(almacen, eleccionEquipo);
             pantallaRanking = new practicamp.PantallaRanking();
             pantallaBaneo = new practicamp.PantallaBaneo(almacen);
             pantallaHistorial = new practicamp.PantallaHistorial();
-            inicioSesion = new practicamp.InicioSesion(almacen,desafios);
+            inicioSesion = new practicamp.InicioSesion(almacen, desafios);
             edicionModificadores = new practicamp.EdicionModificadores();
             edicionEquipo = new practicamp.EdicionEquipo();
             menuUsuario = new practicamp.MenuUsuario(notificaciones, almacen, eleccionEquipo, pantallaRanking);

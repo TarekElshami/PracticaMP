@@ -20,6 +20,7 @@ public class Almacen {
     private static List<Armadura> armaduras;
     private static List<Arma> armas;
     private static List<Modificador> modificadores;
+    private static boolean inNot = false;
 
     public Almacen() throws IOException, FileNotFoundException, ClassNotFoundException {
         this.cargarDatos();
@@ -234,6 +235,14 @@ public class Almacen {
 
     public static int getIndexUsuarioActivo(){
         return Almacen.usuarioActivo;
+    }
+
+    public static boolean isInNot() {
+        return inNot;
+    }
+
+    public static void setInNot(boolean inNot) {
+        Almacen.inNot = inNot;
     }
     
     public static int buscarUsuario(Usuario usuarioBusc){

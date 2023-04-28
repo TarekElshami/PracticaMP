@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,11 +16,12 @@ public class EleccionEquipo extends javax.swing.JPanel {
     private Armadura armadura;
     private boolean esArma;
     private int manosDisponibles;
+    private AdministradorJuego admin;
 
     
-    public EleccionEquipo() {
+    public EleccionEquipo(AdministradorJuego admin) {
         initComponents();
-        
+        this.admin = admin;
     }
     
     public void actualizarLista(String nombrePersonaje, boolean esArma){
@@ -87,8 +89,7 @@ public class EleccionEquipo extends javax.swing.JPanel {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
 
         jPanel1 = new javax.swing.JPanel();
         etiqArmas = new javax.swing.JLabel();
@@ -97,8 +98,9 @@ public class EleccionEquipo extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         armadurasList = new javax.swing.JList<>();
         btnVolver = new javax.swing.JButton();
-        btnConfiramar = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
         etiqArmaduras = new javax.swing.JLabel();
+
 
         etiqArmas.setText("Eleccion Armas");
 
@@ -128,10 +130,10 @@ public class EleccionEquipo extends javax.swing.JPanel {
             }
         });
 
-        btnConfiramar.setText("Confirmar");
-        btnConfiramar.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiramarActionPerformed(evt);
+                btnConfirmarActionPerformed(evt);
             }
         });
 
@@ -151,7 +153,7 @@ public class EleccionEquipo extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnConfiramar)))
+                        .addComponent(btnConfirmar)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
@@ -174,7 +176,7 @@ public class EleccionEquipo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver)
-                    .addComponent(btnConfiramar))
+                    .addComponent(btnConfirmar))
                 .addGap(26, 26, 26))
         );
 
@@ -192,15 +194,19 @@ public class EleccionEquipo extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "menuUsuario");
+        if (!Almacen.isInNot()) {
+            cl.show(parent, "menuUsuario");
+        } else {
+            cl.show(parent, "notificaciones");
+        }
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnConfiramarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiramarActionPerformed
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         if (!this.armasSeleccionadas.isEmpty() && esArma){
             Almacen.getUsuarioActivo().setArmasActivas(this.armasSeleccionadas);
         } else if(this.armadura != null && !esArma){
@@ -208,8 +214,12 @@ public class EleccionEquipo extends javax.swing.JPanel {
         } 
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "menuUsuario");
-    }//GEN-LAST:event_btnConfiramarActionPerformed
+        if (!Almacen.isInNot()) {
+            cl.show(parent, "menuUsuario");
+        } else {
+            cl.show(parent, "notificaciones");
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
    
     
@@ -266,7 +276,7 @@ public class EleccionEquipo extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> armadurasList;
     private javax.swing.JList<String> armasList;
-    private javax.swing.JButton btnConfiramar;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel etiqArmaduras;
     private javax.swing.JLabel etiqArmas;

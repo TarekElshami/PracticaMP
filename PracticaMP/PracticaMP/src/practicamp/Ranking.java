@@ -54,7 +54,6 @@ public class Ranking {
         int indexPos = 0;
         for (Jugador j : listaJugadores) {
             if(j.getNombre().equals(jugador.getNombre())){
-                System.out.println("eliminar");
                 listaJugadores.remove(index);
             }
             if (jugador.getVictorias() < j.getVictorias()) {
