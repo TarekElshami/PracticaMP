@@ -130,7 +130,7 @@ public class MenuOperador extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "pantallaBaneo");
+        cl.show(parent, "menuPrincipal");
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
