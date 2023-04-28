@@ -192,9 +192,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
                     try {
                         int numero = Integer.parseInt(valorIntroducido);
                         valorNumerico = numero; // asignar el valor numérico a la variable
-                        System.out.println("El número introducido es: " + numero);
                     } catch (NumberFormatException e) {
-                        System.out.println("La entrada no es un número entero válido.");
+                        javax.swing.JOptionPane.showMessageDialog(this, "La entrada no es un número entero válido.");
                     }
                 }
             } else {
@@ -202,9 +201,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
                 try {
                     int numero = Integer.parseInt(valorIntroducido);
                     valorNumerico = numero; // asignar el valor numérico a la variable
-                    System.out.println("El número introducido es: " + numero);
                 } catch (NumberFormatException e) {
-                    System.out.println("La entrada no es un número entero válido.");
+                    javax.swing.JOptionPane.showMessageDialog(this, "La entrada no es un número entero válido.");
                 }
             }
 
@@ -245,9 +243,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
                     try {
                         int numero = Integer.parseInt(valorIntroducido);
                         valorNumerico = numero; // asignar el valor numérico a la variable
-                        System.out.println("El número introducido es: " + numero);
                     } catch (NumberFormatException e) {
-                        System.out.println("La entrada no es un número entero válido.");
+                        javax.swing.JOptionPane.showMessageDialog(this, "La entrada no es un número entero válido.");
                     }
                 }
             } else {
@@ -255,9 +252,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
                 try {
                     int numero = Integer.parseInt(valorIntroducido);
                     valorNumerico = numero; // asignar el valor numérico a la variable
-                    System.out.println("El número introducido es: " + numero);
                 } catch (NumberFormatException e) {
-                    System.out.println("La entrada no es un número entero válido.");
+                    javax.swing.JOptionPane.showMessageDialog(this, "La entrada no es un número entero válido.");
                 }
             }
 
@@ -325,7 +321,6 @@ public class EdicionModificadores extends javax.swing.JPanel {
             objectOut.writeObject(Almacen.getPersonajes());
             objectOut.close();
             fileOut.close();
-            System.out.println("Los cambios se han guardado correctamente en el archivo personajes.dat");
         } catch (IOException e) {
             e.printStackTrace();
         }

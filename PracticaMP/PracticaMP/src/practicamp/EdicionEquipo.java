@@ -190,15 +190,9 @@ public class EdicionEquipo extends javax.swing.JPanel {
                 item = item.replace("<font color='green'>", "");
                 item = item.replace("</font>", "");
                 this.armasPersonaje.remove(armaEscogida);
-                /*for (Arma objeto : armasPersonaje) {
-                    System.out.println(objeto.getNombre());
-                }*/
             } else {
                 item = "<html><font color='green'>" + item + "</font></html>";
                 this.armasPersonaje.add(armaEscogida);
-                /*for (Arma objeto : armasPersonaje) {
-                    System.out.println(objeto.getNombre());
-                }*/
             }
             DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
             model.setElementAt(item, index);
@@ -216,15 +210,9 @@ public class EdicionEquipo extends javax.swing.JPanel {
                 item = item.replace("<font color='green'>", "");
                 item = item.replace("</font>", "");
                 this.armadurasPersonaje.remove(armaduraEscogida);
-                /*for (Armadura objeto : armadurasPersonaje) {
-                    System.out.println(objeto.getNombre());
-                }*/
             } else {
                 item = "<html><font color='green'>" + item + "</font></html>";
                 this.armadurasPersonaje.add(armaduraEscogida);
-                /*for (Armadura objeto : armadurasPersonaje) {
-                    System.out.println(objeto.getNombre());
-                }*/
             }
             DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
             model.setElementAt(item, index);
