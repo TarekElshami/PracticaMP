@@ -1,51 +1,54 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PantallaBaneo extends javax.swing.JPanel {
     
-    private List<Usuario> usuarios;
+    private Almacen almacen;
     
-    public PantallaBaneo() {
+    public PantallaBaneo(Almacen almacen) {
+        this.almacen = almacen;
         initComponents();
-        List<Usuario> usuarios = Almacen.getUsuarios();
-        this.usuarios = usuarios;
         this.actualizarList();
     }
 
-    private void actualizarList(){
+    public void actualizarList(){
 
         DefaultListModel<String> model = new DefaultListModel<>();
 
-        for (Usuario usuario : usuarios) {
+        for (Usuario usuario : Almacen.getUsuarios()) {
             if (usuario.isBaneado()) {
                 model.addElement("<html><font color='red'>" + usuario.getNick() + "</font></html>");
-            } else {
+            } else if (usuario.getRol()!= Rol.admin){
                 model.addElement(usuario.getNick());
             }
         }
-        jList1.setModel(model);
+        baneosList.setModel(model);
     }
     
     @SuppressWarnings("unchecked")
-    private void initComponents() {//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        baneosList = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+        baneosList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
+                baneosListMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(baneosList);
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -100,23 +103,31 @@ public class PantallaBaneo extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-          int index = jList1.getSelectedIndex();
-          Usuario u = this.usuarios.get(index);
-          String texto = jList1.getSelectedValue();
-          if (texto.startsWith("<html>")) { // Es un usuario baneado
-              u.setBaneado(false);
-          } else { // Banear usuario  
-              int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea banear al usuario?");
-              if (respuesta == JOptionPane.YES_OPTION) {
-                  u.setBaneado(true);
-              }
-          }
+    private void baneosListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baneosListMouseClicked
+        int index = baneosList.getSelectedIndex();
+        Usuario u = Almacen.getUsuarios().get(index);
+        String texto = baneosList.getSelectedValue();
+        if (texto.startsWith("<html>")) { // Es un usuario baneado
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro?");
+            if (respuesta == JOptionPane.YES_OPTION) {
+                u.setBaneado(false);
+            }
+        } else { // Banear usuario  
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea banear al usuario?");
+            if (respuesta == JOptionPane.YES_OPTION) {
+                u.setBaneado(true);
+            }
+        }
+        try {
+            this.almacen.updateFiles();
+        } catch (IOException ex) {
+            Logger.getLogger(PantallaBaneo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.actualizarList();
         
-    }//GEN-LAST:event_jList1MouseClicked
+    }//GEN-LAST:event_baneosListMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JPanel parent = (JPanel) getParent();
@@ -126,9 +137,9 @@ public class PantallaBaneo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> baneosList;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
