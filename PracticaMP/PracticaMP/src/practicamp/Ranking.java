@@ -51,13 +51,18 @@ public class Ranking {
     }
     public static void agregarJugador(Jugador jugador) throws IOException {
         int index = 0;
+        int indexPos = 0;
         for (Jugador j : listaJugadores) {
-            if (jugador.getVictorias() > j.getVictorias()) {
-                break;
+            if(j.getNombre().equals(jugador.getNombre())){
+                System.out.println("eliminar");
+                listaJugadores.remove(index);
+            }
+            if (jugador.getVictorias() < j.getVictorias()) {
+                indexPos++;
             }
             index++;
         }
-        listaJugadores.add(index, jugador);
+        listaJugadores.add(indexPos, jugador);
         if (listaJugadores.size() > 10) {
             listaJugadores.removeLast();
         }

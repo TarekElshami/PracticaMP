@@ -143,6 +143,9 @@ public class Usuario implements Serializable {
     public int getVictorias() {
         return victorias;
     }
-              
+    
+    public void sumarVictoria(){
+        this.victorias += 1;
+    }
     
 }

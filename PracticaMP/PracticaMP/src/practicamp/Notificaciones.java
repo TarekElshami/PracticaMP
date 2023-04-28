@@ -101,9 +101,9 @@ public class Notificaciones extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRechazar, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -135,11 +135,19 @@ public class Notificaciones extends javax.swing.JPanel {
             } catch (IOException ex) {
                 Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(desafioSeleccionado.getGanador().getNick());
             if (desafioSeleccionado.getGanador() != null){
                 int index = Almacen.buscarUsuario(desafioSeleccionado.getGanador());
                 System.out.println(desafioSeleccionado.getOro());
                 Almacen.getUsuarios().get(index).sumarOro(desafioSeleccionado.getOro()*2);
+                System.out.println("vic1 : "+Almacen.getUsuarios().get(index).getVictorias());
+                Almacen.getUsuarios().get(index).sumarVictoria();
+                System.out.println("vic2 : "+Almacen.getUsuarios().get(index).getVictorias());
+                Jugador nuevoJugador = new Jugador(desafioSeleccionado.getGanador().getNick(),Almacen.getUsuarios().get(index).getVictorias());
+                try {
+                    Ranking.agregarJugador(nuevoJugador);
+                } catch (IOException ex) {
+                    Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 System.out.println(Almacen.getUsuarios().get(index).getNick());
                 System.out.println(Almacen.getUsuarios().get(index).getOro());
             } else {
