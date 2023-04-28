@@ -236,4 +236,12 @@ public class Almacen {
         return Almacen.usuarioActivo;
     }
     
+    public static int buscarUsuario(Usuario usuarioBusc){
+        int i = 0;
+        while (!usuarioBusc.getNick().equals(Almacen.getUsuarios().get(i).getNick())){
+            i += 1;
+        }
+        return i;    
+    }
+    
 }

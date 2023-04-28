@@ -135,11 +135,18 @@ public class Notificaciones extends javax.swing.JPanel {
             } catch (IOException ex) {
                 Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
+            System.out.println(desafioSeleccionado.getGanador().getNick());
             if (desafioSeleccionado.getGanador() != null){
-                desafioSeleccionado.getGanador().sumarOro(desafioSeleccionado.getOro()*2);
+                int index = Almacen.buscarUsuario(desafioSeleccionado.getGanador());
+                System.out.println(desafioSeleccionado.getOro());
+                Almacen.getUsuarios().get(index).sumarOro(desafioSeleccionado.getOro()*2);
+                System.out.println(Almacen.getUsuarios().get(index).getNick());
+                System.out.println(Almacen.getUsuarios().get(index).getOro());
             } else {
-                desafioSeleccionado.getDesafiado().sumarOro(desafioSeleccionado.getOro());
-                desafioSeleccionado.getDesafiante().sumarOro(desafioSeleccionado.getOro());
+                int indexAdo = Almacen.buscarUsuario(desafioSeleccionado.getDesafiado());
+                int indexAnte = Almacen.buscarUsuario(desafioSeleccionado.getDesafiante());
+                Almacen.getUsuarios().get(indexAdo).sumarOro(desafioSeleccionado.getOro());
+                Almacen.getUsuarios().get(indexAnte).sumarOro(desafioSeleccionado.getOro());
             }
             
         } else {
