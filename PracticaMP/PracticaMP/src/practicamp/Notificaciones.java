@@ -171,12 +171,14 @@ public class Notificaciones extends javax.swing.JPanel {
             }
             if (desafioSeleccionado.getGanador() != null) {
                 int index = Almacen.buscarUsuario(desafioSeleccionado.getGanador());
-                Almacen.getUsuarios().get(index).sumarOro(desafioSeleccionado.getOro() * 2);
+                System.out.println(desafioSeleccionado.getOro());
+                Almacen.getUsuarios().get(index).setOro(Almacen.getUsuarios().get(index).getOro() + desafioSeleccionado.getOro() * 2);
                 Almacen.getUsuarios().get(index).sumarVictoria();
                 Jugador nuevoJugador = new Jugador(desafioSeleccionado.getGanador().getNick(), Almacen.getUsuarios().get(index).getVictorias());
                 try {
                     Ranking.agregarJugador(nuevoJugador);
                 } catch (IOException ex) {
+                    System.out.println("hola");
                     Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {

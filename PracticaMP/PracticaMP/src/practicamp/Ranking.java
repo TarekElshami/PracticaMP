@@ -8,9 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+
 
 
 public class Ranking {
@@ -36,7 +35,7 @@ public class Ranking {
         output.writeObject(Ranking.listaJugadores);
         output.close();
         if (Ranking.listaJugadores == null) {
-            Ranking.listaJugadores = new LinkedList<Jugador>();
+            Ranking.listaJugadores = new LinkedList<>();
         }
     }
 
@@ -45,7 +44,7 @@ public class Ranking {
         ObjectInputStream input = new ObjectInputStream(usersFile);
         Ranking.listaJugadores = (LinkedList<Jugador>) input.readObject();
         if (Ranking.listaJugadores == null) {
-            Ranking.listaJugadores = new LinkedList<Jugador>();
+            Ranking.listaJugadores = new LinkedList<>();
         }
         input.close();
     }
