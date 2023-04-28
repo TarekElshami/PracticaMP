@@ -134,6 +134,8 @@ public class Notificaciones extends javax.swing.JPanel {
                 newCombate.iniciarCombate(desafioSeleccionado);
             } catch (IOException ex) {
                 Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (desafioSeleccionado.getGanador() != null){
                 int index = Almacen.buscarUsuario(desafioSeleccionado.getGanador());
