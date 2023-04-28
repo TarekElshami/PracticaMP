@@ -250,7 +250,7 @@ public class Combate {
 
     }
 
-    public void iniciarCombate(Desafio desafio) throws IOException {
+    public void iniciarCombate(Desafio desafio) throws IOException, CloneNotSupportedException {
 
         Random random = new Random();
 
@@ -263,13 +263,13 @@ public class Combate {
         // Obtencion de cada personaje
         for (Personaje pj1 : almacen.getPersonajes()) {
             if (pj1.getNombre().equals(jugador1.getTipoPersonaje())) {
-                personaje1 = pj1;
+                personaje1 = pj1.clone();
             }
         }
 
         for (Personaje pj2 : almacen.getPersonajes()) {
             if (pj2.getNombre().equals(jugador2.getTipoPersonaje())) {
-                personaje2 = pj2;
+                personaje2 = pj2.clone();
             }
         }
 

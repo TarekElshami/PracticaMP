@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
-public class Personaje implements Serializable {
+public class Personaje implements Serializable, Cloneable {
     
 
     private String nombre;
@@ -56,6 +56,10 @@ public class Personaje implements Serializable {
         this.armas.remove(arma);
     }
 
+    public Personaje clone() throws CloneNotSupportedException {
+        return (Personaje) super.clone();
+    }
+    
     public boolean activarArma(Arma arma, List<Arma> armaActiva) {
         if (armaActiva.size() == 2) {
             JOptionPane.showMessageDialog(null, "Ya tienes dos armas de una mano, no puedes equipar más armas", "Error", JOptionPane.ERROR_MESSAGE);

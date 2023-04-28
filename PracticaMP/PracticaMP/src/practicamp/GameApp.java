@@ -1,8 +1,12 @@
 package practicamp;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.UIManager;
 
 public class GameApp {
@@ -15,13 +19,7 @@ public class GameApp {
         }
         AdministradorJuego admin = new AdministradorJuego();
         admin.showGame();
-
-//        Almacen a = new Almacen();
-//        PantallaBaneo p = new PantallaBaneo();
-//        JFrame f = new JFrame();
-//        f.setSize(640, 480);
-//        f.add(p);
-//        f.setVisible(true);
+        
         /*
         //Esbirros cazador
         List<Esbirro> esbirros = new ArrayList<>();
