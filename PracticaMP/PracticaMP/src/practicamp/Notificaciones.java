@@ -124,15 +124,24 @@ public class Notificaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());        
-        Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();
-//        Combate newCombate = new Combate(almacen);
-//        try {
-//            newCombate.iniciarCombate(desafioSeleccionado);
-//        } catch (IOException ex) {
-//            Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
+        if (notificationList.getSelectedIndex() != -1) {
+            Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());        
+            Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();
+            Combate newCombate = new Combate(almacen);
+            try {
+                newCombate.iniciarCombate(desafioSeleccionado);
+            } catch (IOException ex) {
+                Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una notificación");
+        }
+        boolean vacio = this.actualizarLista();
+        if (vacio) {
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "menuUsuario");
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
