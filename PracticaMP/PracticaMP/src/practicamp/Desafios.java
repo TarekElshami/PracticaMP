@@ -145,7 +145,7 @@ public class Desafios extends javax.swing.JPanel {
                     
                     // Deducimos el oro del desafiante
                     Usuario desafiante = Almacen.getUsuarioActivo();
-                    if ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmasActivas().size() != 0) && ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmaduraActiva() != null))) {
+//                    if ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmasActivas().size() != 0) && ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmaduraActiva() != null))) {
                         desafiante.setOro(desafiante.getOro() - oroApostado);
                     
                         Desafio newDesafio = new Desafio(Almacen.getUsuarioActivo(), this.almacen.getContrincante(contrincante), oroApostado);
@@ -168,9 +168,9 @@ public class Desafios extends javax.swing.JPanel {
                         JPanel parent = (JPanel) getParent();
                         CardLayout cl = (CardLayout) parent.getLayout();
                         cl.show(parent, "menuUsuario");
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Este contrincante no tiene armas o armaduras equipadas");
-                    }
+//                    } else {
+//                        javax.swing.JOptionPane.showMessageDialog(this, "Este contrincante no tiene armas o armaduras equipadas");
+//                    }
                 } else if (userList.getSelectedIndex() == -1){
                     javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un contrincante");
                 } else if(oroApostado > this.oro){
