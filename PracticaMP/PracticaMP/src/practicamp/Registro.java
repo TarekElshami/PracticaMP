@@ -308,7 +308,6 @@ public class Registro extends javax.swing.JPanel implements Serializable {
         nuevoUsuario.setRol(rolSeleccionado);
         if(rolSeleccionado == Rol.jugador){
             String id = generarId();
-            System.out.println(id);
             nuevoUsuario.setId(id);
             Jugador nuevoJugador  = new Jugador(fieldNick.getText(),0);
             try {

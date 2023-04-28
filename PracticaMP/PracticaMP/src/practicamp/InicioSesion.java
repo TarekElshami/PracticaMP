@@ -1,15 +1,9 @@
 package practicamp;
 
 import java.awt.CardLayout;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -250,6 +244,7 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         boolean[] res = verificarDatos(fieldNick.getText(), String.valueOf(fieldContrasena.getPassword()));
         if (res[0] && res[1]) {
             JPanel parent = (JPanel) getParent();
+<<<<<<< Updated upstream
             if (!Almacen.getUsuarios().get(this.indexUsuario).isBaneado()){
                 Almacen.setUsuarioActivo(this.indexUsuario);
                 this.desafios.actualizatList();
@@ -263,6 +258,15 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
                 JOptionPane errorPane = new JOptionPane();
                 errorPane.showMessageDialog(this, "Pongale las quejas al operador", "Estas baneado", JOptionPane.ERROR_MESSAGE);
                 errorPane.setOptionType(JOptionPane.DEFAULT_OPTION);       
+=======
+            Almacen.setUsuarioActivo(this.indexUsuario);
+            this.desafios.actualizarList();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            if (Almacen.getUsuarioActivo().getRol() != Rol.admin){
+                cl.show(parent, "menuUsuario");
+            } else{
+                cl.show(parent, "menuOperador");
+>>>>>>> Stashed changes
             }
         } else {
             mostrarMensaje(res);

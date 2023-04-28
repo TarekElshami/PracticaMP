@@ -5,7 +5,10 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
@@ -123,9 +126,19 @@ public class Notificaciones extends javax.swing.JPanel {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());        
+<<<<<<< Updated upstream
         Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();
         this.combate.DEBUG_Initialize_Players(desafioSeleccionado);
         this.combate.iniciarCombate(desafioSeleccionado);
+=======
+        Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();;
+        Combate newCombate = new Combate(almacen);
+        try {
+            newCombate.iniciarCombate(desafioSeleccionado);
+        } catch (IOException ex) {
+            Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+>>>>>>> Stashed changes
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 

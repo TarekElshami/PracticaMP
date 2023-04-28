@@ -37,25 +37,17 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="practicamp.InicioSesion" name="inicioSesion">
+    <Container class="practicamp.PantallaBaneo" name="pantallaBaneo">
       <Properties>
-        <Property name="name" type="java.lang.String" value="inicioSesion" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="pantallaBaneo" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="card4"/>
+          <CardConstraints cardName="card3"/>
         </Constraint>
       </Constraints>
-    </Component>
-    <Component class="practicamp.Registro" name="registro">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="registro" noResource="true"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="card4"/>
-        </Constraint>
-      </Constraints>
-    </Component>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+    </Container>
   </SubComponents>
 </Form>

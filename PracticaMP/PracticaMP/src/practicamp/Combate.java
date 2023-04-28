@@ -1,5 +1,6 @@
 package practicamp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -220,36 +221,36 @@ public class Combate {
             if (demonio.getEsbirros().isEmpty()) { // ...pero no tiene esbirros, le pego
                 candidato.setSalud(candidato.getSalud() - 1); //PEGAR
 
-                desafio.setAHistorial("   |---> Se ataca al esbirro DEMONIO " + candidato.getNombre() + " SIN ESBIRROS ASOCIADOS");
-
+                desafio.setAHistorial("   |---> Se ataca al esbirro DEMONIO " + candidato.getNombre() + " SIN ESBIRROS ASOCIADOS\n");
+                
                 if (demonio.getSalud() < 1) { // si el esbirro en cuestión ya no tiene vida...
                     listaEsbirros.remove(candidato); // ...entonces lo eliminamos de la lista
 
-                    desafio.setAHistorial("  [!] El esbirro " + candidato.getNombre() + " ha muerto");
+                    desafio.setAHistorial("  [!] El esbirro " + candidato.getNombre() + " ha muerto\n");
                 }
             } else { // Si tiene lista de esbirros, vuelvo a entrar aqui (CASO RECURSIVO)
                 List<Esbirro> esbirrosDemonio = demonio.getEsbirros(); // obtengo su lista de esbirros
 
-                desafio.setAHistorial("  [?] El esbirro " + candidato.getNombre() + " es un DEMONIO CON ESBIRROS ASOCIADOS: ");
-                desafio.setAHistorial("   |- ESBIRROS DEL DEMONIO " + candidato.getNombre() + ": " + printEsbirros(esbirrosDemonio, desafio));
+                desafio.setAHistorial("  [?] El esbirro " + candidato.getNombre() + " es un DEMONIO CON ESBIRROS ASOCIADOS: \n");
+                desafio.setAHistorial("   |- ESBIRROS DEL DEMONIO " + candidato.getNombre() + ": " + printEsbirros(esbirrosDemonio, desafio) + "\n");
 
                 atacarEsbirro(esbirrosDemonio, esbirrosDemonio.size() - 1, desafio); // ataco al esbirro que toque
             }
         } else { // Si no es un demonio (CASO BASE)
             candidato.setSalud(candidato.getSalud() - 1); //PEGAR
 
-            desafio.setAHistorial("      |---> Se ataca al esbirro " + candidato.getNombre());
+            desafio.setAHistorial("      |---> Se ataca al esbirro " + candidato.getNombre() + "\n");
 
             if (candidato.getSalud() < 1) { // si el esbirro en cuestión ya no tiene vida...
                 listaEsbirros.remove(candidato); // ...entonces lo eliminamos de la lista
 
-                desafio.setAHistorial("  [!] El esbirro " + candidato.getNombre() + " ha muerto");
+                desafio.setAHistorial("  [!] El esbirro " + candidato.getNombre() + " ha muerto\n");
             }
         }
 
     }
 
-    public void iniciarCombate(Desafio desafio) {
+    public void iniciarCombate(Desafio desafio) throws IOException {
 
         Random random = new Random();
 
@@ -277,184 +278,195 @@ public class Combate {
 
         int ronda = 0;
 
-        desafio.setAHistorial("-]--> COMBATE - (" + jugador1.getNick() + " vs. " + jugador2.getNick() + ") -> (" + personaje1.getNombre() + " vs. " + personaje2.getNombre() + ") <--[-");
+        desafio.setAHistorial("-]--> COMBATE - (" + jugador1.getNick() + " vs. " + jugador2.getNick() + ") -> (" + personaje1.getNombre() + " vs. " + personaje2.getNombre() + ") <--[-\n");
         desafio.setAHistorial("");
         // el bucle de cálculo de potenciales de ataque y defensa se repetira hasta que alguno de los dos jugadores quede con 0 de vida
         while (personaje1.getSalud() > 0 && personaje2.getSalud() > 0) {
 
             //curso del combate
-            desafio.setAHistorial("+ RONDA " + (ronda + 1) + " -------------------------------------------------------------+");
+            desafio.setAHistorial("+ RONDA " + (ronda + 1) + " -------------------------------------------------------------+\n");
             desafio.setAHistorial("");
-            desafio.setAHistorial("  -) Vida jugador " + jugador1.getNick() + ": " + personaje1.getSalud());
-            desafio.setAHistorial("  -) Vida jugador " + jugador2.getNick() + ": " + personaje2.getSalud());
+            desafio.setAHistorial("  -) Vida jugador " + jugador1.getNick() + ": " + personaje1.getSalud() + "\n");
+            desafio.setAHistorial("  -) Vida jugador " + jugador2.getNick() + ": " + personaje2.getSalud() + "\n");
 
             desafio.setAHistorial("");
-            desafio.setAHistorial("  -----------------------------------------");
+            desafio.setAHistorial("  -----------------------------------------\n");
 
             // Calculo del potencial de ataque
             int potAtaqueJ1 = this.calcularPotencialPersonaje(personaje1, jugador1, true, desafio);
-            desafio.setAHistorial("  - Potencial de ataque de " + jugador1.getNick() + ": " + potAtaqueJ1);
+            desafio.setAHistorial("  - Potencial de ataque de " + jugador1.getNick() + ": " + potAtaqueJ1 + "\n");
             int potAtaqueJ2 = this.calcularPotencialPersonaje(personaje2, jugador2, true, desafio);
-            desafio.setAHistorial("  - Potencial de ataque de " + jugador2.getNick() + ": " + potAtaqueJ2);
+            desafio.setAHistorial("  - Potencial de ataque de " + jugador2.getNick() + ": " + potAtaqueJ2 + "\n");
 
-            desafio.setAHistorial("  -----------------------------------------");
+            desafio.setAHistorial("  -----------------------------------------\n");
 
             // Calculo del potencial de defensa
             int potDefensaJ1 = this.calcularPotencialPersonaje(personaje1, jugador1, false, desafio);
-            desafio.setAHistorial("  - Potencial de defensa de " + jugador1.getNick() + ": " + potDefensaJ1);
+            desafio.setAHistorial("  - Potencial de defensa de " + jugador1.getNick() + ": " + potDefensaJ1 + "\n");
             int potDefensaJ2 = this.calcularPotencialPersonaje(personaje2, jugador2, false, desafio);
-            desafio.setAHistorial("  - Potencial de defensa de " + jugador2.getNick() + ": " + potDefensaJ2);
+            desafio.setAHistorial("  - Potencial de defensa de " + jugador2.getNick() + ": " + potDefensaJ2 + "\n");
 
-            desafio.setAHistorial("  -----------------------------------------");
+            desafio.setAHistorial("  -----------------------------------------\n");
 
             // Calculo del valor de ataque
             int ataqueJ1 = this.calcularAtaqueODefensa(potAtaqueJ1, random);
-            desafio.setAHistorial("  - ATAQUE de " + jugador1.getNick() + ": " + ataqueJ1);
+            desafio.setAHistorial("  - ATAQUE de " + jugador1.getNick() + ": " + ataqueJ1 + "\n");
             int ataqueJ2 = this.calcularAtaqueODefensa(potAtaqueJ2, random);
-            desafio.setAHistorial("  - ATAQUE de " + jugador2.getNick() + ": " + ataqueJ2);
+            desafio.setAHistorial("  - ATAQUE de " + jugador2.getNick() + ": " + ataqueJ2 + "\n");
 
-            desafio.setAHistorial("  -----------------------------------------");
+            desafio.setAHistorial("  -----------------------------------------\n");
 
             //Calculo del valor de defensa
             int defensaJ1 = this.calcularAtaqueODefensa(potDefensaJ1, random);
-            desafio.setAHistorial("  - DEFENSA de " + jugador1.getNick() + ": " + defensaJ1);
+            desafio.setAHistorial("  - DEFENSA de " + jugador1.getNick() + ": " + defensaJ1 + "\n");
             int defensaJ2 = this.calcularAtaqueODefensa(potDefensaJ2, random);
-            desafio.setAHistorial("  - DEFENSA de " + jugador2.getNick() + ": " + defensaJ2);
+            desafio.setAHistorial("  - DEFENSA de " + jugador2.getNick() + ": " + defensaJ2 + "\n");
 
-            desafio.setAHistorial("  -----------------------------------------");
+            desafio.setAHistorial("  -----------------------------------------\n");
 
             if (ataqueJ1 >= defensaJ2) {
-                desafio.setAHistorial("");
-                desafio.setAHistorial("  +--------");
-                desafio.setAHistorial("  -]-> El jugador " + jugador1.getNick() + " ataca al jugador " + jugador2.getNick() + " en la ronda " + (ronda + 1));
-                desafio.setAHistorial("");
+                desafio.setAHistorial("\n");
+                desafio.setAHistorial("  +--------\n");
+                desafio.setAHistorial("  -]-> El jugador " + jugador1.getNick() + " ataca al jugador " + jugador2.getNick() + " en la ronda " + (ronda + 1) + "\n");
+                desafio.setAHistorial("\n");
                 //si el personaje2 tiene esbirros, se les pega primero
                 if (!esbirrosP2.isEmpty()) {
-                    desafio.setAHistorial("  [*] ESBIRROS DEL JUGADOR " + jugador2.getNick() + ": " + printEsbirros(esbirrosP2, desafio));
+                    desafio.setAHistorial("  [*] ESBIRROS DEL JUGADOR " + jugador2.getNick() + ": " + printEsbirros(esbirrosP2, desafio) + "\n");
                     atacarEsbirro(esbirrosP2, esbirrosP2.size() - 1, desafio);
 
                 } //si el personaje ya no tiene esbirros, pegar al personaje
                 else {
-                    desafio.setAHistorial("  [!] EL JUGADOR " + jugador2.getNick() + " NO TIENE ESBIRROS");
-                    desafio.setAHistorial("   |---> Se asesta un golpe al jugador " + jugador2.getNick());
+                    desafio.setAHistorial("  [!] EL JUGADOR " + jugador2.getNick() + " NO TIENE ESBIRROS" + "\n");
+                    desafio.setAHistorial("   |---> Se asesta un golpe al jugador " + jugador2.getNick() + "\n");
 
                     if (personaje2 instanceof Licantropo licantropo) { // si el personaje es un licantropo, al recibir un golpe aumenta su rabia
                         if (licantropo.getRabia() < 3) {
-                            desafio.setAHistorial("");
-                            desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Licántropo y ha aumentado su Rabia con el golpe recibido");
+                            desafio.setAHistorial("\n");
+                            desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Licántropo y ha aumentado su Rabia con el golpe recibido\n");
                             licantropo.setRabia(licantropo.getRabia() + 1);
                         }
                     } else if (personaje2 instanceof Cazador cazador) { // si el personaje es un cazador, su voluntad disminuye
                         if (cazador.getVoluntad() > 0) {
-                            desafio.setAHistorial("");
-                            desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Cazador y ha disminuido su Voluntad con el ataque");
+                            desafio.setAHistorial("\n");
+                            desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Cazador y ha disminuido su Voluntad con el ataque\n");
                             cazador.setVoluntad(cazador.getVoluntad() - 1);
                         }
                     }
 
                     personaje2.setSalud(personaje2.getSalud() - 1);
 
-                    desafio.setAHistorial("");
-                    desafio.setAHistorial("  [!] Salud del jugador " + jugador2.getNick() + ": " + personaje2.getSalud());
+                    desafio.setAHistorial("\n");
+                    desafio.setAHistorial("  [!] Salud del jugador " + jugador2.getNick() + ": " + personaje2.getSalud() + "\n");
 
                 }
 
                 if (personaje1 instanceof Vampiro vampiro) { // si el personaje del jugador 1 es un vampiro y ha asestado un golpe, recupera sangre
                     if (vampiro.getSangre() < 10) {
-                        desafio.setAHistorial("");
-                        desafio.setAHistorial("  - El jugador " + jugador1.getNick() + " es un Vampiro y ha aumentado su Sangre con el ataque");
+                        desafio.setAHistorial("\n");
+                        desafio.setAHistorial("  - El jugador " + jugador1.getNick() + " es un Vampiro y ha aumentado su Sangre con el ataque\n");
                         vampiro.setSangre(vampiro.getSangre() + 1);
                     }
                 }
 
             }
             if (ataqueJ2 >= defensaJ1) {
-                desafio.setAHistorial("");
-                desafio.setAHistorial("  +--------");
-                desafio.setAHistorial("  -]-> El jugador " + jugador2.getNick() + " ataca al jugador " + jugador1.getNick() + " en la ronda " + (ronda + 1));
-                desafio.setAHistorial("");
+                desafio.setAHistorial("\n");
+                desafio.setAHistorial("  +--------\n");
+                desafio.setAHistorial("  -]-> El jugador " + jugador2.getNick() + " ataca al jugador " + jugador1.getNick() + " en la ronda " + (ronda + 1) + "\n");
+                desafio.setAHistorial("\n");
 
                 //si el personaje1 tiene esbirros, se les pega primero
                 if (!esbirrosP1.isEmpty()) {
-                    desafio.setAHistorial("  [*] ESBIRROS DEL JUGADOR " + jugador1.getNick() + ": " + printEsbirros(esbirrosP1, desafio));
+                    desafio.setAHistorial("  [*] ESBIRROS DEL JUGADOR " + jugador1.getNick() + ": " + printEsbirros(esbirrosP1, desafio) + "\n");
                     atacarEsbirro(esbirrosP1, esbirrosP1.size() - 1, desafio);
 
                 } //si el personaje ya no tiene esbirros, pegar al personaje
                 else {
-                    desafio.setAHistorial("  [!] EL JUGADOR " + jugador1.getNick() + " NO TIENE ESBIRROS");
-                    desafio.setAHistorial("   |---> Se asesta un golpe al jugador " + jugador1.getNick());
+                    desafio.setAHistorial("  [!] EL JUGADOR " + jugador1.getNick() + " NO TIENE ESBIRROS" + "\n");
+                    desafio.setAHistorial("   |---> Se asesta un golpe al jugador " + jugador1.getNick() + "\n");
 
                     if (personaje1 instanceof Licantropo licantropo) { // si el personaje es un licantropo, al recibir un golpe aumenta su rabia
                         if (licantropo.getRabia() < 3) {
-                            desafio.setAHistorial("");
-                            desafio.setAHistorial("  - El jugador " + jugador1.getNick() + " es un Licántropo y ha aumentado su Rabia con el ataque");
+                            desafio.setAHistorial("\n");
+                            desafio.setAHistorial("  - El jugador " + jugador1.getNick() + " es un Licántropo y ha aumentado su Rabia con el ataque\n");
                             licantropo.setRabia(licantropo.getRabia() + 1);
                         }
                     } else if (personaje1 instanceof Cazador cazador) { // si el personaje es un cazador, su voluntad disminuye
                         if (cazador.getVoluntad() > 0) {
-                            desafio.setAHistorial("");
-                            desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Cazador y ha disminuido su Voluntad con el ataque");
+                            desafio.setAHistorial("\n");
+                            desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Cazador y ha disminuido su Voluntad con el ataque\n");
                             cazador.setVoluntad(cazador.getVoluntad() - 1);
                         }
                     }
 
                     personaje1.setSalud(personaje1.getSalud() - 1);
 
-                    desafio.setAHistorial("");
-                    desafio.setAHistorial("  [!] Salud del jugador " + jugador1.getNick() + ": " + personaje1.getSalud());
+                    desafio.setAHistorial("\n");
+                    desafio.setAHistorial("  [!] Salud del jugador " + jugador1.getNick() + ": " + personaje1.getSalud() + "\n");
 
                 }
 
                 if (personaje2 instanceof Vampiro vampiro) { // si el personaje del jugador 1 es un vampiro y ha asestado un golpe, recupera sangre
                     if (vampiro.getSangre() < 10) {
-                        desafio.setAHistorial("");
-                        desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Vampiro y ha aumentado su Sangre con el ataque");
+                        desafio.setAHistorial("\n");
+                        desafio.setAHistorial("  - El jugador " + jugador2.getNick() + " es un Vampiro y ha aumentado su Sangre con el ataque\n");
                         vampiro.setSangre(vampiro.getSangre() + 1);
                     }
                 }
             }
             if (ataqueJ1 < defensaJ2 && ataqueJ2 < defensaJ1) { // puede darse el caso de que en una ronda los dos jugadores no puedan atacarse si el ataque de uno no supera la defensa del otro simultáneamente
-                desafio.setAHistorial("");
-                desafio.setAHistorial("  -]-> [!] NO SE ATACA NADIE");
+                desafio.setAHistorial("\n");
+                desafio.setAHistorial("  -]-> [!] NO SE ATACA NADIE\n");
 
             }
             ronda += 1;
-            desafio.setAHistorial("");
-            desafio.setAHistorial("");
-
+            desafio.setAHistorial("\n");
+            desafio.setAHistorial("\n");
+            if (personaje1.getSalud() == 0 || personaje2.getSalud() == 0) {
+                jugador1.addToHistorial(desafio);
+                jugador2.addToHistorial(desafio);
+                Almacen.setUsuario(jugador1);
+                Almacen.setUsuario(jugador2);
+                almacen.actualizarFicheroDesafios();
+                almacen.updateFiles();
+            }
         } // Si se detiene el bucle es que alguno de los dos personajes han alcanzado 0 de vida, comprobaremos si es empate o veremos quien ganó
 
-        desafio.setAHistorial("+----------------------------------------------------------------------+");
+        desafio.setAHistorial("+----------------------------------------------------------------------+\n");
 
         desafio.setEstado(EstadoDesafio.acabado);
 
         almacen.cargarPersonajes(); //Tenemos que recargar los personajes desde el fichero donde se encuentran con sus variables por defecto
 
         if (personaje1.getSalud() == personaje2.getSalud()) { // si ambos valores de salud son iguales = EMPATE
-            desafio.setAHistorial("[!] EMPATE");
+            desafio.setAHistorial("[!] EMPATE\n");
             //No se modifica el atributo ganador de desafio al empatar. En el historial se accederá al desafiante y desafiado
 
         } else if (personaje1.getSalud() > personaje2.getSalud()) {
-            desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador1.getNick() + " con personaje : " + personaje1.getNombre());
+            desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador1.getNick() + " con personaje : " + personaje1.getNombre() + "\n");
             desafio.establecerGanador(jugador1);
 
         } else if (personaje1.getSalud() < personaje2.getSalud()) {
-            desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador2.getNick() + " con personaje : " + personaje2.getNombre());
+            desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador2.getNick() + " con personaje : " + personaje2.getNombre() + "\n");
             desafio.establecerGanador(jugador2);
         }
 
+<<<<<<< Updated upstream
         desafio.setAHistorial("[!] => TOTAL RONDAS: " + ronda);
         
         for (String linea: desafio.getHistorial()){
             System.out.println(linea);
         }
+=======
+        desafio.setAHistorial("[!] => TOTAL RONDAS: " + ronda + "\n");
+>>>>>>> Stashed changes
     }
 
     private String printEsbirros(List<Esbirro> esbirrosP2, Desafio desafio) {
         List<String> toPrint = new ArrayList<>();
 
         for (Esbirro esbirro : esbirrosP2) {
-            toPrint.add((esbirro.getNombre()) + " (" + "Tipo: " + esbirro.getClass().getSimpleName() + ", Salud: " + esbirro.getSalud() + ")");
+            toPrint.add((esbirro.getNombre()) + " (" + "Tipo: " + esbirro.getClass().getSimpleName() + ", Salud: " + esbirro.getSalud() + ")" + "\n");
         }
 
         return (toPrint.toString());

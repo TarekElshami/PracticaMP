@@ -12,7 +12,7 @@ public class Usuario implements Serializable {
     private String contrasena;
     private String id;
     private boolean baneado;
-    private List<Desafio> historial;
+    private List<Desafio> historiales;
     private List<Notificacion> notificaciones;
     private double oro;
     private int victorias;
@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
         this.baneado = false;
         this.victorias = 0;
         this.oro = 500;
-        this.historial = new ArrayList<>();
+        this.historiales = new ArrayList<>();
         this.notificaciones =  new ArrayList<>();
     }
     
@@ -84,6 +84,10 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
+    public void addToHistorial(Desafio desafio) {
+        this.historiales.add(desafio);
+    }
+
     public String getId() {
         return id;
     }
@@ -118,6 +122,10 @@ public class Usuario implements Serializable {
 
     public Armadura getArmaduraActiva() {
         return armaduraActiva;
+    }
+
+    public List<Desafio> getHistorial() {
+        return historiales;
     }
 
     public boolean isBaneado() {

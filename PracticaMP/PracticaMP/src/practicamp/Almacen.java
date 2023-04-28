@@ -177,6 +177,20 @@ public class Almacen {
         Almacen.usuarioActivo = index;
     }
     
+    public static void setUsuario(Usuario usuario) {
+        Iterator it = usuarios.iterator();
+        int i = 0;
+        int index = -1;
+        while (it.hasNext()) {
+            Usuario user = (Usuario) it.next();
+            if (user.getNick().equals(usuario.getNick())) {
+                index = i;
+            }
+            i++;
+        }
+        Almacen.usuarios.set(index, usuario);
+    }
+    
     public static Usuario getUsuarioActivo() {
         return Almacen.usuarios.get(Almacen.usuarioActivo);
     }

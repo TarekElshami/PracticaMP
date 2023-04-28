@@ -30,7 +30,7 @@ public class Desafios extends javax.swing.JPanel {
     }
     
     DefaultListModel mod = new DefaultListModel();
-    public void actualizatList(){
+    public void actualizarList(){
         int i = 0;
         List<Usuario> usuarios = Almacen.getUsuarios();
         userList.setModel(mod); // para añadir los elementos a la lista
