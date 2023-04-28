@@ -136,16 +136,12 @@ public class Usuario implements Serializable {
         this.baneado = baneado;
     }
 
-    public void setVictorias(int victorias) {
-        this.victorias += victorias;
-    }
-
     public int getVictorias() {
         return victorias;
     }
     
     public void sumarVictoria(){
-        this.victorias += 1;
+        this.victorias = this.victorias + 1;
     }
     
 }
