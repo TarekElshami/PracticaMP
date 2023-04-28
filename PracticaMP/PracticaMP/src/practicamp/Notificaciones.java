@@ -16,9 +16,10 @@ import javax.swing.JPanel;
 public class Notificaciones extends javax.swing.JPanel {
     private Almacen almacen;
     private List<Notificacion> notificaciones;
-    
+    private Combate combate;
     public Notificaciones(Almacen almacen) {
         this.almacen = almacen;
+        this.combate = new Combate(almacen);
         initComponents();
     }
     
@@ -57,8 +58,8 @@ public class Notificaciones extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         notificationList = new javax.swing.JList<>();
         btnVolver = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+        btnRechazar = new javax.swing.JButton();
 
         notificationList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { " " };
@@ -74,17 +75,17 @@ public class Notificaciones extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Aceptar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Rechazar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRechazar.setText("Rechazar");
+        btnRechazar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRechazarActionPerformed(evt);
             }
         });
 
@@ -99,20 +100,20 @@ public class Notificaciones extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(87, 87, 87)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnRechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(286, 286, 286)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnRechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,11 +121,13 @@ public class Notificaciones extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());        
-        Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();;
+        Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();
+        this.combate.DEBUG_Initialize_Players(desafioSeleccionado);
+        this.combate.iniciarCombate(desafioSeleccionado);
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         JPanel parent = (JPanel) getParent();
@@ -132,21 +135,30 @@ public class Notificaciones extends javax.swing.JPanel {
         cl.show(parent, "menuUsuario");
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());
-        double oroPerdido = notificacionSeleccionado.getOroApostado() * 0.1;
-        Usuario usuario = Almacen.getUsuarioActivo();
-        usuario.restarOro(oroPerdido);
-        this.notificaciones.remove(notificationList.getSelectedIndex());
-        usuario.setNotificaciones(this.notificaciones);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarActionPerformed
+        if (notificationList.getSelectedIndex() != -1){
+            Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());
+            double oroPerdido = notificacionSeleccionado.getOroApostado() * 0.1;
+            Usuario usuario = Almacen.getUsuarioActivo();
+            usuario.restarOro(oroPerdido);
+            this.notificaciones.remove(notificationList.getSelectedIndex());
+            usuario.setNotificaciones(this.notificaciones);
+        } else{
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una notificación");
+        }
+        boolean vacio = this.actualizarLista();
+        if (vacio){
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "menuUsuario");
+        }
+    }//GEN-LAST:event_btnRechazarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnRechazar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> notificationList;
     // End of variables declaration//GEN-END:variables
