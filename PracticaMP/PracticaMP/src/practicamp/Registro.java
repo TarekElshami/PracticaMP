@@ -26,6 +26,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
     private List<Usuario> usuarios;
     private Almacen almacen;
     private Ranking ranking;
+    private Usuario usuario;
 
     
     public Registro(Almacen almacen, Ranking ranking) throws IOException, FileNotFoundException, ClassNotFoundException {
@@ -253,7 +254,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(labelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -268,10 +269,10 @@ public class Registro extends javax.swing.JPanel implements Serializable {
                     .addComponent(botonMostrarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldContrasena))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(128, 128, 128)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVolver)
                     .addComponent(botonRegistro))
@@ -317,9 +318,10 @@ public class Registro extends javax.swing.JPanel implements Serializable {
             }
         }
         this.usuarios.add(nuevoUsuario);
+        this.usuario = nuevoUsuario;
         this.almacen.addUsuario(nuevoUsuario);
         
-
+        
         try {
             this.almacen.updateFiles();
         } catch (IOException ex) {
@@ -329,7 +331,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuPrincipal");
 
-
+        
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     private void fieldNickCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_fieldNickCaretUpdate
@@ -418,4 +420,17 @@ public class Registro extends javax.swing.JPanel implements Serializable {
     private javax.swing.JLabel labelInputNick;
     private javax.swing.JLabel labelTitulo;
     // End of variables declaration//GEN-END:variables
+    public void setNombre(String nombre){
+        this.jTextField1.setText(nombre);
+    }
+    public void setNick (String nick){
+        this.fieldNick.setText(nick);
+    }
+    public void setContraseña(String password){
+        this.fieldContrasena.setText(password);
+    }
+    
+    public Usuario getUsuario(){
+        return this.usuario;
+    }
 }
