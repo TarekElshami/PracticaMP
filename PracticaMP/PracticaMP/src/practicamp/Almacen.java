@@ -49,19 +49,19 @@ public class Almacen {
         FileOutputStream usersFile = new FileOutputStream("src/files/db/users.db");
         ObjectOutputStream output = new ObjectOutputStream(usersFile);
 
-        output.writeObject(this.usuarios);
+        output.writeObject(Almacen.usuarios);
         output.close();
-        if (this.usuarios == null) {
-            this.usuarios = new ArrayList<>();
+        if (Almacen.usuarios == null) {
+            Almacen.usuarios = new ArrayList<>();
         }
     }
 
     public void updateUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream usersFile = new FileInputStream("src/files/db/users.db");
         ObjectInputStream input = new ObjectInputStream(usersFile);
-        this.usuarios = (List<Usuario>) input.readObject();
-        if (this.usuarios == null) {
-            this.usuarios = new ArrayList<>();
+        Almacen.usuarios = (List<Usuario>) input.readObject();
+        if (Almacen.usuarios == null) {
+            Almacen.usuarios = new ArrayList<>();
         }
         input.close();
     }
@@ -71,7 +71,7 @@ public class Almacen {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("esbirros.dat"));
             List<Esbirro> esbirros = (List<Esbirro>) ois.readObject();
             ois.close();
-            this.esbirros = esbirros;
+            Almacen.esbirros = esbirros;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -82,7 +82,7 @@ public class Almacen {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("modificadores.dat"));
             List<Modificador> modificadores = (List<Modificador>) ois.readObject();
             ois.close();
-            this.modificadores = modificadores;
+            Almacen.modificadores = modificadores;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -95,7 +95,7 @@ public class Almacen {
             List<Armadura> armaduras = (List<Armadura>) ois.readObject();
             ois.close();
             fis.close();
-            this.armaduras = armaduras;
+            Almacen.armaduras = armaduras;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -108,7 +108,7 @@ public class Almacen {
             List<Arma> armas = (List<Arma>) ois.readObject();
             ois.close();
             fis.close();
-            this.armas = armas;
+            Almacen.armas = armas;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -118,11 +118,11 @@ public class Almacen {
         FileOutputStream ficheroDesafios = new FileOutputStream("src/files/db/desafios.db"); // ruta
         ObjectOutputStream output = new ObjectOutputStream(ficheroDesafios); // output stream
         
-        if (this.desafiosSinValidar == null) { // si no existe la estructura de la lista de desafios...
-            this.desafiosSinValidar = new ArrayList<>(); // se crea una vacia ya que se usará a lo largo del programa
+        if (Almacen.desafiosSinValidar == null) { // si no existe la estructura de la lista de desafios...
+            Almacen.desafiosSinValidar = new ArrayList<>(); // se crea una vacia ya que se usará a lo largo del programa
         }
         
-        output.writeObject(this.desafiosSinValidar); // escritura del objeto a serializar
+        output.writeObject(Almacen.desafiosSinValidar); // escritura del objeto a serializar
         output.close(); // cerramos stream
 
     }
@@ -140,7 +140,7 @@ public class Almacen {
         try {
             FileInputStream fis = new FileInputStream("src/files/db/desafios.db");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            this.desafiosSinValidar = (List<Desafio>) ois.readObject();
+            Almacen.desafiosSinValidar = (List<Desafio>) ois.readObject();
             ois.close();
             fis.close();
         } catch (IOException | ClassNotFoundException e) {

@@ -144,11 +144,11 @@ public class Desafios extends javax.swing.JPanel {
                     String contrincante = userList.getSelectedValue();
                     
                     // Deducimos el oro del desafiante
-                    Usuario desafiante = Almacen.getUsuarioActivo();
+//                    Usuario desafiante = Almacen.getUsuarioActivo();
 //                    if ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmasActivas().size() != 0) && ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmaduraActiva() != null))) {
 //                        desafiante.setOro(desafiante.getOro() - oroApostado);
                     
-                        Desafio newDesafio = new Desafio(Almacen.getUsuarioActivo(), this.almacen.getContrincante(contrincante), oroApostado);
+                    Desafio newDesafio = new Desafio(Almacen.getUsuarioActivo(), this.almacen.getContrincante(contrincante), oroApostado);
 
                     // DEBUG COMBATE
                     // Combate newCombate = new Combate(almacen);
@@ -164,10 +164,13 @@ public class Desafios extends javax.swing.JPanel {
                     // DEBUG COMBATE
                     // newCombate.iniciarCombate(newDesafio);
                     // END DEBUG COMBATE
-
+                    
+                        //HAY QUE COMENTAR ESTAS TRES LINEAS PARA QUE FUNCIONES EL TEST DE DESAFIOS 
                         JPanel parent = (JPanel) getParent();
                         CardLayout cl = (CardLayout) parent.getLayout();
                         cl.show(parent, "menuUsuario");
+                        //FIN PARTE QUE HAY QUE COMENTAR PARA EL TEST DE DESAFIOS
+                        
 //                    } else {
 //                        javax.swing.JOptionPane.showMessageDialog(this, "Este contrincante no tiene armas o armaduras equipadas");
 //                    }
@@ -208,4 +211,23 @@ public class Desafios extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> userList;
     // End of variables declaration//GEN-END:variables
+public void setOroApostado(String apuesta){
+    goldText.setText(apuesta);
+}
+
+public int getPosUsurioList(String nick){
+    int i = 0;
+    String nom;
+    do {
+        userList.setSelectedIndex(i);
+        nom = userList.getSelectedValue();
+        i += 1;
+    } while (!nick.equals(nom));
+    return i;
+}
+
+public void setUsuarioList(int i){
+    userList.setSelectedIndex(i);
+}
+
 }

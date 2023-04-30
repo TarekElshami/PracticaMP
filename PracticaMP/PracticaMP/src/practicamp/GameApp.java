@@ -1,5 +1,6 @@
 package practicamp;
 
+import java.awt.AWTException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,14 +12,16 @@ import javax.swing.UIManager;
 
 public class GameApp {
 
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, AWTException {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        AdministradorJuego admin = new AdministradorJuego();
-        admin.showGame();
+//        AdministradorJuego admin = new AdministradorJuego();
+//        admin.showGame();
+
+//        TestDesafios test = new TestDesafios();
         
         /*
         //Esbirros cazador
