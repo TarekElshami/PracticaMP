@@ -53,6 +53,11 @@ public class CreacionPersonaje extends javax.swing.JPanel {
         });
 
         opTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vampiro", "Cazador", "Licantropo" }));
+        opTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,14 +135,18 @@ public class CreacionPersonaje extends javax.swing.JPanel {
             Usuario usuarioActivo = Almacen.getUsuarioActivo();
             usuarioActivo.setNombre(auxNombre);
             usuarioActivo.setTipoPersonaje(auxTipo);
-            JPanel parent = (JPanel) getParent();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            cl.show(parent, "menuUsuario");
+            //JPanel parent = (JPanel) getParent();
+            //CardLayout cl = (CardLayout) parent.getLayout();
+            //cl.show(parent, "menuUsuario");
         } else{
             JOptionPane.showMessageDialog(this, "Por favor, introduce un nombre para tu personaje.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
         CajaNombre.setText("");
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void opTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opTipoActionPerformed
 
     public String getNombre() {
         return nombre;
@@ -146,6 +155,12 @@ public class CreacionPersonaje extends javax.swing.JPanel {
     public String getTipo() {
         return tipo;
     }
+    
+    public void setNombre(String nombre){
+        CajaNombre.setText(nombre);
+    }
+    
+ 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
