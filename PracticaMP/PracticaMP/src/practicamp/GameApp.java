@@ -18,10 +18,8 @@ public class GameApp {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-//        AdministradorJuego admin = new AdministradorJuego();
-//        admin.showGame();
-
-//        TestDesafios test = new TestDesafios();
+        AdministradorJuego admin = new AdministradorJuego();
+        admin.showGame();
         
         /*
         //Esbirros cazador
