@@ -21,5 +21,11 @@ public class Vampiro extends Personaje {
     public void setEdad(int edad){
         this.edad = edad;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+    
+    
        
 }

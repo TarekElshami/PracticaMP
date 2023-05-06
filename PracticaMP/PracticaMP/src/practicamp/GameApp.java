@@ -314,6 +314,6 @@ public class GameApp {
         }
 
         Almacen a = new Almacen();
-         */
+        */
     }
 }

@@ -135,9 +135,9 @@ public class CreacionPersonaje extends javax.swing.JPanel {
             Usuario usuarioActivo = Almacen.getUsuarioActivo();
             usuarioActivo.setNombre(auxNombre);
             usuarioActivo.setTipoPersonaje(auxTipo);
-            //JPanel parent = (JPanel) getParent();
-            //CardLayout cl = (CardLayout) parent.getLayout();
-            //cl.show(parent, "menuUsuario");
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "menuUsuario");
         } else{
             JOptionPane.showMessageDialog(this, "Por favor, introduce un nombre para tu personaje.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
