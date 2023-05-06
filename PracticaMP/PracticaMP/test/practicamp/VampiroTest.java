@@ -45,12 +45,10 @@ public class VampiroTest {
     @Test
     public void testGetSangre() {
         System.out.println("getSangre");
-        Vampiro instance = null;
-        int expResult = 0;
+        Vampiro instance = vampiro1;
+        int expResult = 0; //Por defecto es 0
         int result = instance.getSangre();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Los valores no coinciden", expResult, result);
     }
 
     /**
