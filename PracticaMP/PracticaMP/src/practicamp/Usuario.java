@@ -16,10 +16,10 @@ public class Usuario implements Serializable {
     private List<Notificacion> notificaciones;
     private double oro;
     private int victorias;
-    private String personaje;
+    private String personaje;// este es el nombre del personaje 
     private List<Arma> armasActivas;
     private Armadura armaduraActiva;
-    private String tipoPersonaje;
+    private String tipoPersonaje;// esta es la raza del personaje
     
     public Usuario(String nick, String contrasena) {
         this.nick = nick;
@@ -145,5 +145,8 @@ public class Usuario implements Serializable {
     }
     public String getNombre(){
         return this.nombre;
+    }
+    public String getPersonaje(){
+        return this.personaje;
     }
 }
