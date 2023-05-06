@@ -208,5 +208,9 @@ public class Personaje implements Serializable, Cloneable {
     public void setFortalezas(Map<String, Integer> fortalezas) {
         this.fortalezas = fortalezas;
     }
+
+    public void setEsbirros(List<Esbirro> esbirros) {
+        this.esbirros = esbirros;
+    }
         
 }
