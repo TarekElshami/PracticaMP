@@ -5,6 +5,9 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -133,7 +136,15 @@ public class MenuOperador extends javax.swing.JPanel {
         int choice = JOptionPane.showConfirmDialog(null, "¿Está seguro de querer cerrar su cuenta?", "Confirmación", JOptionPane.YES_NO_OPTION);
 
         if (choice == JOptionPane.YES_OPTION) {
-            //Almacen.getUsuarioActivo().setCerrada(true);
+            Almacen.getUsuarioActivo().setCerrada(true);
+            try {
+                Almacen.updateFiles();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "menuPrincipal");
         } 
     }//GEN-LAST:event_jButton1ActionPerformed
 

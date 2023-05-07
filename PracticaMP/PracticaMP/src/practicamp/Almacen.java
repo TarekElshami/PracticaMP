@@ -45,7 +45,7 @@ public class Almacen {
         }
     }
 
-    public void updateFiles() throws FileNotFoundException, IOException {
+    public static void updateFiles() throws FileNotFoundException, IOException {
         FileOutputStream usersFile = new FileOutputStream("src/files/db/users.db");
         ObjectOutputStream output = new ObjectOutputStream(usersFile);
 

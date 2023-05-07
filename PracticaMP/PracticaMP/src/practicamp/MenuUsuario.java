@@ -362,6 +362,14 @@ public class MenuUsuario extends javax.swing.JPanel {
 
         if (choice == JOptionPane.YES_OPTION) {
             Almacen.getUsuarioActivo().setCerrada(true);
+            try {
+                this.almacen.updateFiles();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JPanel parent = (JPanel) getParent();
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "menuPrincipal");
         } 
  
     }//GEN-LAST:event_cerrarCuentaActionPerformed
