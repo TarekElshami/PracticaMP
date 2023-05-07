@@ -20,6 +20,15 @@ public class Usuario implements Serializable {
     private List<Arma> armasActivas;
     private Armadura armaduraActiva;
     private String tipoPersonaje;// esta es la raza del personaje
+    private boolean cerrada;
+
+    public boolean isCerrada() {
+        return cerrada;
+    }
+
+    public void setCerrada(boolean cerrada) {
+        this.cerrada = cerrada;
+    }
     
     public Usuario(String nick, String contrasena) {
         this.nick = nick;
@@ -33,6 +42,7 @@ public class Usuario implements Serializable {
         this.oro = 500;
         this.historiales = new ArrayList<>();
         this.notificaciones =  new ArrayList<>();
+        this.cerrada = false;
     }
     
     public void restarOro(double cantidad){

@@ -133,6 +133,11 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
                 fieldNickCaretUpdate(evt);
             }
         });
+        fieldNick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNickActionPerformed(evt);
+            }
+        });
         fieldNick.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 fieldNickKeyTyped(evt);
@@ -244,18 +249,23 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         boolean[] res = verificarDatos(fieldNick.getText(), String.valueOf(fieldContrasena.getPassword()));
         if (res[0] && res[1]) {
             JPanel parent = (JPanel) getParent();
-            if (!Almacen.getUsuarios().get(this.indexUsuario).isBaneado()){
-                Almacen.setUsuarioActivo(this.indexUsuario);
-                this.desafios.actualizarList();
-                CardLayout cl = (CardLayout) parent.getLayout();
-                if (Almacen.getUsuarioActivo().getRol() != Rol.admin){
-                    cl.show(parent, "menuUsuario");
-                } else{
-                    cl.show(parent, "menuOperador");
+            if (!Almacen.getUsuarios().get(this.indexUsuario).isCerrada()){
+                if (!Almacen.getUsuarios().get(this.indexUsuario).isBaneado()) {
+                    Almacen.setUsuarioActivo(this.indexUsuario);
+                    this.desafios.actualizarList();
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    if (Almacen.getUsuarioActivo().getRol() != Rol.admin) {
+                        cl.show(parent, "menuUsuario");
+                    } else {
+                        cl.show(parent, "menuOperador");
+                    }
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Has sido baneado");
                 }
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Has sido baneado");
+                javax.swing.JOptionPane.showMessageDialog(this, "Has cerrado tu cuenta");
             }
+            
         } else {
             mostrarMensaje(res);
         }
@@ -313,6 +323,10 @@ public class InicioSesion extends javax.swing.JPanel implements Serializable {
         fieldNick.setText("");
         fieldContrasena.setText("");
     }//GEN-LAST:event_formComponentHidden
+
+    private void fieldNickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNickActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNickActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
