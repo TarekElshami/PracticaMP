@@ -323,7 +323,7 @@ public class Registro extends javax.swing.JPanel implements Serializable {
         
         
         try {
-            this.almacen.updateFiles();
+            Almacen.updateFiles();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

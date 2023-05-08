@@ -13,12 +13,11 @@ public class CreacionPersonaje extends javax.swing.JPanel {
 
     private String nombre;
     private String tipo;
-    
+
     public CreacionPersonaje() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -131,14 +130,19 @@ public class CreacionPersonaje extends javax.swing.JPanel {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String auxNombre = CajaNombre.getText().trim();
         String auxTipo = opTipo.getSelectedItem().toString();
-        if (!auxNombre.isEmpty()){
+        if (!auxNombre.isEmpty()) {
             Usuario usuarioActivo = Almacen.getUsuarioActivo();
             usuarioActivo.setNombre(auxNombre);
             usuarioActivo.setTipoPersonaje(auxTipo);
             JPanel parent = (JPanel) getParent();
-            CardLayout cl = (CardLayout) parent.getLayout();
-            cl.show(parent, "menuUsuario");
-        } else{
+            boolean isCardLayout = (parent.getLayout() instanceof CardLayout);
+
+            if (isCardLayout) {
+                CardLayout cl = (CardLayout) parent.getLayout();
+                cl.show(parent, "menuUsuario");
+            }
+
+        } else {
             JOptionPane.showMessageDialog(this, "Por favor, introduce un nombre para tu personaje.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
         CajaNombre.setText("");
@@ -149,18 +153,16 @@ public class CreacionPersonaje extends javax.swing.JPanel {
     }//GEN-LAST:event_opTipoActionPerformed
 
     public String getNombre() {
-        return nombre;
+        return CajaNombre.getText().trim();
     }
 
     public String getTipo() {
-        return tipo;
+        return opTipo.getSelectedItem().toString();
     }
-    
-    public void setNombre(String nombre){
+
+    public void setNombre(String nombre) {
         CajaNombre.setText(nombre);
     }
-    
- 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
