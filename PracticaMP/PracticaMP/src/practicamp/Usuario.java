@@ -46,7 +46,11 @@ public class Usuario implements Serializable {
     }
     
     public void restarOro(double cantidad){
-        this.oro -= cantidad;
+        if (this.oro<cantidad){
+            this.oro = 0;
+        }else{
+            this.oro -= cantidad;
+        }
     }
     
     public void sumarOro(double cantidad){

@@ -86,7 +86,7 @@ public class Desafios extends javax.swing.JPanel {
         desafiar.setText("Desafiar");
         desafiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                desafiarActionPerformed(evt);
+                desafiarActionPerformed();
             }
         });
 
@@ -131,7 +131,7 @@ public class Desafios extends javax.swing.JPanel {
         );
     }//GEN-END:initComponents
 
-    private void desafiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desafiarActionPerformed
+    public void desafiarActionPerformed() {//GEN-FIRST:event_desafiarActionPerformed
         if(goldText.getText().isEmpty() || goldText.getText().equals("Apostar oro")){
             JOptionPane.showMessageDialog(this, "Introduce una cantidad de oro a apostar"); // Muestra un mensaje si está vacío
         }
@@ -164,12 +164,12 @@ public class Desafios extends javax.swing.JPanel {
                     // DEBUG COMBATE
                     // newCombate.iniciarCombate(newDesafio);
                     // END DEBUG COMBATE
-                    
-                        //HAY QUE COMENTAR ESTAS TRES LINEAS PARA QUE FUNCIONES EL TEST DE DESAFIOS 
-                        JPanel parent = (JPanel) getParent();
+                    JPanel parent = (JPanel) getParent();
+                    boolean isCardLayout = (parent.getLayout() instanceof CardLayout);
+                    if (isCardLayout) { 
                         CardLayout cl = (CardLayout) parent.getLayout();
                         cl.show(parent, "menuUsuario");
-                        //FIN PARTE QUE HAY QUE COMENTAR PARA EL TEST DE DESAFIOS
+                    }
                         
 //                    } else {
 //                        javax.swing.JOptionPane.showMessageDialog(this, "Este contrincante no tiene armas o armaduras equipadas");
@@ -228,6 +228,11 @@ public int getPosUsurioList(String nick){
 
 public void setUsuarioList(int i){
     userList.setSelectedIndex(i);
+}
+
+public String getLastUsuarioList(){
+    userList.setSelectedIndex(userList.getLastVisibleIndex());
+    return userList.getSelectedValue();
 }
 
 }
