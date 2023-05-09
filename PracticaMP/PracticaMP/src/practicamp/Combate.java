@@ -14,59 +14,6 @@ public class Combate {
         this.almacen = almacen;
     }
 
-    public void DEBUG_Initialize_Players(Desafio desafio) { //Esto es porque cuando se programó el combate los jugadores aun no podían escoger personaje y tuve que inicializar los personajes aqui
-
-        // Instanciamos listas de armas
-        List<Arma> listaArmasj1 = new ArrayList<>();
-        List<Arma> listaArmasj2 = new ArrayList<>();
-        //----
-
-        //Instanciamos armas y armaduras para cada jugador 
-        Arma armaj1 = new Arma("Garras", 1, 3, 2);
-        Arma armaj2 = new Arma("Cetro", 2, 2, 1);
-
-        listaArmasj1.add(armaj1);
-        listaArmasj2.add(armaj2);
-
-        Armadura armaduraj1 = new Armadura("Armadura Celestial", 3, 1);
-        Armadura armaduraj2 = new Armadura("Armadura de Mago", 3, 2);
-
-        // Cargar jugadores
-        Usuario jugador1 = desafio.getDesafiado();
-        Usuario jugador2 = desafio.getDesafiante();
-
-        // Asignar personaje a cada jugador
-        jugador1.setTipoPersonaje("Vampiro");
-        jugador2.setTipoPersonaje("Licantropo");
-
-        // Asignar armas y armaduras a cada jugador
-        jugador1.setArmasActivas(listaArmasj1);
-        jugador2.setArmasActivas(listaArmasj2);
-
-        jugador1.setArmaduraActiva(armaduraj1);
-        jugador2.setArmaduraActiva(armaduraj2);
-
-        //Carga de personajes de cada jugador
-        Personaje personaje1 = null;
-        Personaje personaje2 = null;
-
-        // Obtencion de cada personaje
-        for (Personaje pj1 : almacen.getPersonajes()) {
-            if (pj1.getNombre().equals(jugador1.getTipoPersonaje())) {
-                personaje1 = pj1;
-            }
-        }
-
-        for (Personaje pj2 : almacen.getPersonajes()) {
-            if (pj2.getNombre().equals(jugador2.getTipoPersonaje())) {
-                personaje2 = pj2;
-            }
-        }
-
-        //Asignar fortalezas admitidas
-        //Asignar debilidades admitidas
-    }
-
     private int comprobarTipo(Usuario usuario, String nombreMod) {
         int valor = 0; // es 1 si es una debilidad, 2 si es una fortaleza y 0 si no está
         String persUsuario = usuario.getTipoPersonaje();
@@ -435,10 +382,16 @@ public class Combate {
         } else if (personaje1.getSalud() > personaje2.getSalud()) {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador1.getNick() + " con personaje : " + personaje1.getNombre() + "\n");
             desafio.setGanador(jugador1);
+            desafio.getDesafiante().setOro(desafio.getDesafiante().getOro() - desafio.getOro());
+            desafio.getDesafiado().setOro(desafio.getDesafiado().getOro() + desafio.getOro());
+
             //Ranking.agregarJugador(jugador1);
         } else if (personaje1.getSalud() < personaje2.getSalud()) {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador2.getNick() + " con personaje : " + personaje2.getNombre() + "\n");
             desafio.setGanador(jugador2);
+            desafio.getDesafiado().setOro(desafio.getDesafiado().getOro() - desafio.getOro());
+            desafio.getDesafiante().setOro(desafio.getDesafiante().getOro() + desafio.getOro());
+
             //Ranking.agregarJugador(jugador2);
         }
 

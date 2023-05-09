@@ -25,10 +25,7 @@ public class Desafio implements Serializable {
         this.estado = EstadoDesafio.pendiente; // cuando se crea un desafio inicialmente esta pendiente
     }
 
-    public void validarDesafio(List<Debilidad> debilidades, List<Fortaleza> fortalezas) {
-
-    }
-
+    
     public void establecerGanador(Usuario ganador) {
         this.ganador = ganador;
     }
@@ -79,6 +76,10 @@ public class Desafio implements Serializable {
 
     public void setGanador(Usuario ganador) {
         this.ganador = ganador;
+    }
+
+    public EstadoDesafio getEstado() {
+        return estado;
     }
         
     
