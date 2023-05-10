@@ -328,8 +328,15 @@ public class Registro extends javax.swing.JPanel implements Serializable {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         JPanel parent = (JPanel) getParent();
-        CardLayout cl = (CardLayout) parent.getLayout();
-        cl.show(parent, "menuPrincipal");
+        /*CardLayout cl = (CardLayout) parent.getLayout();
+        cl.show(parent, "menuPrincipal");*/
+        boolean isCardLayout = (parent.getLayout() instanceof CardLayout);
+
+        if (isCardLayout) {
+            CardLayout cl = (CardLayout) parent.getLayout();
+            cl.show(parent, "menuPrincipal");
+        }
+
 
         
     }//GEN-LAST:event_botonRegistroActionPerformed
