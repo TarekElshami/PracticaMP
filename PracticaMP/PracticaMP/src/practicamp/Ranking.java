@@ -28,7 +28,7 @@ public class Ranking {
         }
     }
 
-    public static void updateFiles() throws FileNotFoundException, IOException {
+    private static void updateFiles() throws FileNotFoundException, IOException {
         FileOutputStream usersFile = new FileOutputStream("src/files/db/ranking.db");
         ObjectOutputStream output = new ObjectOutputStream(usersFile);
 
@@ -39,7 +39,7 @@ public class Ranking {
         }
     }
 
-    public void updateRanking() throws FileNotFoundException, IOException, ClassNotFoundException {
+    private void updateRanking() throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream usersFile = new FileInputStream("src/files/db/ranking.db");
         ObjectInputStream input = new ObjectInputStream(usersFile);
         Ranking.listaJugadores = (LinkedList<Jugador>) input.readObject();
@@ -67,14 +67,12 @@ public class Ranking {
         Ranking.updateFiles();
     }
     
-    public void buscarJugador(){
-        
-    }
-    
-    
     public static LinkedList<Jugador> getRanking(){
         return Ranking.listaJugadores;
     }
 
+    public static void setListaJugadores(LinkedList<Jugador> listaJugadores) {
+        Ranking.listaJugadores = listaJugadores;
+    }
 
 }
