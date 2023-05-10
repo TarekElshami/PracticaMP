@@ -4,6 +4,7 @@
  */
 package practicamp;
 
+import java.awt.AWTException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,7 @@ public class PersonajeTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws AWTException {
         personaje1 = new Personaje("Test1", 5);
         Talento t = new Talento("Talento", 1, 1);
         personaje1.setHabilidad(t);

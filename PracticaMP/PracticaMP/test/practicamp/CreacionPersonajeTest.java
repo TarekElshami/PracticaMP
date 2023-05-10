@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -181,6 +182,13 @@ public class CreacionPersonajeTest {
             assertEquals("La raza del personaje no coincide con la seleccionada", expRaza, usuario.getTipoPersonaje());
 
         }
+
+        // Probamos a no introducir nada para ver que se muestra el pop up de error
+        robot.mouseMove(580, 430); // confirmar
+        robot.delay(200);
+        robot.mousePress(InputEvent.BUTTON1_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+        robot.delay(200);
     }
 
 }

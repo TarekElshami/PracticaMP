@@ -14,12 +14,8 @@ public class Notificacion implements Serializable {
     public String getRival(){
         return this.desafio.getDesafiante().getNick();
     }
-    public void notificar() {
     
-    }
-
     public Desafio obtenerDesafio() {
-        // TODO implement here
         return desafio;
     }
     

@@ -25,14 +25,14 @@ import static org.junit.Assert.*;
  * @author Addy
  */
 public class RegistroTest {
-    
+
     private Almacen a;
     private JFrame f;
     private Registro window;
     private Usuario usuario;
     private Robot robot;
     private Ranking r;
-    
+
     @Before
     public void setUp() throws IOException, FileNotFoundException, ClassNotFoundException, AWTException {
         // Inicializacion (ventana y clases)
@@ -45,7 +45,6 @@ public class RegistroTest {
         f.setVisible(true);
         robot = new Robot();
     }
-    
 
     @Test
     public void testGenerarId() {
@@ -56,7 +55,8 @@ public class RegistroTest {
     }
 
     @Test
-    public void registroJugador(){
+    public void registroJugador() {
+        System.out.println("GUIregistroJugador");
         String nombre = "Juan";
         int longitud = 6;
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -69,22 +69,22 @@ public class RegistroTest {
         }
         String nick = sb.toString();
         String password = "juan";
-        
+
         window.setNombre(nombre);
         window.setNick(nick);
         window.setContraseña(password);
-        
-        robot.delay(1000);
+
+        robot.delay(200);
         robot.mouseMove(330, 230);
         robot.mousePress(InputEvent.BUTTON1_MASK); // Presionar el botón izquierdo del ratón
         robot.mouseRelease(InputEvent.BUTTON1_MASK); // Soltar el botón izquierdo del ratón
-        
-        robot.delay(1000);
+
+        robot.delay(200);
 
         robot.mouseMove(605, 435);
         robot.mousePress(InputEvent.BUTTON1_MASK); // Presionar el botón izquierdo del ratón
         robot.mouseRelease(InputEvent.BUTTON1_MASK); // Soltar el botón izquierdo del ratón
-        robot.delay(1000);
+        robot.delay(200);
 
         Usuario u = window.getUsuario();
 
@@ -101,9 +101,10 @@ public class RegistroTest {
         assert Character.isDigit(id.charAt(1)) && Character.isDigit(id.charAt(2)) : "Los caracteres 2 y 3 del ID no son números";
         assert Character.isLetter(id.charAt(3)) && Character.isLetter(id.charAt(4)) : "Los caracteres 4 y 5 del ID no son letras";
     }
-    
+
     @Test
-    public void registroAdmin(){
+    public void registroAdmin() {
+        System.out.println("GUIregistroAdmin");
         String nombre = "admin";
         int longitud = 6;
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -116,34 +117,34 @@ public class RegistroTest {
         }
         String nick = sb.toString();
         String password = "admin";
-        
+
         window.setNombre(nombre);
         window.setNick(nick);
-        window.setContraseña (password);
-        
+        window.setContraseña(password);
+
         robot.mouseMove(330, 230);
         robot.mousePress(InputEvent.BUTTON1_MASK); // Presionar el botón izquierdo del ratón
         robot.mouseRelease(InputEvent.BUTTON1_MASK); // Soltar el botón izquierdo del ratón
-        
+
         // Hacer clic en el combobox
         robot.mouseMove(320, 300); // Mover el ratón a la posición del combobox
         robot.mousePress(InputEvent.BUTTON1_MASK); // Presionar el botón izquierdo del ratón
         robot.mouseRelease(InputEvent.BUTTON1_MASK); // Soltar el botón izquierdo del ratón
-        
+
         // Esperar a que se muestre la lista desplegable
-        robot.delay(1000);
-        
+        robot.delay(200);
+
         // Seleccionar la opción 2
         robot.keyPress(KeyEvent.VK_DOWN); // Mover hacia abajo en la lista
         robot.keyPress(KeyEvent.VK_DOWN); // Mover hacia abajo en la lista
         robot.keyPress(KeyEvent.VK_ENTER); // Seleccionar la opción
-        robot.delay(1000);
+        robot.delay(200);
 
         robot.mouseMove(605, 435);
         robot.mousePress(InputEvent.BUTTON1_MASK); // Presionar el botón izquierdo del ratón
         robot.mouseRelease(InputEvent.BUTTON1_MASK); // Soltar el botón izquierdo del ratón
 
-        robot.delay(1000);
+        robot.delay(200);
 
         Usuario u = window.getUsuario();
 
