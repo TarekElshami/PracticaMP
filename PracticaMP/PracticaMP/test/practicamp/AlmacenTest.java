@@ -96,26 +96,100 @@ public class AlmacenTest {
      * Test of getUsuarios method, of class Almacen.
      */
     @Test
-    public void testGetUsuarios() {
+    public void testGetUsuarios() throws FileNotFoundException, IOException, ClassNotFoundException {
         System.out.println("getUsuarios");
-        List<Usuario> expResult = null;
+
+        // La lista de armas que debería devolver el objeto Almacén es la que se lee desde el fichero armas.dat
+        FileInputStream fis = new FileInputStream("src/files/db/users.db");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        List<Usuario> expResult = (List<Usuario>) ois.readObject();
+        ois.close();
+        fis.close();
+
         List<Usuario> result = Almacen.getUsuarios();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        for (int i = 0; i < expResult.size(); i++) {
+            assertEquals("Fallo de coincidencias por rol", expResult.get(i).getRol(), result.get(i).getRol());
+            assertEquals("Fallo de coincidencias por nombre", expResult.get(i).getNombre(), result.get(i).getNombre());
+            assertEquals("Fallo de coincidencias por nick", expResult.get(i).getNick(), result.get(i).getNick());
+            assertEquals("Fallo de coincidencias por id", expResult.get(i).getId(), result.get(i).getId());
+            assertEquals("Fallo de coincidencias por baneado", expResult.get(i).isBaneado(), result.get(i).isBaneado());
+            assertEquals("Fallo de coincidencias por historiales", expResult.get(i).getHistorial(), result.get(i).getHistorial());
+            assertEquals("Fallo de coincidencias por notificaciones", expResult.get(i).getNotificaciones(), result.get(i).getNotificaciones());
+            assertEquals("Fallo de coincidencias por oro", expResult.get(i).getOro(), result.get(i).getOro(), 0);
+            assertEquals("Fallo de coincidencias por victorias", expResult.get(i).getVictorias(), result.get(i).getVictorias());
+            assertEquals("Fallo de coincidencias por personaje", expResult.get(i).getPersonaje(), result.get(i).getPersonaje());
+            assertEquals("Fallo de coincidencias por armas activas", expResult.get(i).getArmasActivas(), result.get(i).getArmasActivas());
+            assertEquals("Fallo de coincidencias por armadura activa", expResult.get(i).getArmaduraActiva(), result.get(i).getArmaduraActiva());
+            assertEquals("Fallo de coincidencias por tipo personaje", expResult.get(i).getTipoPersonaje(), result.get(i).getTipoPersonaje());
+            assertEquals("Fallo de coincidencias por cerrada", expResult.get(i).isCerrada(), result.get(i).isCerrada());
+
+        }
     }
 
     /**
      * Test of getPersonajes method, of class Almacen.
      */
     @Test
-    public void testGetPersonajes() {
+    public void testGetPersonajes() throws FileNotFoundException, IOException, ClassNotFoundException {
         System.out.println("getPersonajes");
-        List<Personaje> expResult = null;
+
+        // La lista de armas que debería devolver el objeto Almacén es la que se lee desde el fichero armas.dat
+        FileInputStream fis = new FileInputStream("personajes.dat");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        List<Personaje> expResult = (List<Personaje>) ois.readObject();
+        ois.close();
+        fis.close();
+
         List<Personaje> result = Almacen.getPersonajes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        for (int i = 0; i < expResult.size(); i++) {
+            assertEquals("Fallo de coincidencias por nombre", expResult.get(i).getNombre(), result.get(i).getNombre());
+            assertEquals("Fallo de coincidencias por salud", expResult.get(i).getSalud(), result.get(i).getSalud());
+            assertEquals("Fallo de coincidencias por poder", expResult.get(i).getPoder(), result.get(i).getPoder());
+            assertEquals("No coinciden las habilidades", expResult.get(i).getHabilidad().getAtaque(), result.get(i).getHabilidad().getAtaque());
+            assertEquals("No coinciden las habilidades", expResult.get(i).getHabilidad().getDefensa(), result.get(i).getHabilidad().getDefensa());
+            assertEquals("No coinciden las habilidades", expResult.get(i).getHabilidad().getNombre(), result.get(i).getHabilidad().getNombre());
+            for (int j = 0; j < expResult.get(i).getArmas().size(); j++) {
+                assertEquals("No coinciden las armas", expResult.get(i).getArmas().get(j).getNombre(), result.get(i).getArmas().get(j).getNombre());
+                assertEquals("No coinciden las armas", expResult.get(i).getArmas().get(j).getDefensa(), result.get(i).getArmas().get(j).getDefensa());
+                assertEquals("No coinciden las armas", expResult.get(i).getArmas().get(j).getAtaque(), result.get(i).getArmas().get(j).getAtaque());
+                assertEquals("No coinciden las armas", expResult.get(i).getArmas().get(j).getManos(), result.get(i).getArmas().get(j).getManos());
+            }
+            assertEquals("Fallo de coincidencias por arma activa", expResult.get(i).getArmaActiva(), result.get(i).getArmaActiva());
+            for (int j = 0; j < expResult.get(i).getArmaduras().size(); j++) {
+                assertEquals("No coinciden las armaduras", expResult.get(i).getArmaduras().get(j).getNombre(), result.get(i).getArmaduras().get(j).getNombre());
+                assertEquals("No coinciden las armaduras", expResult.get(i).getArmaduras().get(j).getDefensa(), result.get(i).getArmaduras().get(j).getDefensa());
+                assertEquals("No coinciden las armaduras", expResult.get(i).getArmaduras().get(j).getAtaque(), result.get(i).getArmaduras().get(j).getAtaque());
+            }
+            assertEquals("Fallo de coincidencias por armadura activa", expResult.get(i).getArmaduraActiva(), result.get(i).getArmaduraActiva());
+            for (int j = 0; j < expResult.get(i).getEsbirros().size(); j++) {
+                assertEquals("No coinciden los esbirros", expResult.get(i).getEsbirros().get(j).getNombre(), result.get(i).getEsbirros().get(j).getNombre());
+                assertEquals("No coinciden los esbirros", expResult.get(i).getEsbirros().get(j).getSalud(), result.get(i).getEsbirros().get(j).getSalud());
+                if (expResult.get(i).getEsbirros().get(j) instanceof Demonio demonio) {
+                    assertEquals("No coinciden los esbirros", demonio.getPacto(), ((Demonio) result.get(i).getEsbirros().get(j)).getPacto());
+                } else if (expResult.get(i).getEsbirros().get(j) instanceof Ghoul ghoul) {
+                    assertEquals("No coinciden los esbirros", ghoul.getDependencia(), ((Ghoul) result.get(i).getEsbirros().get(j)).getDependencia());
+                } else if (expResult.get(i).getEsbirros().get(j) instanceof Humano humano) {
+                    assertEquals("No coinciden los esbirros", humano.getLealdad(), ((Humano) result.get(i).getEsbirros().get(j)).getLealdad());
+                }
+                for (Map.Entry<String, Integer> debilidades : expResult.get(i).getDebilidades().entrySet()) {
+                    String key = debilidades.getKey();
+                    Integer val = debilidades.getValue();
+
+                    assertEquals("No coinciden las debilidades", result.get(i).getDebilidades().get(key), val);
+
+                }
+
+                for (Map.Entry<String, Integer> fortalezas : expResult.get(i).getFortalezas().entrySet()) {
+                    String key = fortalezas.getKey();
+                    Integer val = fortalezas.getValue();
+
+                    assertEquals("No coinciden las fortalezas", result.get(i).getFortalezas().get(key), val);
+
+                }
+            }
+        }
     }
 
     /**
@@ -196,24 +270,19 @@ public class AlmacenTest {
      */
     @Test
     public void testIsInNot() {
-        System.out.println("isInNot");
-        boolean expResult = false;
-        boolean result = Almacen.isInNot();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+	boolean inNot = false;
+	assertEquals(Almacen.isInNot(), inNot);
     }
-
-    /**
+	
+	/**
      * Test of setInNot method, of class Almacen.
      */
     @Test
     public void testSetInNot() {
-        System.out.println("setInNot");
-        boolean inNot = false;
-        Almacen.setInNot(inNot);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Almacen.setInNot(true);
+	boolean inNot = true;
+	assertEquals(Almacen.isInNot(), inNot);
+	Almacen.setInNot(false);
     }
 
     /**
