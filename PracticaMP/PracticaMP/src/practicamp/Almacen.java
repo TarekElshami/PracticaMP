@@ -189,7 +189,11 @@ public class Almacen {
             }
             i++;
         }
-        Almacen.usuarios.set(index, usuario);
+        if (index == -1){
+            usuarios.add(usuario);
+        } else{
+            Almacen.usuarios.set(index, usuario);
+        }
     }
     
     public static Usuario getUsuarioActivo() {
