@@ -19,6 +19,28 @@ import static org.junit.Assert.*;
 
 public class AlmacenTest {
 
+    private Almacen a;
+
+    public AlmacenTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        a = new Almacen();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
     /**
      * Test of updateFiles method, of class Almacen.
      */
@@ -45,7 +67,6 @@ public class AlmacenTest {
     /**
      * Test of actualizarFicheroDesafios method, of class Almacen.
      */
-
     @Test
     public void testActualizarFicheroDesafios() throws FileNotFoundException, IOException, ClassNotFoundException {
         Almacen almacen = new Almacen(); // Asumiendo que existe una clase AlmacenDesafios
@@ -68,7 +89,6 @@ public class AlmacenTest {
         assertEquals("El oro apostado no coincide", oroApostado1, desafiosLeidos.get(0).getOro(), 0.001);
     }
 
-
     /**
      * Test of cargarPersonajes method, of class Almacen.
      */
@@ -90,9 +110,9 @@ public class AlmacenTest {
         Usuario desafiante = new Usuario("Juan", "Juan");
         Usuario desafiado = new Usuario("Luis", "Luis");
         Usuario desafiante2 = new Usuario("Lucas", "Lucas");
-        
+
         Desafio desafio = new Desafio(desafiante, desafiado, 100.0);
-        Desafio desafio2 = new Desafio(desafiante2, desafiado, 200.0); 
+        Desafio desafio2 = new Desafio(desafiante2, desafiado, 200.0);
         Almacen a = new Almacen();
         a.agregarDesafioAValidacion(desafio);
         a.agregarDesafioAValidacion(desafio2);
@@ -101,14 +121,14 @@ public class AlmacenTest {
         expResult.add(desafio2);
         List<Desafio> result = a.getDesafiosSinValidar();
         int aux = result.size();
-        
+
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals(expResult.get(0).getDesafiado().getNick(), result.get(aux-2).getDesafiado().getNick());
-        assertEquals(expResult.get(1).getDesafiado().getNick(), result.get(aux-1).getDesafiado().getNick());
-        assertEquals(expResult.get(0).getDesafiante().getNick(), result.get(aux-2).getDesafiante().getNick());
-        assertEquals(expResult.get(0).getOro(), result.get(aux-2).getOro(),0);
-        assertEquals(expResult.get(1).getDesafiante().getNick(), result.get(aux-1).getDesafiante().getNick());
-        assertEquals(expResult.get(1).getOro(), result.get(aux-1).getOro(),0);
+        assertEquals(expResult.get(0).getDesafiado().getNick(), result.get(aux - 2).getDesafiado().getNick());
+        assertEquals(expResult.get(1).getDesafiado().getNick(), result.get(aux - 1).getDesafiado().getNick());
+        assertEquals(expResult.get(0).getDesafiante().getNick(), result.get(aux - 2).getDesafiante().getNick());
+        assertEquals(expResult.get(0).getOro(), result.get(aux - 2).getOro(), 0);
+        assertEquals(expResult.get(1).getDesafiante().getNick(), result.get(aux - 1).getDesafiante().getNick());
+        assertEquals(expResult.get(1).getOro(), result.get(aux - 1).getOro(), 0);
     }
 
     /**
@@ -124,10 +144,10 @@ public class AlmacenTest {
         instance.addUsuario(usu2);
         int aux = instance.getUsuarios().size();
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals("El nick del usuario 1 no coincide" , usu.getNick(), instance.getUsuarios().get(aux-2).getNick());
-        assertEquals("El nick del usuario 2 no coincide" , usu2.getNick(), instance.getUsuarios().get(aux-1).getNick());
-        assertEquals("La contraseña del usuario 1 no coincide" , usu.getContrasena(), instance.getUsuarios().get(aux-2).getContrasena());
-        assertEquals("La contraseña del usuario 2 no coincide" , usu2.getContrasena(), instance.getUsuarios().get(aux-1).getContrasena());
+        assertEquals("El nick del usuario 1 no coincide", usu.getNick(), instance.getUsuarios().get(aux - 2).getNick());
+        assertEquals("El nick del usuario 2 no coincide", usu2.getNick(), instance.getUsuarios().get(aux - 1).getNick());
+        assertEquals("La contraseña del usuario 1 no coincide", usu.getContrasena(), instance.getUsuarios().get(aux - 2).getContrasena());
+        assertEquals("La contraseña del usuario 2 no coincide", usu2.getContrasena(), instance.getUsuarios().get(aux - 1).getContrasena());
     }
 
     /**
@@ -140,10 +160,10 @@ public class AlmacenTest {
         Almacen instance = new Almacen();
         instance.addUsuario(usuario);
         int aux = instance.getUsuarios().size();
-        Almacen.setUsuarioActivo(aux-1);
+        Almacen.setUsuarioActivo(aux - 1);
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals("El usuarioActivo no coincide" , usuario.getNick(), instance.getUsuarioActivo().getNick());
-        assertEquals("El usuarioActivo no coincide" , usuario.getContrasena(), instance.getUsuarioActivo().getContrasena());
+        assertEquals("El usuarioActivo no coincide", usuario.getNick(), instance.getUsuarioActivo().getNick());
+        assertEquals("El usuarioActivo no coincide", usuario.getContrasena(), instance.getUsuarioActivo().getContrasena());
     }
 
     /**
@@ -152,7 +172,7 @@ public class AlmacenTest {
     @Test
     public void testSetUsuario() throws IOException, FileNotFoundException, ClassNotFoundException {
         System.out.println("setUsuario");
-        
+
         // si un usario ya está en almacen y le intentamos volver a añadir con setUsuario, la nuava info se sustituye por la anterior manteniendo la posición en el array
         Usuario usuario = new Usuario("Pedro", "Pedro");
         Usuario usuario2 = new Usuario("Juan", "Juan");
@@ -162,9 +182,9 @@ public class AlmacenTest {
         instance.setUsuario(usuario);
         int aux = instance.getUsuarios().size();
         // TODO review the generated test code and remove the default call to fail.
-        assertNotEquals("hay un problema" , usuario.getNick(), instance.getUsuarios().get(aux-1).getNick());
-        assertNotEquals("hay un problema" , usuario.getContrasena(), instance.getUsuarios().get(aux-1).getContrasena());
-        
+        assertNotEquals("hay un problema", usuario.getNick(), instance.getUsuarios().get(aux - 1).getNick());
+        assertNotEquals("hay un problema", usuario.getContrasena(), instance.getUsuarios().get(aux - 1).getContrasena());
+
         // en caso de que este usuario no esté en almacen, este se añade al final de array 
         int longitud = 6;
         StringBuilder sb = new StringBuilder(longitud);
@@ -172,9 +192,9 @@ public class AlmacenTest {
         Usuario usuario3 = new Usuario(nick, nick);
         System.out.println(aux);
         int aux2 = instance.getUsuarios().size();
-        assertEquals("El usuario no coincide" , usuario3.getNick(), instance.getUsuarios().get(aux).getNick());
-        assertEquals("El usuario no coincide" , usuario3.getContrasena(), instance.getUsuarios().get(aux).getContrasena());
-    
+        assertEquals("El usuario no coincide", usuario3.getNick(), instance.getUsuarios().get(aux).getNick());
+        assertEquals("El usuario no coincide", usuario3.getContrasena(), instance.getUsuarios().get(aux).getContrasena());
+
     }
 
     /**
@@ -187,10 +207,10 @@ public class AlmacenTest {
         Almacen instance = new Almacen();
         instance.addUsuario(usuario);
         int aux = instance.getUsuarios().size();
-        Almacen.setUsuarioActivo(aux-1);
+        Almacen.setUsuarioActivo(aux - 1);
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals("El usuarioActivo no coincide" , usuario.getNick(), instance.getUsuarioActivo().getNick());
-        assertEquals("El usuarioActivo no coincide" , usuario.getContrasena(), instance.getUsuarioActivo().getContrasena());
+        assertEquals("El usuarioActivo no coincide", usuario.getNick(), instance.getUsuarioActivo().getNick());
+        assertEquals("El usuarioActivo no coincide", usuario.getContrasena(), instance.getUsuarioActivo().getContrasena());
     }
 
     /**
@@ -228,9 +248,9 @@ public class AlmacenTest {
         Usuario desafiante = new Usuario("Juan", "Juan");
         Usuario desafiado = new Usuario("Luis", "Luis");
         Usuario desafiante2 = new Usuario("Lucas", "Lucas");
-        
+
         Desafio desafio = new Desafio(desafiante, desafiado, 100.0);
-        Desafio desafio2 = new Desafio(desafiante2, desafiado, 200.0); 
+        Desafio desafio2 = new Desafio(desafiante2, desafiado, 200.0);
         Almacen a = new Almacen();
         a.agregarDesafioAValidacion(desafio);
         a.agregarDesafioAValidacion(desafio2);
@@ -239,16 +259,15 @@ public class AlmacenTest {
         expResult.add(desafio2);
         List<Desafio> result = a.getDesafiosSinValidar();
         int aux = result.size();
-        
+
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals(expResult.get(0).getDesafiado().getNick(), result.get(aux-2).getDesafiado().getNick());
-        assertEquals(expResult.get(1).getDesafiado().getNick(), result.get(aux-1).getDesafiado().getNick());
-        assertEquals(expResult.get(0).getDesafiante().getNick(), result.get(aux-2).getDesafiante().getNick());
-        assertEquals(expResult.get(0).getOro(), result.get(aux-2).getOro(),0);
-        assertEquals(expResult.get(1).getDesafiante().getNick(), result.get(aux-1).getDesafiante().getNick());
-        assertEquals(expResult.get(1).getOro(), result.get(aux-1).getOro(),0);
-        
-        
+        assertEquals(expResult.get(0).getDesafiado().getNick(), result.get(aux - 2).getDesafiado().getNick());
+        assertEquals(expResult.get(1).getDesafiado().getNick(), result.get(aux - 1).getDesafiado().getNick());
+        assertEquals(expResult.get(0).getDesafiante().getNick(), result.get(aux - 2).getDesafiante().getNick());
+        assertEquals(expResult.get(0).getOro(), result.get(aux - 2).getOro(), 0);
+        assertEquals(expResult.get(1).getDesafiante().getNick(), result.get(aux - 1).getDesafiante().getNick());
+        assertEquals(expResult.get(1).getOro(), result.get(aux - 1).getOro(), 0);
+
     }
 
     /**
@@ -361,14 +380,23 @@ public class AlmacenTest {
      * Test of buscarUsuario method, of class Almacen.
      */
     @Test
-    public void testBuscarUsuario() {
+    public void testBuscarUsuario() { // el método que se prueba aquí devuelve la posición en el array de Usuarios en la que se almacena 
         System.out.println("buscarUsuario");
-        Usuario usuarioBusc = null;
-        int expResult = 0;
-        int result = Almacen.buscarUsuario(usuarioBusc);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Probaremos a buscar un usuario existente y a un usuario que no existe.
+
+        // Usuario EXISTENTE
+        Usuario usuarioBusc = new Usuario("Wally", "findWally");
+        a.addUsuario(usuarioBusc);
+        int index = Almacen.buscarUsuario(usuarioBusc);
+        Usuario result = Almacen.getUsuarios().get(index);
+        assertEquals("No se devuelve correctamente el índice", usuarioBusc, result);
+
+        // Usuario NO EXISTENTE: debería devolver -1
+        Usuario usuarioBusc2 = new Usuario("Wally2", "findWally");
+        int index2 = Almacen.buscarUsuario(usuarioBusc2);
+        int result2 = -1;
+        assertEquals("Problemas con la búsqueda de usuarios no existentes", index2, result2);
+
     }
-    
+
 }
