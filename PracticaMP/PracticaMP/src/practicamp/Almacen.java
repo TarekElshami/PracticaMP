@@ -166,10 +166,6 @@ public class Almacen {
         this.actualizarFicheroDesafios();
     }
 
-    public void mostrarRanking() {
-        
-    }
-
     public void addUsuario(Usuario nuevoUsuario) {
         Almacen.usuarios.add(nuevoUsuario);
     }

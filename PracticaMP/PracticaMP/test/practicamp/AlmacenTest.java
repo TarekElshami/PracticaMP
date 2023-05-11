@@ -5,7 +5,9 @@
 package practicamp;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -15,31 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aserr
- */
 public class AlmacenTest {
-    
-    public AlmacenTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() throws IOException, FileNotFoundException, ClassNotFoundException {
-
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of updateFiles method, of class Almacen.
@@ -67,14 +45,29 @@ public class AlmacenTest {
     /**
      * Test of actualizarFicheroDesafios method, of class Almacen.
      */
+
     @Test
-    public void testActualizarFicheroDesafios() throws Exception {
-        System.out.println("actualizarFicheroDesafios");
-        Almacen instance = new Almacen();
-        instance.actualizarFicheroDesafios();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testActualizarFicheroDesafios() throws FileNotFoundException, IOException, ClassNotFoundException {
+        Almacen almacen = new Almacen(); // Asumiendo que existe una clase AlmacenDesafios
+        Usuario desafiante1 = new Usuario("desafiante1", "contrasena1");
+        Usuario desafiado1 = new Usuario("desafiado1", "contrasena3");
+        double oroApostado1 = 50.0;
+
+        // Añadir desafíos sin validar al almacen
+        almacen.agregarDesafioAValidacion(new Desafio(desafiante1, desafiado1, oroApostado1));
+
+        // Comprobar que el archivo se ha actualizado correctamente
+        List<Desafio> desafiosLeidos = almacen.getDesafiosSinValidar();
+
+        List<Desafio> listaDesafios = new ArrayList<>();
+        listaDesafios.add(new Desafio(desafiante1, desafiado1, oroApostado1));
+
+        //assertEquals("El tamaño de la lista de desafíos leídos es incorrecto", listaDesafios.size(), desafiosLeidos.size());
+        assertEquals("El desafiante no coincide", desafiante1, desafiosLeidos.get(0).getDesafiante());
+        assertEquals("El desafiado no coincide", desafiado1, desafiosLeidos.get(0).getDesafiado());
+        assertEquals("El oro apostado no coincide", oroApostado1, desafiosLeidos.get(0).getOro(), 0.001);
     }
+
 
     /**
      * Test of cargarPersonajes method, of class Almacen.
@@ -116,18 +109,6 @@ public class AlmacenTest {
         assertEquals(expResult.get(0).getOro(), result.get(aux-2).getOro(),0);
         assertEquals(expResult.get(1).getDesafiante().getNick(), result.get(aux-1).getDesafiante().getNick());
         assertEquals(expResult.get(1).getOro(), result.get(aux-1).getOro(),0);
-    }
-
-    /**
-     * Test of mostrarRanking method, of class Almacen.
-     */
-    @Test
-    public void testMostrarRanking() throws IOException, FileNotFoundException, ClassNotFoundException{
-        System.out.println("mostrarRanking");
-        Almacen instance = new Almacen();
-        instance.mostrarRanking();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

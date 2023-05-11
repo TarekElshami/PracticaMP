@@ -1,11 +1,8 @@
 package practicamp;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 
 
 public class EquipoTest {
@@ -15,15 +12,6 @@ public class EquipoTest {
     private Equipo armaduraDefensa;
     private Equipo armaduraAtaque;
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-
     @Before
     public void setUp() {
         arma1Mano = new Arma("Cuchillo de caza", 0, 2, 1);
@@ -31,11 +19,6 @@ public class EquipoTest {
         armaduraDefensa = new Armadura("Chaleco de cuero", 2, 0);
         armaduraAtaque = new Armadura("Armadura de las sombras", 0, 2);
     }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
 
     /**
     Test de getNombre.
