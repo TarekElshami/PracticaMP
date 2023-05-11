@@ -90,7 +90,7 @@ public class DesafiosTest {
         Desafios instance = window;
         instance.actualizarList();
         instance.setOroApostado(apuesta);
-        instance.setUsuarioList(0);
+        instance.setUsuarioList(instance.getLastUsuarioIdx());
         instance.desafiarActionPerformed();
         // TODO review the generated test code and remove the default call to fail.
         Desafio desafio = a.getDesafiosSinValidar().get(a.getDesafiosSinValidar().size()-1);   

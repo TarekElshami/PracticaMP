@@ -235,4 +235,8 @@ public String getLastUsuarioList(){
     return userList.getSelectedValue();
 }
 
+public int getLastUsuarioIdx(){
+    return userList.getLastVisibleIndex();
+}
+
 }
