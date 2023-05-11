@@ -4,9 +4,11 @@
  */
 package practicamp;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,18 +66,29 @@ public class AlmacenTest {
         fail("The test case is a prototype.");
     }
 
-    
     /**
      * Test of getArmas method, of class Almacen.
      */
     @Test
-    public void testGetArmas() {
+    public void testGetArmas() throws FileNotFoundException, IOException, ClassNotFoundException {
         System.out.println("getArmas");
-        List<Arma> expResult = null;
+
+        // La lista de armas que debería devolver el objeto Almacén es la que se lee desde el fichero armas.dat
+        FileInputStream fis = new FileInputStream("armas.dat");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        List<Arma> expResult = (List<Arma>) ois.readObject();
+        ois.close();
+        fis.close();
+
         List<Arma> result = Almacen.getArmas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        for (int i = 0; i < expResult.size(); i++) {
+            assertEquals("Fallo de coincidencias por nombre", expResult.get(i).getNombre(), result.get(i).getNombre());
+            assertEquals("Fallo de coincidencias por ataque", expResult.get(i).getAtaque(), result.get(i).getAtaque());
+            assertEquals("Fallo de coincidencias por defensa", expResult.get(i).getDefensa(), result.get(i).getDefensa());
+            assertEquals("Fallo de coincidencias por manos", expResult.get(i).getManos(), result.get(i).getManos());
+
+        }
     }
 
     /**
@@ -170,7 +183,7 @@ public class AlmacenTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
     /**
      * Test of cargarPersonajes method, of class Almacen.
      */
@@ -182,8 +195,8 @@ public class AlmacenTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
-        /**
+
+    /**
      * Test of getEsbirros method, of class Almacen.
      */
     @Test
@@ -345,7 +358,6 @@ public class AlmacenTest {
         assertEquals("El usuarioActivo no coincide", usuario.getNick(), instance.getUsuarioActivo().getNick());
         assertEquals("El usuarioActivo no coincide", usuario.getContrasena(), instance.getUsuarioActivo().getContrasena());
     }
-
 
     /**
      * Test of getDesafiosSinValidar method, of class Almacen.
