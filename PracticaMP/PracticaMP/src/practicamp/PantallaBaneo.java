@@ -121,7 +121,7 @@ public class PantallaBaneo extends javax.swing.JPanel {
             }
         }
         try {
-            this.almacen.updateFiles();
+            Almacen.updateFiles();
         } catch (IOException ex) {
             Logger.getLogger(PantallaBaneo.class.getName()).log(Level.SEVERE, null, ex);
         }
