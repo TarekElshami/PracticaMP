@@ -4,6 +4,7 @@
  */
 package practicamp;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +24,9 @@ import static org.junit.Assert.*;
 public class AlmacenTest {
 
     private Almacen a;
-
+    private static final String FILE_PATH = "src/files/db/users.db";
+    private List<Usuario> usuariosOriginales;
+    
     public AlmacenTest() {
     }
 
@@ -38,10 +41,17 @@ public class AlmacenTest {
     @Before
     public void setUp() throws Exception {
         a = new Almacen();
-    }
-
-    @After
-    public void tearDown() throws Exception {
+        usuariosOriginales = new ArrayList<>();
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            // Crea el archivo si no existe
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+        }
+        FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        usuariosOriginales = (List<Usuario>) ois.readObject();
+        ois.close();
     }
 
     /**
@@ -49,10 +59,38 @@ public class AlmacenTest {
      */
     @Test
     public void testUpdateFiles() throws Exception {
-        System.out.println("updateFiles");
-        Almacen.updateFiles();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Crea un objeto de prueba de Almacen con algunos usuarios nuevos
+        Almacen almacen = new Almacen();
+        List<Usuario> usuariosNuevos = new ArrayList<>();
+        almacen.setUsuario(new Usuario("usuario3", "contraseña3"));
+        almacen.setUsuario(new Usuario("usuario4", "contraseña4"));
+
+        // Agrega los usuarios existentes a la lista de usuarios nuevos
+        usuariosNuevos.addAll(usuariosOriginales != null ? usuariosOriginales : new ArrayList<>());
+
+        // Llama al método updateFiles() para guardar todos los usuarios
+        almacen.updateFiles();
+
+        // Lee el archivo generado y verifica que contiene todos los usuarios
+        FileInputStream fis = new FileInputStream(FILE_PATH);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        List<Usuario> usuariosLeidos = (List<Usuario>) ois.readObject();
+        ois.close();
+
+        assertNotNull(usuariosLeidos);
+        assertEquals(usuariosNuevos.size(), usuariosLeidos.size());
+        for (int i = 0; i < usuariosNuevos.size(); i++) {
+            assertEquals(usuariosNuevos.get(i).getNombre(), usuariosLeidos.get(i).getNombre());
+            assertEquals(usuariosNuevos.get(i).getContrasena(), usuariosLeidos.get(i).getContrasena());
+        }
+    }
+
+    // Restaura los usuarios originales después de la prueba
+    public void tearDown() throws Exception {
+        FileOutputStream fos = new FileOutputStream(FILE_PATH);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(usuariosOriginales);
+        oos.close();
     }
 
     /**
