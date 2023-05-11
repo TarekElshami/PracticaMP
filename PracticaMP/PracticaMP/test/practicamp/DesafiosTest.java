@@ -93,7 +93,7 @@ public class DesafiosTest {
         instance.setUsuarioList(0);
         instance.desafiarActionPerformed();
         // TODO review the generated test code and remove the default call to fail.
-        Desafio desafio = a.getDesafiosSinValidar().get(0);   
+        Desafio desafio = a.getDesafiosSinValidar().get(a.getDesafiosSinValidar().size()-1);   
         assertEquals("No coincide el desafiante", "Test", desafio.getDesafiante().getNick());
         assertEquals("No coincide el desafiado", "Juan", desafio.getDesafiado().getNick());
         assertEquals("No coincide el oro apostado", Integer.parseInt(apuesta), desafio.getOro(),0);

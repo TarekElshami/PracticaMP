@@ -26,7 +26,7 @@ public class AlmacenTest {
     private Almacen a;
     private static final String FILE_PATH = "src/files/db/users.db";
     private List<Usuario> usuariosOriginales;
-    
+
     public AlmacenTest() {
     }
 
@@ -61,12 +61,11 @@ public class AlmacenTest {
     public void testUpdateFiles() throws Exception {
         // Crea un objeto de prueba de Almacen con algunos usuarios nuevos
         Almacen almacen = new Almacen();
-        List<Usuario> usuariosNuevos = new ArrayList<>();
         almacen.setUsuario(new Usuario("usuario3", "contraseña3"));
         almacen.setUsuario(new Usuario("usuario4", "contraseña4"));
 
-        // Agrega los usuarios existentes a la lista de usuarios nuevos
-        usuariosNuevos.addAll(usuariosOriginales != null ? usuariosOriginales : new ArrayList<>());
+        //Obtenemos del almacén la lista de usuarios que contiene para compararla con los leídos
+        List<Usuario> listaUsuarios = Almacen.getUsuarios();
 
         // Llama al método updateFiles() para guardar todos los usuarios
         almacen.updateFiles();
@@ -78,10 +77,10 @@ public class AlmacenTest {
         ois.close();
 
         assertNotNull(usuariosLeidos);
-        assertEquals(usuariosNuevos.size(), usuariosLeidos.size());
-        for (int i = 0; i < usuariosNuevos.size(); i++) {
-            assertEquals(usuariosNuevos.get(i).getNombre(), usuariosLeidos.get(i).getNombre());
-            assertEquals(usuariosNuevos.get(i).getContrasena(), usuariosLeidos.get(i).getContrasena());
+        assertEquals(listaUsuarios.size(), usuariosLeidos.size());
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            assertEquals(listaUsuarios.get(i).getNombre(), usuariosLeidos.get(i).getNombre());
+            assertEquals(listaUsuarios.get(i).getContrasena(), usuariosLeidos.get(i).getContrasena());
         }
     }
 
@@ -98,11 +97,33 @@ public class AlmacenTest {
      */
     @Test
     public void testUpdateUsers() throws Exception {
-        System.out.println("updateUsers");
-        Almacen instance = new Almacen();
-        instance.updateUsers();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("getUsuarios");
+
+        // La lista de armas que debería devolver el objeto Almacén es la que se lee desde el fichero armas.dat
+        FileInputStream fis = new FileInputStream("src/files/db/users.db");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        List<Usuario> expResult = (List<Usuario>) ois.readObject();
+        ois.close();
+        fis.close();
+
+        List<Usuario> result = Almacen.getUsuarios();
+
+        for (int i = 0; i < expResult.size(); i++) {
+            assertEquals("Fallo de coincidencias por rol", expResult.get(i).getRol(), result.get(i).getRol());
+            assertEquals("Fallo de coincidencias por nombre", expResult.get(i).getNombre(), result.get(i).getNombre());
+            assertEquals("Fallo de coincidencias por nick", expResult.get(i).getNick(), result.get(i).getNick());
+            assertEquals("Fallo de coincidencias por id", expResult.get(i).getId(), result.get(i).getId());
+            assertEquals("Fallo de coincidencias por baneado", expResult.get(i).isBaneado(), result.get(i).isBaneado());
+            assertEquals("Fallo de coincidencias por historiales", expResult.get(i).getHistorial(), result.get(i).getHistorial());
+            assertEquals("Fallo de coincidencias por notificaciones", expResult.get(i).getNotificaciones(), result.get(i).getNotificaciones());
+            assertEquals("Fallo de coincidencias por oro", expResult.get(i).getOro(), result.get(i).getOro(), 0);
+            assertEquals("Fallo de coincidencias por victorias", expResult.get(i).getVictorias(), result.get(i).getVictorias());
+            assertEquals("Fallo de coincidencias por personaje", expResult.get(i).getPersonaje(), result.get(i).getPersonaje());
+            assertEquals("Fallo de coincidencias por armas activas", expResult.get(i).getArmasActivas(), result.get(i).getArmasActivas());
+            assertEquals("Fallo de coincidencias por armadura activa", expResult.get(i).getArmaduraActiva(), result.get(i).getArmaduraActiva());
+            assertEquals("Fallo de coincidencias por tipo personaje", expResult.get(i).getTipoPersonaje(), result.get(i).getTipoPersonaje());
+            assertEquals("Fallo de coincidencias por cerrada", expResult.get(i).isCerrada(), result.get(i).isCerrada());
+        }
     }
 
     /**
@@ -289,6 +310,7 @@ public class AlmacenTest {
         System.out.println("getIndexUsuarioActivo");
 
         // Si no hay usuario activo
+        Almacen.setUsuarioActivo(0);
         int expResult = 0;
         int result = Almacen.getIndexUsuarioActivo();
         assertEquals("No se devuelve 0 si no hay usuario activo", expResult, result);
@@ -308,19 +330,19 @@ public class AlmacenTest {
      */
     @Test
     public void testIsInNot() {
-	boolean inNot = false;
-	assertEquals(Almacen.isInNot(), inNot);
+        boolean inNot = false;
+        assertEquals(Almacen.isInNot(), inNot);
     }
-	
-	/**
+
+    /**
      * Test of setInNot method, of class Almacen.
      */
     @Test
     public void testSetInNot() {
         Almacen.setInNot(true);
-	boolean inNot = true;
-	assertEquals(Almacen.isInNot(), inNot);
-	Almacen.setInNot(false);
+        boolean inNot = true;
+        assertEquals(Almacen.isInNot(), inNot);
+        Almacen.setInNot(false);
     }
 
     /**
@@ -464,8 +486,35 @@ public class AlmacenTest {
         listaDesafios.add(new Desafio(desafiante1, desafiado1, oroApostado1));
 
         //assertEquals("El tamaño de la lista de desafíos leídos es incorrecto", listaDesafios.size(), desafiosLeidos.size());
-        assertEquals("El desafiante no coincide", desafiante1, desafiosLeidos.get(0).getDesafiante());
-        assertEquals("El desafiado no coincide", desafiado1, desafiosLeidos.get(0).getDesafiado());
+        System.out.println();
+        assertEquals("Fallo de coincidencias en desafiante por rol", desafiante1.getRol(), desafiosLeidos.get(0).getDesafiante().getRol());
+        assertEquals("Fallo de coincidencias en desafiante por nombre", desafiante1.getNombre(), desafiosLeidos.get(0).getDesafiante().getNombre());
+        assertEquals("Fallo de coincidencias en desafiante por nick", desafiante1.getNick(), desafiosLeidos.get(0).getDesafiante().getNick());
+        assertEquals("Fallo de coincidencias en desafiante por id", desafiante1.getId(), desafiosLeidos.get(0).getDesafiante().getId());
+        assertEquals("Fallo de coincidencias en desafiante por baneado", desafiante1.isBaneado(), desafiosLeidos.get(0).getDesafiante().isBaneado());
+        assertEquals("Fallo de coincidencias en desafiante por historiales", desafiante1.getHistorial(), desafiosLeidos.get(0).getDesafiante().getHistorial());
+        assertEquals("Fallo de coincidencias en desafiante por notificaciones", desafiante1.getNotificaciones(), desafiosLeidos.get(0).getDesafiante().getNotificaciones());
+        assertEquals("Fallo de coincidencias en desafiante por oro", desafiante1.getOro(), desafiosLeidos.get(0).getDesafiante().getOro(), 0);
+        assertEquals("Fallo de coincidencias en desafiante por victorias", desafiante1.getVictorias(), desafiosLeidos.get(0).getDesafiante().getVictorias());
+        assertEquals("Fallo de coincidencias en desafiante por personaje", desafiante1.getPersonaje(), desafiosLeidos.get(0).getDesafiante().getPersonaje());
+        assertEquals("Fallo de coincidencias en desafiante por armas activas", desafiante1.getArmasActivas(), desafiosLeidos.get(0).getDesafiante().getArmasActivas());
+        assertEquals("Fallo de coincidencias en desafiante por armadura activa", desafiante1.getArmaduraActiva(), desafiosLeidos.get(0).getDesafiante().getArmaduraActiva());
+        assertEquals("Fallo de coincidencias en desafiante por tipo personaje", desafiante1.getTipoPersonaje(), desafiosLeidos.get(0).getDesafiante().getTipoPersonaje());
+        assertEquals("Fallo de coincidencias en desafiante por cerrada", desafiante1.isCerrada(), desafiosLeidos.get(0).getDesafiante().isCerrada());
+        assertEquals("Fallo de coincidencias en desafiado por rol", desafiado1.getRol(), desafiosLeidos.get(0).getDesafiado().getRol());
+        assertEquals("Fallo de coincidencias en desafiado por nombre", desafiado1.getNombre(), desafiosLeidos.get(0).getDesafiado().getNombre());
+        assertEquals("Fallo de coincidencias en desafiado por nick", desafiado1.getNick(), desafiosLeidos.get(0).getDesafiado().getNick());
+        assertEquals("Fallo de coincidencias en desafiado por id", desafiado1.getId(), desafiosLeidos.get(0).getDesafiado().getId());
+        assertEquals("Fallo de coincidencias en desafiado por baneado", desafiado1.isBaneado(), desafiosLeidos.get(0).getDesafiado().isBaneado());
+        assertEquals("Fallo de coincidencias en desafiado por historiales", desafiado1.getHistorial(), desafiosLeidos.get(0).getDesafiado().getHistorial());
+        assertEquals("Fallo de coincidencias en desafiado por notificaciones", desafiado1.getNotificaciones(), desafiosLeidos.get(0).getDesafiado().getNotificaciones());
+        assertEquals("Fallo de coincidencias en desafiado por oro", desafiado1.getOro(), desafiosLeidos.get(0).getDesafiado().getOro(), 0);
+        assertEquals("Fallo de coincidencias en desafiado por victorias", desafiado1.getVictorias(), desafiosLeidos.get(0).getDesafiado().getVictorias());
+        assertEquals("Fallo de coincidencias en desafiado por personaje", desafiado1.getPersonaje(), desafiosLeidos.get(0).getDesafiado().getPersonaje());
+        assertEquals("Fallo de coincidencias en desafiado por armas activas", desafiado1.getArmasActivas(), desafiosLeidos.get(0).getDesafiado().getArmasActivas());
+        assertEquals("Fallo de coincidencias en desafiado por armadura activa", desafiado1.getArmaduraActiva(), desafiosLeidos.get(0).getDesafiado().getArmaduraActiva());
+        assertEquals("Fallo de coincidencias en desafiado por tipo personaje", desafiado1.getTipoPersonaje(), desafiosLeidos.get(0).getDesafiado().getTipoPersonaje());
+        assertEquals("Fallo de coincidencias en desafiado por cerrada", desafiado1.isCerrada(), desafiosLeidos.get(0).getDesafiado().isCerrada());
         assertEquals("El oro apostado no coincide", oroApostado1, desafiosLeidos.get(0).getOro(), 0.001);
     }
 
@@ -556,11 +605,12 @@ public class AlmacenTest {
         StringBuilder sb = new StringBuilder(longitud);
         String nick = sb.toString();
         Usuario usuario3 = new Usuario(nick, nick);
+        instance.setUsuario(usuario3);
+
         System.out.println(aux);
         int aux2 = instance.getUsuarios().size();
-        assertEquals("El usuario no coincide", usuario3.getNick(), instance.getUsuarios().get(aux).getNick());
-        assertEquals("El usuario no coincide", usuario3.getContrasena(), instance.getUsuarios().get(aux).getContrasena());
-
+        assertEquals("El usuario no coincide", usuario3.getNick(), instance.getUsuarios().get(aux2 - 1).getNick());
+        assertEquals("El usuario no coincide", usuario3.getContrasena(), instance.getUsuarios().get(aux2 - 1).getContrasena());
     }
 
     /**
@@ -574,7 +624,6 @@ public class AlmacenTest {
         instance.addUsuario(usuario);
         int aux = instance.getUsuarios().size();
         Almacen.setUsuarioActivo(aux - 1);
-        // TODO review the generated test code and remove the default call to fail.
         assertEquals("El usuarioActivo no coincide", usuario.getNick(), instance.getUsuarioActivo().getNick());
         assertEquals("El usuarioActivo no coincide", usuario.getContrasena(), instance.getUsuarioActivo().getContrasena());
     }
