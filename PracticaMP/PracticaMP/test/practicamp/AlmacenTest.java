@@ -64,6 +64,151 @@ public class AlmacenTest {
         fail("The test case is a prototype.");
     }
 
+    
+    /**
+     * Test of getArmas method, of class Almacen.
+     */
+    @Test
+    public void testGetArmas() {
+        System.out.println("getArmas");
+        List<Arma> expResult = null;
+        List<Arma> result = Almacen.getArmas();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getUsuarios method, of class Almacen.
+     */
+    @Test
+    public void testGetUsuarios() {
+        System.out.println("getUsuarios");
+        List<Usuario> expResult = null;
+        List<Usuario> result = Almacen.getUsuarios();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getPersonajes method, of class Almacen.
+     */
+    @Test
+    public void testGetPersonajes() {
+        System.out.println("getPersonajes");
+        List<Personaje> expResult = null;
+        List<Personaje> result = Almacen.getPersonajes();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getArmaduras method, of class Almacen.
+     */
+    @Test
+    public void testGetArmaduras() {
+        System.out.println("getArmaduras");
+        List<Armadura> expResult = null;
+        List<Armadura> result = Almacen.getArmaduras();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getContrincante method, of class Almacen.
+     */
+    @Test
+    public void testGetContrincante() throws IOException, FileNotFoundException, ClassNotFoundException {
+        System.out.println("getContrincante");
+        String contrincante = "";
+
+        Almacen instance = new Almacen();
+        Usuario expResult = null;
+        Usuario result = instance.getContrincante(contrincante);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getIndexUsuarioActivo method, of class Almacen.
+     */
+    @Test
+    public void testGetIndexUsuarioActivo() {
+        System.out.println("getIndexUsuarioActivo");
+        int expResult = 0;
+        int result = Almacen.getIndexUsuarioActivo();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of isInNot method, of class Almacen.
+     */
+    @Test
+    public void testIsInNot() {
+        System.out.println("isInNot");
+        boolean expResult = false;
+        boolean result = Almacen.isInNot();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setInNot method, of class Almacen.
+     */
+    @Test
+    public void testSetInNot() {
+        System.out.println("setInNot");
+        boolean inNot = false;
+        Almacen.setInNot(inNot);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of cargarPersonajes method, of class Almacen.
+     */
+    @Test
+    public void testCargarPersonajes() throws IOException, FileNotFoundException, ClassNotFoundException {
+        System.out.println("cargarPersonajes");
+        Almacen instance = new Almacen();
+        instance.cargarPersonajes();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+        /**
+     * Test of getEsbirros method, of class Almacen.
+     */
+    @Test
+    public void testGetEsbirros() {
+        System.out.println("getEsbirros");
+        List<Esbirro> expResult = null;
+        List<Esbirro> result = Almacen.getEsbirros();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getModificadores method, of class Almacen.
+     */
+    @Test
+    public void testGetModificadores() {
+        System.out.println("getModificadores");
+        List<Modificador> expResult = null;
+        List<Modificador> result = Almacen.getModificadores();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
     /**
      * Test of actualizarFicheroDesafios method, of class Almacen.
      */
@@ -87,18 +232,6 @@ public class AlmacenTest {
         assertEquals("El desafiante no coincide", desafiante1, desafiosLeidos.get(0).getDesafiante());
         assertEquals("El desafiado no coincide", desafiado1, desafiosLeidos.get(0).getDesafiado());
         assertEquals("El oro apostado no coincide", oroApostado1, desafiosLeidos.get(0).getOro(), 0.001);
-    }
-
-    /**
-     * Test of cargarPersonajes method, of class Almacen.
-     */
-    @Test
-    public void testCargarPersonajes() throws IOException, FileNotFoundException, ClassNotFoundException {
-        System.out.println("cargarPersonajes");
-        Almacen instance = new Almacen();
-        instance.cargarPersonajes();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -213,31 +346,6 @@ public class AlmacenTest {
         assertEquals("El usuarioActivo no coincide", usuario.getContrasena(), instance.getUsuarioActivo().getContrasena());
     }
 
-    /**
-     * Test of getEsbirros method, of class Almacen.
-     */
-    @Test
-    public void testGetEsbirros() {
-        System.out.println("getEsbirros");
-        List<Esbirro> expResult = null;
-        List<Esbirro> result = Almacen.getEsbirros();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getModificadores method, of class Almacen.
-     */
-    @Test
-    public void testGetModificadores() {
-        System.out.println("getModificadores");
-        List<Modificador> expResult = null;
-        List<Modificador> result = Almacen.getModificadores();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getDesafiosSinValidar method, of class Almacen.
@@ -268,112 +376,6 @@ public class AlmacenTest {
         assertEquals(expResult.get(1).getDesafiante().getNick(), result.get(aux - 1).getDesafiante().getNick());
         assertEquals(expResult.get(1).getOro(), result.get(aux - 1).getOro(), 0);
 
-    }
-
-    /**
-     * Test of getArmas method, of class Almacen.
-     */
-    @Test
-    public void testGetArmas() {
-        System.out.println("getArmas");
-        List<Arma> expResult = null;
-        List<Arma> result = Almacen.getArmas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getUsuarios method, of class Almacen.
-     */
-    @Test
-    public void testGetUsuarios() {
-        System.out.println("getUsuarios");
-        List<Usuario> expResult = null;
-        List<Usuario> result = Almacen.getUsuarios();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPersonajes method, of class Almacen.
-     */
-    @Test
-    public void testGetPersonajes() {
-        System.out.println("getPersonajes");
-        List<Personaje> expResult = null;
-        List<Personaje> result = Almacen.getPersonajes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getArmaduras method, of class Almacen.
-     */
-    @Test
-    public void testGetArmaduras() {
-        System.out.println("getArmaduras");
-        List<Armadura> expResult = null;
-        List<Armadura> result = Almacen.getArmaduras();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getContrincante method, of class Almacen.
-     */
-    @Test
-    public void testGetContrincante() throws IOException, FileNotFoundException, ClassNotFoundException {
-        System.out.println("getContrincante");
-        String contrincante = "";
-
-        Almacen instance = new Almacen();
-        Usuario expResult = null;
-        Usuario result = instance.getContrincante(contrincante);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIndexUsuarioActivo method, of class Almacen.
-     */
-    @Test
-    public void testGetIndexUsuarioActivo() {
-        System.out.println("getIndexUsuarioActivo");
-        int expResult = 0;
-        int result = Almacen.getIndexUsuarioActivo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of isInNot method, of class Almacen.
-     */
-    @Test
-    public void testIsInNot() {
-        System.out.println("isInNot");
-        boolean expResult = false;
-        boolean result = Almacen.isInNot();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setInNot method, of class Almacen.
-     */
-    @Test
-    public void testSetInNot() {
-        System.out.println("setInNot");
-        boolean inNot = false;
-        Almacen.setInNot(inNot);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
