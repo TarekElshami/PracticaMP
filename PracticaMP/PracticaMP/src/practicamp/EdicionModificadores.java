@@ -40,8 +40,8 @@ public class EdicionModificadores extends javax.swing.JPanel {
     public void cargarPersonaje(String nombrePersonaje){
         for (Personaje p : Almacen.getPersonajes()) {
             if (p.getNombre().equals(nombrePersonaje)) {
-                debilidades = p.getFortalezas();
-                fortalezas = p.getDebilidades();
+                fortalezas = p.getFortalezas();
+                debilidades = p.getDebilidades();
                 personaje = p;
                 opSalud.setSelectedItem(Integer.valueOf(personaje.getSalud()));
                 opPoder.setSelectedItem(Integer.valueOf(personaje.getPoder()));
