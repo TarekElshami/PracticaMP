@@ -48,6 +48,13 @@ public class EdicionModificadores extends javax.swing.JPanel {
                 if (!p.getNombre().equals("Vampiro")){
                     textEdad.setVisible(false);
                     etiqEdad.setVisible(false);
+                } else {
+                    if (p instanceof Vampiro) {
+                        Vampiro vampiro = (Vampiro) p;
+                        int edad = vampiro.getEdad();
+                        textEdad.setText(String.valueOf(edad));
+                    }
+                            
                 }
             }
         }
