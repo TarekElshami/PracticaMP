@@ -7,8 +7,15 @@ package practicamp;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -220,8 +227,26 @@ public class EdicionEquipo extends javax.swing.JPanel {
     }//GEN-LAST:event_jList2MouseClicked
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        Almacen.getPersonajes().get(this.personajeIndex).setArmas(armasPersonaje);
-        Almacen.getPersonajes().get(this.personajeIndex).setArmaduras(armadurasPersonaje);
+        List<Personaje> personajes = Almacen.getPersonajes();
+        Personaje p = personajes.get(this.personajeIndex);
+        p.setArmas(this.armasPersonaje);
+        p.setArmaduras(this.armadurasPersonaje);
+
+        File archivoABorrar = new File("personajes.dat");
+        archivoABorrar.delete();
+
+        try {
+            FileOutputStream archivo = new FileOutputStream("personajes.dat");
+            ObjectOutputStream escritor = new ObjectOutputStream(archivo);
+            escritor.writeObject(personajes);
+            escritor.close();
+            archivo.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EdicionEquipo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EdicionEquipo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         JPanel parent = (JPanel) getParent();
         CardLayout cl = (CardLayout) parent.getLayout();
         cl.show(parent, "menuEditarPersonaje");
