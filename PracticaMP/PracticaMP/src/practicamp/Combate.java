@@ -382,7 +382,7 @@ public class Combate {
         } else if (personaje1.getSalud() > personaje2.getSalud()) {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador1.getNick() + " con personaje : " + personaje1.getNombre() + "\n");
             desafio.setGanador(jugador1);
-            desafio.getDesafiante().setOro(desafio.getDesafiante().getOro() - desafio.getOro());
+//            desafio.getDesafiante().setOro(desafio.getDesafiante().getOro() - desafio.getOro());
             desafio.getDesafiado().setOro(desafio.getDesafiado().getOro() + desafio.getOro());
 
             //Ranking.agregarJugador(jugador1);
@@ -390,7 +390,7 @@ public class Combate {
             desafio.setAHistorial("[!] GANA EL JUGADOR " + jugador2.getNick() + " con personaje : " + personaje2.getNombre() + "\n");
             desafio.setGanador(jugador2);
             desafio.getDesafiado().setOro(desafio.getDesafiado().getOro() - desafio.getOro());
-            desafio.getDesafiante().setOro(desafio.getDesafiante().getOro() + desafio.getOro());
+            desafio.getDesafiante().setOro(desafio.getDesafiante().getOro() + desafio.getOro()*2);
 
             //Ranking.agregarJugador(jugador2);
         }

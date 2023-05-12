@@ -159,8 +159,8 @@ public class Notificaciones extends javax.swing.JPanel {
         if (notificationList.getSelectedIndex() != -1) {
             Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());
             Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();
-            Usuario u = Almacen.getUsuarioActivo();
-            u.restarOro(desafioSeleccionado.getOro());
+//            Usuario u = Almacen.getUsuarioActivo();
+//            u.restarOro(desafioSeleccionado.getOro());
             Combate newCombate = new Combate(almacen);
             try {
                 newCombate.iniciarCombate(desafioSeleccionado);
@@ -169,6 +169,7 @@ public class Notificaciones extends javax.swing.JPanel {
             } catch (CloneNotSupportedException ex) {
                 Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
+            System.out.println(desafioSeleccionado.getGanador());
             if (desafioSeleccionado.getGanador() != null) {
                 int index = Almacen.buscarUsuario(desafioSeleccionado.getGanador());
                 System.out.println(desafioSeleccionado.getOro());

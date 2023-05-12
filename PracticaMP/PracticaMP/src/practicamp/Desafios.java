@@ -144,9 +144,9 @@ public class Desafios extends javax.swing.JPanel {
                     String contrincante = userList.getSelectedValue();
                     
                     // Deducimos el oro del desafiante
-//                    Usuario desafiante = Almacen.getUsuarioActivo();
+                    Usuario desafiante = Almacen.getUsuarioActivo();
 //                    if ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmasActivas().size() != 0) && ((Almacen.getUsuarios().get(userList.getSelectedIndex()).getArmaduraActiva() != null))) {
-//                        desafiante.setOro(desafiante.getOro() - oroApostado);
+                    desafiante.setOro(desafiante.getOro() - oroApostado);
                     
                     Desafio newDesafio = new Desafio(Almacen.getUsuarioActivo(), this.almacen.getContrincante(contrincante), oroApostado);
 
