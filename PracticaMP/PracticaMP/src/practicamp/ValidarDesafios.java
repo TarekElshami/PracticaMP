@@ -237,7 +237,7 @@ public class ValidarDesafios extends javax.swing.JPanel {
 
             //Actualizar ficheros
             try {
-                this.almacen.updateFiles();
+                Almacen.updateFiles();
             } catch (IOException ex) {
                 Logger.getLogger(ValidarDesafios.class.getName()).log(Level.SEVERE, null, ex);
             }

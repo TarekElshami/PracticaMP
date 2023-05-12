@@ -153,14 +153,14 @@ public class EdicionModificadores extends javax.swing.JPanel {
         });
         jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 445, 100, -1));
 
-        jPanel1.add(opSalud, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+        jPanel1.add(opSalud, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 90, -1));
 
         opPoder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opPoderActionPerformed(evt);
             }
         });
-        jPanel1.add(opPoder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, -1, -1));
+        jPanel1.add(opPoder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
