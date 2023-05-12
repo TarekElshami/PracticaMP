@@ -169,17 +169,14 @@ public class Notificaciones extends javax.swing.JPanel {
             } catch (CloneNotSupportedException ex) {
                 Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(desafioSeleccionado.getGanador());
             if (desafioSeleccionado.getGanador() != null) {
                 int index = Almacen.buscarUsuario(desafioSeleccionado.getGanador());
-                System.out.println(desafioSeleccionado.getOro());
                 Almacen.getUsuarios().get(index).setOro(Almacen.getUsuarios().get(index).getOro() + desafioSeleccionado.getOro() * 2);
                 Almacen.getUsuarios().get(index).sumarVictoria();
                 Jugador nuevoJugador = new Jugador(desafioSeleccionado.getGanador().getNick(), Almacen.getUsuarios().get(index).getVictorias());
                 try {
                     Ranking.agregarJugador(nuevoJugador);
                 } catch (IOException ex) {
-                    System.out.println("hola");
                     Logger.getLogger(Notificaciones.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
@@ -214,6 +211,14 @@ public class Notificaciones extends javax.swing.JPanel {
         if (notificationList.getSelectedIndex() != -1) {
             Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());
             double oroPerdido = notificacionSeleccionado.getOroApostado() * 0.1;
+            Desafio desafio = notificacionSeleccionado.obtenerDesafio();
+            String desafiante = desafio.getDesafiado().getNick();
+            int aux = 0;
+            int len = Almacen.getUsuarios().size();
+            while (aux<len && desafiante.equals( Almacen.getUsuarios().get(aux).getNick())){
+                aux += 1;
+            }
+            Almacen.getUsuarios().get(aux).sumarOro(notificacionSeleccionado.getOroApostado());
             Usuario usuario = Almacen.getUsuarioActivo();
             usuario.restarOro(oroPerdido);
             this.notificaciones.remove(notificationList.getSelectedIndex());
