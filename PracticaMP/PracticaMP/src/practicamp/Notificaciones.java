@@ -159,8 +159,8 @@ public class Notificaciones extends javax.swing.JPanel {
         if (notificationList.getSelectedIndex() != -1) {
             Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());
             Desafio desafioSeleccionado = notificacionSeleccionado.obtenerDesafio();
-//            Usuario u = Almacen.getUsuarioActivo();
-//            u.restarOro(desafioSeleccionado.getOro());
+            Usuario u = Almacen.getUsuarioActivo();
+            u.restarOro(desafioSeleccionado.getOro());
             Combate newCombate = new Combate(almacen);
             try {
                 newCombate.iniciarCombate(desafioSeleccionado);
@@ -172,7 +172,7 @@ public class Notificaciones extends javax.swing.JPanel {
             if (desafioSeleccionado.getGanador() != null) {
                 int index = Almacen.buscarUsuario(desafioSeleccionado.getGanador());
                 Almacen.getUsuarios().get(index).setOro(Almacen.getUsuarios().get(index).getOro() + desafioSeleccionado.getOro() * 2);
-                Almacen.getUsuarios().get(index).sumarVictoria();
+                //Almacen.getUsuarios().get(index).sumarVictoria();
                 Jugador nuevoJugador = new Jugador(desafioSeleccionado.getGanador().getNick(), Almacen.getUsuarios().get(index).getVictorias());
                 try {
                     Ranking.agregarJugador(nuevoJugador);
@@ -211,14 +211,14 @@ public class Notificaciones extends javax.swing.JPanel {
         if (notificationList.getSelectedIndex() != -1) {
             Notificacion notificacionSeleccionado = this.notificaciones.get(notificationList.getSelectedIndex());
             double oroPerdido = notificacionSeleccionado.getOroApostado() * 0.1;
-            Desafio desafio = notificacionSeleccionado.obtenerDesafio();
-            String desafiante = desafio.getDesafiado().getNick();
-            int aux = 0;
-            int len = Almacen.getUsuarios().size();
-            while (aux<len && desafiante.equals( Almacen.getUsuarios().get(aux).getNick())){
-                aux += 1;
-            }
-            Almacen.getUsuarios().get(aux).sumarOro(notificacionSeleccionado.getOroApostado());
+//            Desafio desafio = notificacionSeleccionado.obtenerDesafio();
+//            String desafiante = desafio.getDesafiado().getNick();
+//            int aux = 0;
+//            int len = Almacen.getUsuarios().size();
+//            while (aux<len && desafiante.equals( Almacen.getUsuarios().get(aux).getNick())){
+//                aux += 1;
+//            }
+//            Almacen.getUsuarios().get(aux).sumarOro(notificacionSeleccionado.getOroApostado());
             Usuario usuario = Almacen.getUsuarioActivo();
             usuario.restarOro(oroPerdido);
             this.notificaciones.remove(notificationList.getSelectedIndex());
