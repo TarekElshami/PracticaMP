@@ -32,7 +32,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
     private List<Arma> armas;
     private List<Armadura> armaduras;
     private int personajeIndex;
-    
+    private String nombrePersonaje;
     
     public EdicionEquipo() {
         initComponents();
@@ -40,6 +40,7 @@ public class EdicionEquipo extends javax.swing.JPanel {
     
     public void actualizarListas(String nombrePersonaje){
         // Obtener todas las armas
+        this.nombrePersonaje = nombrePersonaje;
         this.armadurasPersonaje = new ArrayList<>();
         this.armasPersonaje = new ArrayList<>();
         List<Arma> armas = Almacen.getArmas();
@@ -228,9 +229,14 @@ public class EdicionEquipo extends javax.swing.JPanel {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         List<Personaje> personajes = Almacen.getPersonajes();
-        Personaje p = personajes.get(this.personajeIndex);
-        p.setArmas(this.armasPersonaje);
-        p.setArmaduras(this.armadurasPersonaje);
+        for (Personaje p : personajes) {
+            if (p.getNombre().equals(nombrePersonaje)) {
+                p.setArmas(this.armasPersonaje);
+                p.setArmaduras(this.armadurasPersonaje);
+                break;
+            }
+        }
+        
 
         File archivoABorrar = new File("personajes.dat");
         archivoABorrar.delete();
