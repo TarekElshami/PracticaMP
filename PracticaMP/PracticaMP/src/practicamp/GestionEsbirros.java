@@ -1,11 +1,18 @@
 package practicamp;
 
 import java.awt.CardLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
@@ -295,7 +302,29 @@ public class GestionEsbirros extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        List<Personaje> personajes = Almacen.getPersonajes();
+        for (Personaje p : personajes) {
+            if (p.getNombre().equals(nombrePersonaje)) {
+                p.setEsbirros(esbirros);
+                break;
+            }
+        }
+        
+        File archivoABorrar = new File("personajes.dat");
+        archivoABorrar.delete();
 
+        try {
+            FileOutputStream archivo = new FileOutputStream("personajes.dat");
+            ObjectOutputStream escritor = new ObjectOutputStream(archivo);
+            escritor.writeObject(personajes);
+            escritor.close();
+            archivo.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EdicionEquipo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EdicionEquipo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
