@@ -211,6 +211,6 @@ AlmacenTest: Comprueba la correcta gestión de los datos persistentes, incluyend
 | Nombre          | GitHub                                  |
 |-----------------|-----------------------------------------|
 | Tarek Elshami Ahmed        | [@TarekElshami](https://github.com/TarekElshami)  |
-| Álvaro Serrano Rodrigo         | [AlvaroS3rrano](https://github.com/AlvaroS3rrano)    |
-| Izan Ruiz Ballesteros         | [Etheko](https://github.com/Etheko)     |
-| Blas Vita Ramos         | [Blasetvrtumi](https://github.com/Blasetvrtumi)     |
+| Álvaro Serrano Rodrigo         | [@AlvaroS3rrano](https://github.com/AlvaroS3rrano)    |
+| Izan Ruiz Ballesteros         | [@Etheko](https://github.com/Etheko)     |
+| Blas Vita Ramos         | [@Blasetvrtumi](https://github.com/Blasetvrtumi)     |
