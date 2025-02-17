@@ -1,4 +1,4 @@
-# Juego de Combate de Personajes 🧛♂️🐺🏹
+# Juego de Combate de Personajes 🧛🐺🏹
 
 ## Índice
 1. [Flujo de usuario](#flujo-de-usuario)
