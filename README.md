@@ -109,9 +109,7 @@ Funcionalidades exclusivas:
 ![Pantalla admin](https://github.com/user-attachments/assets/763ce35b-25ca-469a-9bc2-112e81aed5b2)
 
 ### Gestión de desafíos
-- Añadir modificadores globales
-- Ajustar apuestas de oro
-- Rechazar combates desbalanceados
+- Añadir modificadores globales y aceptar el desafío para que sea notificado al usuario desafiado
   
 ![Validación de desafios](https://github.com/user-attachments/assets/496655ac-087e-4e7d-9a25-017839cb4f59)
 
